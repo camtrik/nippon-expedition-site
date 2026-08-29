@@ -63,7 +63,12 @@
   --shadow-3: 0 70px 110px rgba(0, 0, 0, 0.25);
 
   /* ---- Typography ---- */
-  --font-sans: "Sofia Sans", -apple-system, "Hiragino Sans", "PingFang SC", "Yu Gothic", "Microsoft YaHei", sans-serif;
+  /* Sofia Sans is Latin-only, so Han characters fall through to the next family.
+     A Simplified Chinese face must come first: with a Japanese font ahead of it
+     (Hiragino Sans, Yu Gothic) shared characters render in Japanese glyph forms
+     while simplified-only ones (铳 羁 阵 舰) fall past it to the SC face — two
+     typefaces inside one sentence. Hiragino Sans GB is Hiragino's SC face. */
+  --font-sans: "Sofia Sans", -apple-system, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
   --tracking-tight: -0.02em;
   --tracking-tightest: -0.03em;
