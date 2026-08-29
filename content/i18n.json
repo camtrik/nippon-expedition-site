@@ -3,13 +3,23 @@
     "LANG_HTML": "zh-CN",
     "OG_LOCALE": "zh_CN",
     "SITE_NAME": "远征尼朋",
-    "SITE_TITLE": "远征尼朋 · 玉海舰队 — 更新记录",
-    "PAGE_TITLE": "更新记录 — 远征尼朋 · 玉海舰队",
-    "META_DESCRIPTION": "《战锤3》mod「远征尼朋 · 玉海舰队」的版本更新记录，含本体与各个子 mod。",
+    "SITE_TITLE": "远征尼朋 · 玉海舰队",
     "NAV_ARIA": "主导航",
     "NAV_LOG": "更新记录",
     "NAV_WORKSHOP": "创意工坊",
+    "SKIP_TO_CONTENT": "跳到正文",
     "WORKSHOP_URL": "https://steamcommunity.com/workshop/filedetails/?id=3790908242",
+    "PAGES": {
+      "home": {
+        "TITLE": "远征尼朋 · 玉海舰队 — 《战锤3》派系 MOD",
+        "DESCRIPTION": "《战锤3》mod「远征尼朋 · 玉海舰队」：新的震旦可玩派系、远征同伴系统、8 个新兵种，以及两条分叉的长期胜利路线。"
+      },
+      "changelog": {
+        "TITLE": "更新记录 — 远征尼朋 · 玉海舰队",
+        "DESCRIPTION": "《战锤3》mod「远征尼朋 · 玉海舰队」的版本更新记录，含本体与各个子 mod。"
+      }
+    },
+    "HERO_CTA_LABEL": "在创意工坊订阅",
     "LOG_HEADING": "更新记录",
     "LATEST": "最新版本",
     "EMPTY": "还没有更新记录。",
@@ -35,13 +45,23 @@
     "LANG_HTML": "en",
     "OG_LOCALE": "en_US",
     "SITE_NAME": "Nippon Expedition",
-    "SITE_TITLE": "Nippon Expedition · The Jade Sea Fleet — Changelog",
-    "PAGE_TITLE": "Changelog — Nippon Expedition · The Jade Sea Fleet",
-    "META_DESCRIPTION": "Version history for the Total War: Warhammer III mod Nippon Expedition · The Jade Sea Fleet and its submods.",
+    "SITE_TITLE": "Nippon Expedition · The Jade Sea Fleet",
     "NAV_ARIA": "Main navigation",
     "NAV_LOG": "Changelog",
     "NAV_WORKSHOP": "Workshop",
+    "SKIP_TO_CONTENT": "Skip to content",
     "WORKSHOP_URL": "https://steamcommunity.com/workshop/filedetails/?id=3790908523",
+    "PAGES": {
+      "home": {
+        "TITLE": "Nippon Expedition · The Jade Sea Fleet — a Total War: WARHAMMER III mod",
+        "DESCRIPTION": "A new playable Grand Cathay faction for Total War: WARHAMMER III: the Expedition Companions system, 8 new units, and two long victories that fork."
+      },
+      "changelog": {
+        "TITLE": "Changelog — Nippon Expedition · The Jade Sea Fleet",
+        "DESCRIPTION": "Version history for the Total War: Warhammer III mod Nippon Expedition · The Jade Sea Fleet and its submods."
+      }
+    },
+    "HERO_CTA_LABEL": "Subscribe on the Workshop",
     "LOG_HEADING": "Changelog",
     "LATEST": "Latest",
     "EMPTY": "No entries yet.",

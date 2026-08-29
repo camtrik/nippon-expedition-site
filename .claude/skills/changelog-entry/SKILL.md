@@ -118,7 +118,7 @@ python3 scripts/build.py
 python3 -m http.server 8000 --directory site/_dist
 ```
 
-打开 <http://localhost:8000/>（英文 `/en/`）。**要真的看页面**，不能只看构建没报错——列表被截断、专名译错这类问题构建都不会拦。
+打开 <http://localhost:8000/changelog/>（英文 `/en/changelog/`；`/` 是简介页，不是更新记录）。**要真的看页面**，不能只看构建没报错——列表被截断、专名译错这类问题构建都不会拦。
 
 逐项确认：
 
@@ -130,7 +130,7 @@ python3 -m http.server 8000 --directory site/_dist
 
 ```bash
 SITE_BASE_PATH=/nippon-expedition-site SITE_ORIGIN=https://camtrik.github.io python3 scripts/build.py
-grep -oE '(href|src|content)="/[^"]*"' site/_dist/en/index.html | sort -u   # 应全部带前缀
+grep -oE '(href|src|content)="/[^"]*"' site/_dist/en/changelog/index.html | sort -u   # 应全部带前缀
 python3 scripts/build.py   # 记得改回来
 ```
 

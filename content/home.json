@@ -1,0 +1,678 @@
+{
+  "_comment": "Landing page content, mirroring the Steam Workshop description. Both languages sit in the same field so translation drift is visible. Proper nouns come from ../nippon_expedition/_docs/translation/术语对照_*.tsv — do not invent new ones.",
+  "hero": {
+    "eyebrow": {
+      "zh": "《全面战争：战锤3》派系 MOD",
+      "en": "Total War: WARHAMMER III · Faction mod"
+    },
+    "wordmark": "NIPPON EXPEDITION",
+    "name": {
+      "zh": "远征尼朋 · 玉海舰队",
+      "en": "The Jade Sea Fleet"
+    },
+    "premise": {
+      "zh": "沈长风率领舰队远征尼朋，她需要在新的土地上寻找立足之地。",
+      "en": "Shen Changfeng leads her fleet east to Nippon, where she must carve out a foothold on new soil."
+    },
+    "note": {
+      "zh": "",
+      "en": "The English text is AI-translated. Corrections welcome in the comments."
+    },
+    "crest_alt": {
+      "zh": "玉海舰队徽记",
+      "en": "Crest of the Jade Sea Fleet"
+    },
+    "art_alt": {
+      "zh": "玉海舰队在尼朋近海抛锚，沈长风立于岸上远眺",
+      "en": "The Jade Sea Fleet at anchor off Nippon, Shen Changfeng watching from the shore"
+    }
+  },
+  "overview": {
+    "title": {
+      "zh": "简介",
+      "en": "Overview"
+    },
+    "items": [
+      {
+        "zh": "一个新的震旦可玩派系",
+        "en": "A new playable Grand Cathay faction"
+      },
+      {
+        "zh": "1 名新传奇领主，3 名新传奇英雄，1 种通用领主，1 种通用英雄，8 个新兵种，1 种新法系",
+        "en": "1 Legendary Lord, 3 Legendary Heroes, 1 generic lord, 1 generic hero, 8 new units, 1 new spell lore"
+      },
+      {
+        "zh": "自动搬家一些原版传奇领主到尼朋以及尼朋周边区域（可在 MCT 中关闭）",
+        "en": "Relocates vanilla legendary lords to Nippon and the lands around it (can be switched off in MCT)"
+      },
+      {
+        "zh": "**需要 MIXER 和 IEE 扩展**：[Immortal Empires Expanded](https://steamcommunity.com/sharedfiles/filedetails/?id=3007996493) 与 [Mixu's Unlocker](https://steamcommunity.com/sharedfiles/filedetails/?id=2859968660)；可选 [Mod Configuration Tool](https://steamcommunity.com/sharedfiles/filedetails/?id=2927955021)",
+        "en": "**Requires MIXER and IEE**: [Immortal Empires Expanded](https://steamcommunity.com/sharedfiles/filedetails/?id=3007996493) and [Mixu's Unlocker](https://steamcommunity.com/sharedfiles/filedetails/?id=2859968660); optional [Mod Configuration Tool](https://steamcommunity.com/sharedfiles/filedetails/?id=2927955021)"
+      }
+    ]
+  },
+  "lords": {
+    "title": {
+      "zh": "新的传奇领主和英雄",
+      "en": "New Legendary Lord and Heroes"
+    },
+    "items": [
+      {
+        "kind": {
+          "zh": "新传奇领主",
+          "en": "New Legendary Lord"
+        },
+        "name": {
+          "zh": "『无冕提督』沈长风",
+          "en": "Shen Changfeng, the Uncrowned Admiral"
+        },
+        "body": {
+          "zh": "具有特色游牧系统，可使用深渊系，阳系法术。可使用『云帆号跃迁』系统",
+          "en": "A nomadic faction with its own mechanics. Casts from the Lore of the Deep and the Lore of Yang. Can use the Cloud Sails leap."
+        }
+      },
+      {
+        "kind": {
+          "zh": "三位传奇英雄",
+          "en": "Three Legendary Heroes"
+        },
+        "name": {
+          "zh": "『战鬼』立花直虎 · 『阴阳之巫女』纱代 · 瑟兰娜",
+          "en": "Tachibana Naotora, the Ghost · Sayo, the Onmyo Miko · Serena"
+        },
+        "body": {
+          "zh": "可通过远征同伴系统招募。",
+          "en": "Recruited through the Expedition Companions system."
+        }
+      },
+      {
+        "kind": {
+          "zh": "通用领主",
+          "en": "Generic lord"
+        },
+        "name": {
+          "zh": "武士大将",
+          "en": "Samurai Taisho"
+        },
+        "body": {
+          "zh": "尼朋武将，可为尼朋兵种提供独特加成。可骑乘麒麟。",
+          "en": "A Nipponese commander granting unique bonuses to Nipponese units. Mountable on a Kirin."
+        }
+      },
+      {
+        "kind": {
+          "zh": "通用英雄",
+          "en": "Generic hero"
+        },
+        "name": {
+          "zh": "巫女",
+          "en": "Miko"
+        },
+        "body": {
+          "zh": "侍奉尼朋诸神的神职之女。可使用全新的巫女系法术。",
+          "en": "A shrine maiden serving Nippon's gods, with an entirely new Miko spell lore."
+        }
+      }
+    ]
+  },
+  "companions": {
+    "title": {
+      "zh": "远征同伴系统",
+      "en": "Expedition Companions"
+    },
+    "lede": {
+      "zh": "远征途中会遇到三位身份各异的同伴，在专属的「远征同伴」面板上召集她们、推进各自的章节任务、提升羁绊等级。",
+      "en": "Three companions of very different backgrounds join the expedition along the way. Muster them from a dedicated Expedition Companions panel, advance their chapter quests, raise their bond."
+    },
+    "tiers_label": {
+      "zh": "四档羁绊",
+      "en": "Four bond tiers"
+    },
+    "tiers": [
+      {
+        "zh": "结缘",
+        "en": "Bound"
+      },
+      {
+        "zh": "信任",
+        "en": "Trusted"
+      },
+      {
+        "zh": "托付",
+        "en": "Sworn"
+      },
+      {
+        "zh": "生死之交",
+        "en": "Devoted"
+      }
+    ],
+    "chapters_label": {
+      "zh": "章节任务",
+      "en": "Chapter quests"
+    },
+    "items": [
+      {
+        "slug": "naotora",
+        "name": {
+          "zh": "『战鬼』立花直虎",
+          "en": "Tachibana Naotora, the Ghost"
+        },
+        "chapters": [
+          {
+            "zh": "一合",
+            "en": "A Single Exchange"
+          },
+          {
+            "zh": "鬼面大人",
+            "en": "Lady Oni-Mask"
+          },
+          {
+            "zh": "引雷之峰",
+            "en": "Thunder-Drawing Peak"
+          },
+          {
+            "zh": "雷神之女",
+            "en": "Daughter of Raijin"
+          }
+        ]
+      },
+      {
+        "slug": "sayo",
+        "name": {
+          "zh": "『阴阳之巫女』纱代",
+          "en": "Sayo, the Onmyo Miko"
+        },
+        "chapters": [
+          {
+            "zh": "废社之铃",
+            "en": "The Bell in the Ruined Shrine"
+          },
+          {
+            "zh": "末代巫女",
+            "en": "The Last Miko"
+          },
+          {
+            "zh": "神兽宫",
+            "en": "The Sanctum of the Divine Beast"
+          },
+          {
+            "zh": "大社之下",
+            "en": "Beneath the Great Shrine"
+          }
+        ]
+      },
+      {
+        "slug": "serena",
+        "name": {
+          "zh": "瑟兰娜",
+          "en": "Serena"
+        },
+        "chapters": [
+          {
+            "zh": "半张面具",
+            "en": "Half a Mask"
+          },
+          {
+            "zh": "輝山阴影",
+            "en": "The Shadow of Hikariya"
+          },
+          {
+            "zh": "星象罗盘",
+            "en": "The Star Compass"
+          },
+          {
+            "zh": "望舒·瑟兰娜·顾",
+            "en": "Wangshu Selana Gu"
+          }
+        ]
+      }
+    ],
+    "numerals": {
+      "zh": [
+        "壹",
+        "贰",
+        "叁",
+        "肆"
+      ],
+      "en": [
+        "I",
+        "II",
+        "III",
+        "IV"
+      ]
+    },
+    "notes": [
+      {
+        "zh": "每档解锁对应的部队与同伴加成",
+        "en": "Each tier unlocks that companion's units and bonuses"
+      },
+      {
+        "zh": "**名望**：在面板中用名望购买已解锁的部队",
+        "en": "**Renown**: spend it in the panel to buy the units you have unlocked"
+      },
+      {
+        "zh": "**章节任务链**：三条独立任务链。完成任务以推进羁绊等级",
+        "en": "**Chapter quest lines**: three separate chains. Complete them to raise the bond tier"
+      }
+    ]
+  },
+  "units": {
+    "title": {
+      "zh": "兵种",
+      "en": "Units"
+    },
+    "groups": [
+      {
+        "name": {
+          "zh": "舰队",
+          "en": "Fleet"
+        },
+        "items": [
+          {
+            "slug": "jade-sea-warriors",
+            "name": {
+              "zh": "玉海潮勇",
+              "en": "Jade Sea Warriors"
+            }
+          },
+          {
+            "slug": "tide-guard",
+            "name": {
+              "zh": "潮汐禁卫",
+              "en": "Tide Guard"
+            }
+          },
+          {
+            "slug": "fleet-gunners",
+            "name": {
+              "zh": "舰队铳手",
+              "en": "Fleet Gunners"
+            }
+          }
+        ]
+      },
+      {
+        "name": {
+          "zh": "尼朋",
+          "en": "Nippon"
+        },
+        "items": [
+          {
+            "slug": "yari-samurai",
+            "name": {
+              "zh": "长枪武士",
+              "en": "Yari Samurai"
+            }
+          },
+          {
+            "slug": "teppo-samurai",
+            "name": {
+              "zh": "铁炮武士",
+              "en": "Teppo Samurai"
+            }
+          },
+          {
+            "slug": "thunderblade-hatamoto",
+            "name": {
+              "zh": "雷刃旗本",
+              "en": "Thunderblade Hatamoto"
+            }
+          },
+          {
+            "slug": "kirin",
+            "name": {
+              "zh": "麒麟",
+              "en": "Kirin"
+            }
+          },
+          {
+            "slug": "inari-fox",
+            "name": {
+              "zh": "稻荷灵狐使者",
+              "en": "Inari Fox Emissary"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "buildings": {
+    "title": {
+      "zh": "建筑",
+      "en": "Buildings"
+    },
+    "items": [
+      {
+        "name": {
+          "zh": "旗舰建筑树",
+          "en": "The flagship building tree"
+        },
+        "body": {
+          "zh": "玉海舰队的旗舰本身就是一条建筑树。",
+          "en": "The Jade Sea Fleet's flagship is itself a building tree."
+        }
+      },
+      {
+        "name": {
+          "zh": "尼朋地标 5 处",
+          "en": "Five Nippon landmarks"
+        },
+        "body": {
+          "zh": "引雷之峰、輝山锻冶场、枪术道场、神兽宫、灵道社殿，各自解锁独有的加成或兵种。",
+          "en": "Thunder-Drawing Peak, Hikariya Forge, Yari Dojo, Divine Beast Sanctum and the Vim-To Shrine, each with its own bonuses or units."
+        }
+      },
+      {
+        "name": {
+          "zh": "神社链（3 级）",
+          "en": "Shrine chain (3 levels)"
+        },
+        "body": {
+          "zh": "稻荷神社 → 稻荷大社 → 灵兽神宫。依次解锁稻荷灵狐使者、巫女、麒麟。",
+          "en": "Inari Shrine → Inari Grand Shrine → Divine Beast Sanctuary. Unlocks the Inari Fox Emissary, the Miko and the Kirin in turn."
+        }
+      },
+      {
+        "name": {
+          "zh": "侍所链（2 级）",
+          "en": "Samurai Hall chain (2 levels)"
+        },
+        "body": {
+          "zh": "侍所 → 旗本番。依次解锁长枪武士与铁炮武士，然后是雷刃旗本。",
+          "en": "Samurai Hall → Hatamoto Guard. Unlocks Yari Samurai and Teppo Samurai, then Thunderblade Hatamoto."
+        }
+      }
+    ]
+  },
+  "victory": {
+    "title": {
+      "zh": "胜利目标",
+      "en": "Victory Objectives"
+    },
+    "short": {
+      "kind": {
+        "zh": "短期胜利",
+        "en": "Short Victory"
+      },
+      "name": {
+        "zh": "立足尼朋",
+        "en": "Foothold in Nippon"
+      },
+      "quote": {
+        "zh": "踏上尼朋土地时，沈长风才发现昔日的尼朋海盗不过是乱局露出海面的一角：尼朋名义上仍奉圣日朝廷，实则诸藩大名兵戈不止，乡野凋敝，民不聊生。混沌的信徒已在尼朋扎下毒根，异族军阀与嗜血之徒也趁乱据土称雄。若她想在极东之海立下根基，便必须先让这座战火中的列岛重新认得秩序二字。",
+        "en": "The pirates Shen Changfeng had chased were only the part of the wreck showing above water. Nippon bows to the Holy Sun Court in name alone: the daimyo never lay down their arms, Chaos has put down poisoned roots, and foreign warlords hold land of their own. To root herself in the eastern sea, she must first teach this burning archipelago the word order again."
+      },
+      "goals": [
+        {
+          "zh": "消灭清宝天尊信徒、奥本氏、格里姆格·铁皮与『流放者』斯卡布兰德",
+          "en": "Destroy the Cult of Tsien-Tsin, the Okumoto Clan, Grimgor Ironhide and Skarbrand the Exiled"
+        },
+        {
+          "zh": "通过直接占领、仆从协议或军事同盟，控制武士国度、日升之地与关东环陆全境",
+          "en": "Control Samurai's Domain, Sun's Origin and the Eastern Circuit by occupation, vassalage or military alliance"
+        }
+      ]
+    },
+    "routes": [
+      {
+        "tag": "A",
+        "kind": {
+          "zh": "长期胜利 · 路线 A",
+          "en": "Long Victory · Route A"
+        },
+        "name": {
+          "zh": "海外帝国",
+          "en": "Overseas Empire"
+        },
+        "quote": {
+          "zh": "极东诸海久无共主。混沌异族军阀与海上掠夺者各据港湾，商路断裂，民不聊生。若想建立一个真正强大的海外帝国，便不能满足于一处锚地或几座城邦。沈长风必须让更辽阔的海疆都听从玉海舰队的号令。",
+          "en": "The eastern seas have long had no master: warlords and raiders hold the harbours, and the trade routes are cut. An empire that truly stands cannot be built on one anchorage. The wider seas must answer to the Jade Sea Fleet."
+        },
+        "goals": [
+          {
+            "zh": "消灭盘踞尼朋北境的艾辛氏族深巢，以及五名趁乱据土的域外强者",
+            "en": "Destroy the Eshin Clan Nest in northern Nippon, plus five foreign powers that seized land in the chaos"
+          },
+          {
+            "zh": "控制北星道、北陸道、屿北、艾利提斯失落群岛、百渡、南皋鲜、蛮荒迷域与无际环沼全境",
+            "en": "Control the Hokusei Arc, Hokurikudo, North Isle, the Lost Isles of Elithis, the Hundred Counties, Nam Khosun, the Primal Labyrinth and the Great Enveloping Swamp"
+          }
+        ]
+      },
+      {
+        "tag": "B",
+        "kind": {
+          "zh": "长期胜利 · 路线 B",
+          "en": "Long Victory · Route B"
+        },
+        "name": {
+          "zh": "天朝守护",
+          "en": "Bulwark of the Far East"
+        },
+        "quote": {
+          "zh": "自受命为提督以来，沈长风便以澄清玉海、靖平海疆为己任。如今海盗从东方侵袭，鼠人暗巢蛀蚀南境，混沌与异族势力亦在天朝边陲蠢动。虽朝廷诏令仍在，旧日罪名未销，但边疆之患不会自行平息。她若要重归天朝视野，便必须以战功让巍京承认，玉海舰队仍是震旦天朝不可或缺的屏障。",
+          "en": "Pirates strike from the east, ratmen gnaw at the southern border, and Chaos stirs along the frontier. The old charges against Shen Changfeng are not lifted, but the danger will not settle itself. She must make Wei-jin admit by force of arms that the Jade Sea Fleet is still a bulwark Grand Cathay cannot do without."
+        },
+        "goals": [
+          {
+            "zh": "消灭丛林精魂、折磨者、艾辛氏族、艾辛氏族深巢与神佑恶党",
+            "en": "Destroy the Spirit of the Jungle, The Tormentors, Clan Eshin, the Eshin Clan Nest and The Blessed Dread"
+          },
+          {
+            "zh": "控制北星道、申原、玉江三角洲、黎山、大运河、巨蛇河口与奸之林全境",
+            "en": "Control the Hokusei Arc, the Plains of Xen, the Jade River Delta, Mount Li, The Great Canal, the Serpent Estuary and the Jungles of Chi'an"
+          }
+        ]
+      }
+    ]
+  },
+  "relocations": {
+    "title": {
+      "zh": "默认搬家传奇领主",
+      "en": "Relocated Legendary Lords"
+    },
+    "lede": {
+      "zh": "对尼朋和尼朋周边势力进行了重组，自动搬家大量传奇领主，可在 MCT 中关闭。",
+      "en": "Nippon and the powers around it have been reshuffled, relocating a number of legendary lords. Switchable off in MCT."
+    },
+    "head": {
+      "lord": {
+        "zh": "领主",
+        "en": "Lord"
+      },
+      "dest": {
+        "zh": "落点",
+        "en": "Lands at"
+      }
+    },
+    "rows": [
+      {
+        "lord": {
+          "zh": "格里姆格·铁皮",
+          "en": "Grimgor Ironhide"
+        },
+        "dest": {
+          "zh": "灵道大社（尼朋）",
+          "en": "The Grand Vim-To Shrine (Nippon)"
+        }
+      },
+      {
+        "lord": {
+          "zh": "『流放者』斯卡布兰德",
+          "en": "Skarbrand the Exiled"
+        },
+        "dest": {
+          "zh": "蝦夷村（尼朋）",
+          "en": "Emishi Village (Nippon)"
+        }
+      },
+      {
+        "lord": {
+          "zh": "埃皮德穆斯",
+          "en": "Epidemius"
+        },
+        "dest": {
+          "zh": "岱罗（蛮荒迷域）",
+          "en": "Dai Loa (Primal Labyrinth)"
+        }
+      },
+      {
+        "lord": {
+          "zh": "纳卡里",
+          "en": "N'Kari"
+        },
+        "dest": {
+          "zh": "月落之塔（艾利提斯失落群岛）",
+          "en": "Tower of the Setting Moon (Lost Isles of Elithis)"
+        }
+      },
+      {
+        "lord": {
+          "zh": "司库克领主",
+          "en": "Lord Skrolk"
+        },
+        "dest": {
+          "zh": "桑马林（无际环沼）",
+          "en": "Sanmal (Great Enveloping Swamp)"
+        }
+      },
+      {
+        "lord": {
+          "zh": "拉卡斯",
+          "en": "Rakarth"
+        },
+        "dest": {
+          "zh": "天境（百渡）",
+          "en": "Haneuri (Hundred Counties)"
+        }
+      },
+      {
+        "lord": {
+          "zh": "『屠灭者』斯卡拉格",
+          "en": "Skrag the Slaughterer"
+        },
+        "dest": {
+          "zh": "立天险峰（黄陆）",
+          "en": "Mount Haneulja (Noleu Highlands)"
+        }
+      }
+    ]
+  },
+  "ai": {
+    "title": {
+      "zh": "领主增强",
+      "en": "Lord Reinforcement"
+    },
+    "lede": {
+      "zh": "由于尼朋岛自身资源较少，对 AI 进行了一些增强。",
+      "en": "Nippon is a poor island chain, so the AI there has been given a hand up."
+    },
+    "items": [
+      {
+        "zh": "**搬家领主与岛上氏族的 AI 强度大幅提升**：被搬到岛上的格里姆格·铁皮、『流放者』斯卡布兰德，以及岛上的原住民氏族奥本氏、山陽氏，其军队维护费、建造与招募费用、补员速率与经验加成被抬到原版头部 AI 传奇势力的水平，中期登陆尼朋时依然盘踞一方",
+        "en": "**Relocated lords and island clans get a large AI boost**: Grimgor Ironhide and Skarbrand the Exiled, relocated to the isles, plus the native Okumoto and Sanyo Clans, have their upkeep, construction and recruitment costs, replenishment and experience raised to the level of vanilla's strongest AI legendary factions, so they still hold ground when you land mid-campaign"
+      },
+      {
+        "zh": "奥本氏与山陽氏的 AI 会优先建造侍所与稻荷神社系列建筑。首府开局即为 4 级主城并自带旗本番。",
+        "en": "The Okumoto and Sanyo Clan AI prioritise the Samurai Hall and Inari Shrine chains. Their capitals start at level 4 with a Hatamoto Guard built."
+      },
+      {
+        "zh": "奥本氏与山陽氏的首领改为武士大将，附带不朽",
+        "en": "The Okumoto and Sanyo Clan leaders are replaced with immortal Samurai Taisho"
+      }
+    ],
+    "more": {
+      "zh": "进一步强化：可以订阅子 mod",
+      "en": "Want more: subscribe to"
+    },
+    "more_link": {
+      "url": "https://steamcommunity.com/workshop/filedetails/?id=3790907897",
+      "label": {
+        "zh": "远征尼朋 · 周边 AI 强化",
+        "en": "Nippon Expedition · Stronger Surrounding AI"
+      }
+    },
+    "more_tail": {
+      "zh": "。对整体 AI 进行了强化，并且对尼朋以及震旦周边的 AI 进行一些特殊强化。",
+      "en": ". It strengthens the AI across the whole map, with extra tuning for Nippon and the lands around Cathay."
+    }
+  },
+  "compat": {
+    "title": {
+      "zh": "兼容性与已知问题",
+      "en": "Compatibility and Known Issues"
+    },
+    "items": [
+      {
+        "zh": "**与其他占用同一 MIXER 借位槽的 mod 冲突**：本 mod 当前借用 MIXER 预留槽位 `mixer_nip_nipponese_expedition` 作为运行宿主",
+        "en": "**Conflicts with other mods using the same MIXER reserved slot**: this mod currently runs on `mixer_nip_nipponese_expedition`"
+      },
+      {
+        "zh": "**与其他改动尼朋地权 / 派系的 mod 可能冲突**（例如同样把领主搬到尼朋的 mod）",
+        "en": "**May conflict with mods that change Nippon's region ownership or factions** (e.g. other mods that relocate lords there)"
+      },
+      {
+        "zh": "发现问题请附上：载入的 mod 列表、载入顺序、以及 Warhammer3.exe 同目录下的 `script_log_*.txt`",
+        "en": "Bug reports: please include your mod list, load order, and `script_log_*.txt` from next to Warhammer3.exe"
+      }
+    ]
+  },
+  "credits": {
+    "title": {
+      "zh": "鸣谢与第三方素材",
+      "en": "Credits and Third-Party Assets"
+    },
+    "lede": {
+      "zh": "本 mod 的部分美术资产与实现思路参考或改编自以下 mod，在此致谢：",
+      "en": "Some art assets and techniques here are adapted from the following mods. My thanks to their authors:"
+    },
+    "items": [
+      {
+        "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3668285934",
+        "label": {
+          "zh": "houqian_lin",
+          "en": "houqian_lin"
+        }
+      },
+      {
+        "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2989226363",
+        "label": {
+          "zh": "胤隐 / Yin-Yin",
+          "en": "Yin-Yin"
+        }
+      },
+      {
+        "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3586617782",
+        "label": {
+          "zh": "npfjr",
+          "en": "npfjr"
+        }
+      },
+      {
+        "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2789903784",
+        "label": {
+          "zh": "DEER24 Cathay（与龙同行）",
+          "en": "DEER24 Cathay"
+        }
+      },
+      {
+        "url": "https://steamcommunity.com/workshop/filedetails/?id=3442971928",
+        "label": {
+          "zh": "万世天朝",
+          "en": "Wanshi Tianchao"
+        }
+      },
+      {
+        "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=1903613769",
+        "label": {
+          "zh": "赵云",
+          "en": "Zhao Yun"
+        }
+      }
+    ],
+    "tail": {
+      "zh": "如果你是上述任何一份素材的作者，对本 mod 的使用方式有任何异议，请在评论区或私信联系，我会立即撤下或替换相关内容。",
+      "en": "If you are the author of any of this material and object to its use here, tell me in the comments and I will take it down or replace it."
+    }
+  }
+}

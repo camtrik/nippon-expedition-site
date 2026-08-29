@@ -4,38 +4,6 @@
    Body typography follows investment/site/assets/css/notes.css.
    ============================================================ */
 
-/* ---- Language switch (sits inside the nav pill) ---- */
-.lang-switch {
-  display: inline-flex;
-  align-items: center;
-  border: 1px solid var(--dust);
-  border-radius: var(--r-pill);
-  overflow: hidden;
-  line-height: 1;
-  flex-shrink: 0;          /* never let the nav squeeze "EN" out of view */
-}
-.lang-switch__item {
-  padding: 5px 12px;
-  font-size: 13px;
-  font-weight: 500;
-  letter-spacing: 0;
-  color: var(--slate);
-  white-space: nowrap;
-}
-.lang-switch__item:hover { text-decoration: none; color: var(--ink); }
-.lang-switch__item--active {
-  background: var(--primary);
-  color: var(--canvas);
-}
-.lang-switch__item--active:hover { color: var(--canvas); }
-
-/* Under ~560px the pill runs out of room; the logo already links to this
-   same page, so the duplicate "changelog" link is the one to drop. */
-@media (max-width: 560px) {
-  .site-nav__link--log { display: none; }
-  .site-nav__links { gap: 14px; }
-}
-
 /* ============================================================
    Reading column — hero and entries share one measure so their
    left edges line up and body lines stay readable.
@@ -92,13 +60,6 @@
   background: var(--signal-light);
   flex-shrink: 0;
 }
-
-.log-hero__links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--s-1);
-}
-.log-hero__links .pill { box-shadow: var(--shadow-1); }
 
 /* ============================================================
    Release timeline — plain flow, one hairline between versions.
@@ -211,8 +172,12 @@
    Release body — rendered markdown
    ============================================================ */
 .release-body {
-  font-size: 15.5px;
-  line-height: 1.7;
+  /* Up from 15.5/1.7, which was set against PingFang. LXGW WenKai GB draws a
+     smaller, lighter face inside the same em — about 40% less ink at matched
+     pixel size — so it needs the extra point to read at the same weight, and
+     the looser leading to give the calligraphic strokes room. */
+  font-size: 16.5px;
+  line-height: 1.8;
   color: var(--ink);
   overflow-wrap: break-word;
 }

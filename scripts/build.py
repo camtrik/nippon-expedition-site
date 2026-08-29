@@ -1,17 +1,20 @@
 #!/usr/bin/env python3
 """
-build.py — Render the bilingual changelog site into site/_dist/.
+build.py — Render the bilingual site into site/_dist/.
 
 Inputs
     content/i18n.json          page chrome strings, keyed by language
+    content/home.json          landing page content, both languages per field
     content/releases/*.md      one file per release, both languages inside
-    site/_templates/log.html   page shell
+    site/_templates/*.html     page shells
     site/partials/*.html       <!-- include: NAME.html --> fragments
     site/assets/**             copied through unchanged
 
 Output
-    site/_dist/index.html      Chinese (default language, site root)
-    site/_dist/en/index.html   English
+    site/_dist/index.html                Chinese landing page (site root)
+    site/_dist/en/index.html             English landing page
+    site/_dist/changelog/index.html      Chinese changelog
+    site/_dist/en/changelog/index.html   English changelog
     site/_dist/assets/**
 
 Usage
@@ -38,13 +41,20 @@ SITE = ROOT / "site"
 DIST = SITE / "_dist"
 PARTIALS_DIR = SITE / "partials"
 ASSETS_DIR = SITE / "assets"
-TEMPLATE = SITE / "_templates" / "log.html"
+TEMPLATES_DIR = SITE / "_templates"
 I18N_FILE = ROOT / "content" / "i18n.json"
+HOME_FILE = ROOT / "content" / "home.json"
 RELEASES_DIR = ROOT / "content" / "releases"
 
 DEFAULT_LANG = "zh"          # served at the site root
 FALLBACK_ORIGIN = "https://camtrik.github.io"
 LANGS = ["zh", "en"]         # order also drives the hreflang links
+
+# name -> (template, url path under the language root)
+PAGES = {
+    "home": ("home.html", ""),
+    "changelog": ("log.html", "changelog"),
+}
 
 INCLUDE_RE = re.compile(r"<!--\s*include:\s*([A-Za-z0-9_.\-]+)\s*-->")
 ASSET_RE = re.compile(r'((?:href|src)="[^"]*assets/(?:css|js)/[^"]+\.(?:css|js))"')
@@ -53,6 +63,8 @@ LANG_MARKER_RE = re.compile(r"^[ \t]*<!--\s*lang:\s*([a-zA-Z-]+)\s*-->[ \t]*$", 
 
 KNOWN_TYPES = {"release", "content", "balance", "hotfix"}
 
+FONT_COVERAGE = ASSETS_DIR / "fonts" / "coverage.txt"
+TAG_RE = re.compile(r"<[^>]+>")
 
 # ------------------------------------------------------------------ helpers
 
@@ -73,9 +85,27 @@ def normalize_base_path(raw: str | None) -> str:
     return path.rstrip("/")
 
 
-def lang_href(base: str, lang: str) -> str:
-    """URL of the changelog page in `lang`, always ending in a slash."""
-    return f"{base}/" if lang == DEFAULT_LANG else f"{base}/{lang}/"
+def page_href(base: str, lang: str, page: str) -> str:
+    """URL of `page` in `lang`, always ending in a slash."""
+    parts = [base]
+    if lang != DEFAULT_LANG:
+        parts.append(lang)
+    sub = PAGES[page][1]
+    if sub:
+        parts.append(sub)
+    return "/".join(parts) + "/"
+
+
+def pick(field, lang: str) -> str:
+    """Read one bilingual field; fall back to the default language."""
+    if isinstance(field, str):
+        return field
+    value = field.get(lang) or ""
+    return value if value else field.get(DEFAULT_LANG, "")
+
+
+def esc(field, lang: str) -> str:
+    return html.escape(pick(field, lang))
 
 
 # ------------------------------------------------------------ release files
@@ -180,6 +210,19 @@ def render_markdown(text: str) -> str:
     return EXTERNAL_LINK_RE.sub(r'<a href="\1" target="_blank" rel="noopener"', rendered)
 
 
+def inline_md(field, lang: str) -> str:
+    """Bold and code spans inside one bilingual string; no block markup."""
+    import markdown as md_lib
+
+    text = pick(field, lang)
+    if not text:
+        return ""
+    rendered = md_lib.Markdown().convert(text).strip()
+    if rendered.startswith("<p>") and rendered.endswith("</p>"):
+        rendered = rendered[3:-4]
+    return EXTERNAL_LINK_RE.sub(r'<a href="\1" target="_blank" rel="noopener"', rendered)
+
+
 def render_release(release: dict, lang: str, i18n: dict, is_latest: bool) -> str:
     """Render one entry; markdown errors are re-raised with the source filename."""
     strings = i18n[lang]
@@ -224,9 +267,251 @@ def render_release(release: dict, lang: str, i18n: dict, is_latest: bool) -> str
     )
 
 
+# ---------------------------------------------------------- landing page
+
+def section_open(slug: str, lang: str, title, extra: str = "", lede=None) -> str:
+    """Shared section shell: an eyebrow-styled heading plus optional lede."""
+    head = f'<section class="band band--{slug}{(" " + extra) if extra else ""}" id="{slug}">\n'
+    head += '  <div class="band__inner">\n'
+    head += f'    <h2 class="band__title">{esc(title, lang)}</h2>\n'
+    if lede:
+        head += f'    <p class="band__lede">{esc(lede, lang)}</p>\n'
+    return head
+
+
+def section_close() -> str:
+    return "  </div>\n</section>\n"
+
+
+def render_hero(home: dict, lang: str, strings: dict, base: str, latest: str) -> str:
+    h = home["hero"]
+    note = pick(h["note"], lang)
+    note_html = f'\n        <p class="hero__note">{html.escape(note)}</p>' if note else ""
+    cta = "".join(
+        f'\n          <a class="cta{"" if i else " cta--lead"}" href="{url}" target="_blank" rel="noopener">'
+        f'{html.escape(strings[key])}<span aria-hidden="true">↗</span></a>'
+        for i, (key, url) in enumerate(workshop_ctas(lang))
+    )
+    return f"""<section class="hero">
+  <picture class="hero__art">
+    <source type="image/webp" srcset="{base}/assets/img/harbour-1100.webp 1100w, {base}/assets/img/harbour-1800.webp 1800w" sizes="100vw">
+    <img src="{base}/assets/img/harbour-1800.jpg" srcset="{base}/assets/img/harbour-1100.jpg 1100w, {base}/assets/img/harbour-1800.jpg 1800w" sizes="100vw" alt="{esc(h['art_alt'], lang)}" width="1920" height="1080" fetchpriority="high" decoding="async">
+  </picture>
+  <div class="hero__inner">
+    <img class="hero__crest" src="{base}/assets/img/mon.webp" alt="{esc(h['crest_alt'], lang)}" width="80" height="80" decoding="async">
+    <p class="hero__eyebrow">{esc(h['eyebrow'], lang)}</p>
+    <h1 class="hero__title">
+      <span class="hero__wordmark">{html.escape(h['wordmark'])}</span>
+      <span class="hero__name">{esc(h['name'], lang)}</span>
+    </h1>
+    <p class="hero__premise">{esc(h['premise'], lang)}</p>{note_html}
+    <div class="hero__actions">
+      <p class="hero__actions-label">{html.escape(strings['HERO_CTA_LABEL'])}</p>
+      <div class="hero__ctas">{cta}
+      </div>
+    </div>
+    {latest}
+  </div>
+</section>
+"""
+
+
+def workshop_ctas(lang: str) -> list[tuple[str, str]]:
+    """The three workshop listings, primary one first for the page's language."""
+    zh = ("WS_MAIN_ZH", "https://steamcommunity.com/workshop/filedetails/?id=3790908242")
+    en = ("WS_MAIN_EN", "https://steamcommunity.com/workshop/filedetails/?id=3790908523")
+    ai = ("WS_AI", "https://steamcommunity.com/workshop/filedetails/?id=3790907897")
+    return [zh, en, ai] if lang == "zh" else [en, zh, ai]
+
+
+def render_overview(home: dict, lang: str) -> str:
+    o = home["overview"]
+    items = "".join(f'      <li>{inline_md(i, lang)}</li>\n' for i in o["items"])
+    return (section_open("overview", lang, o["title"]) +
+            f'    <ul class="overview__list">\n{items}    </ul>\n' + section_close())
+
+
+def render_lords(home: dict, lang: str) -> str:
+    d = home["lords"]
+    cards = "".join(
+        f'      <li class="lord">\n'
+        f'        <p class="lord__kind">{esc(i["kind"], lang)}</p>\n'
+        f'        <h3 class="lord__name">{esc(i["name"], lang)}</h3>\n'
+        f'        <p class="lord__body">{inline_md(i["body"], lang)}</p>\n'
+        f'      </li>\n'
+        for i in d["items"]
+    )
+    return (section_open("lords", lang, d["title"]) +
+            f'    <ul class="lords">\n{cards}    </ul>\n' + section_close())
+
+
+def render_companions(home: dict, lang: str, base: str) -> str:
+    c = home["companions"]
+    tiers = "".join(
+        f'<li class="tier">{esc(t, lang)}</li>' for t in c["tiers"]
+    )
+    # Chapters are a real sequence, so they get real numerals: the campaign's
+    # own 壹/贰/叁/肆 in Chinese, roman numerals in English.
+    numerals = c["numerals"].get(lang) or c["numerals"][DEFAULT_LANG]
+    cards = ""
+    for item in c["items"]:
+        chapters = "".join(
+            f'          <li class="chapter"><span class="chapter__no" aria-hidden="true">{numerals[n]}</span>'
+            f'<span class="chapter__name">{esc(ch, lang)}</span></li>\n'
+            for n, ch in enumerate(item["chapters"])
+        )
+        cards += f"""      <li class="companion">
+        <img class="companion__art" src="{base}/assets/img/companion-{item['slug']}.jpg" alt="{esc(item['name'], lang)}" width="800" height="450" loading="lazy" decoding="async">
+        <h3 class="companion__name">{esc(item['name'], lang)}</h3>
+        <p class="companion__label">{esc(c['chapters_label'], lang)}</p>
+        <ol class="chapters">
+{chapters}        </ol>
+      </li>
+"""
+    notes = "".join(f'        <li>{inline_md(n, lang)}</li>\n' for n in c["notes"])
+    return (section_open("companions", lang, c["title"], lede=c["lede"]) +
+            f"""    <div class="bond">
+      <p class="bond__label">{esc(c['tiers_label'], lang)}</p>
+      <ol class="bond__tiers">{tiers}</ol>
+      <ul class="bond__notes">
+{notes}      </ul>
+    </div>
+    <ul class="companions">
+{cards}    </ul>
+""" + section_close())
+
+
+def render_units(home: dict, lang: str, base: str) -> str:
+    u = home["units"]
+    groups = ""
+    for group in u["groups"]:
+        cards = "".join(
+            f'          <li class="unit">\n'
+            f'            <img class="unit__art" src="{base}/assets/img/unit-{i["slug"]}.webp" alt="" '
+            f'width="240" height="520" loading="lazy" decoding="async">\n'
+            f'            <span class="unit__name">{esc(i["name"], lang)}</span>\n'
+            f'          </li>\n'
+            for i in group["items"]
+        )
+        groups += (
+            f'      <div class="unit-group">\n'
+            f'        <h3 class="unit-group__name">{esc(group["name"], lang)}</h3>\n'
+            f'        <ul class="units">\n{cards}        </ul>\n'
+            f'      </div>\n'
+        )
+    return (section_open("units", lang, u["title"]) + groups + section_close())
+
+
+def render_buildings(home: dict, lang: str) -> str:
+    b = home["buildings"]
+    rows = "".join(
+        f'      <li class="build">\n'
+        f'        <h3 class="build__name">{esc(i["name"], lang)}</h3>\n'
+        f'        <p class="build__body">{inline_md(i["body"], lang)}</p>\n'
+        f'      </li>\n'
+        for i in b["items"]
+    )
+    return (section_open("buildings", lang, b["title"]) +
+            f'    <ul class="builds">\n{rows}    </ul>\n' + section_close())
+
+
+def goals_list(goals, lang: str) -> str:
+    return "".join(f'        <li>{inline_md(g, lang)}</li>\n' for g in goals)
+
+
+def render_victory(home: dict, lang: str) -> str:
+    """The signature block: one short victory, then two long ones.
+
+    The two long victories are concurrent, not alternatives — a reader can
+    complete both. Keep the copy saying so; the two-armed layout is only a
+    split of one objective into two, never a choice between them.
+    """
+    v = home["victory"]
+    s = v["short"]
+    routes = ""
+    for route in v["routes"]:
+        routes += f"""      <article class="route route--{route['tag'].lower()}">
+        <p class="route__kind"><span class="route__tag" aria-hidden="true">{html.escape(route['tag'])}</span>{esc(route['kind'], lang)}</p>
+        <h3 class="route__name">{esc(route['name'], lang)}</h3>
+        <blockquote class="route__quote"><p>{esc(route['quote'], lang)}</p></blockquote>
+        <ul class="goals">
+{goals_list(route['goals'], lang)}        </ul>
+      </article>
+"""
+    return f"""<section class="band band--victory" id="victory">
+  <div class="band__inner">
+    <h2 class="band__title">{esc(v['title'], lang)}</h2>
+    <div class="fork">
+      <article class="trunk">
+        <p class="trunk__kind">{esc(s['kind'], lang)}</p>
+        <h3 class="trunk__name">{esc(s['name'], lang)}</h3>
+        <blockquote class="trunk__quote"><p>{esc(s['quote'], lang)}</p></blockquote>
+        <ul class="goals">
+{goals_list(s['goals'], lang)}        </ul>
+      </article>
+      <div class="fork__split" aria-hidden="true"></div>
+      <div class="routes">
+{routes}      </div>
+    </div>
+  </div>
+</section>
+"""
+
+
+def render_relocations(home: dict, lang: str) -> str:
+    d = home["relocations"]
+    rows = "".join(
+        f'          <tr><td>{esc(r["lord"], lang)}</td><td>{esc(r["dest"], lang)}</td></tr>\n'
+        for r in d["rows"]
+    )
+    return (section_open("relocations", lang, d["title"], lede=d["lede"]) +
+            f"""    <div class="table-scroll">
+      <table class="reloc">
+        <thead><tr><th scope="col">{esc(d['head']['lord'], lang)}</th><th scope="col">{esc(d['head']['dest'], lang)}</th></tr></thead>
+        <tbody>
+{rows}        </tbody>
+      </table>
+    </div>
+""" + section_close())
+
+
+def render_ai(home: dict, lang: str) -> str:
+    a = home["ai"]
+    items = "".join(f'      <li>{inline_md(i, lang)}</li>\n' for i in a["items"])
+    link = a["more_link"]
+    more = (f'    <p class="band__tail">{esc(a["more"], lang)} '
+            f'<a href="{link["url"]}" target="_blank" rel="noopener">{esc(link["label"], lang)}'
+            f'<span aria-hidden="true">↗</span></a>{esc(a["more_tail"], lang)}</p>\n')
+    return (section_open("ai", lang, a["title"], lede=a["lede"]) +
+            f'    <ul class="prose-list">\n{items}    </ul>\n' + more + section_close())
+
+
+def render_compat(home: dict, lang: str) -> str:
+    c = home["compat"]
+    items = "".join(f'      <li>{inline_md(i, lang)}</li>\n' for i in c["items"])
+    return (section_open("compat", lang, c["title"]) +
+            f'    <ul class="prose-list">\n{items}    </ul>\n' + section_close())
+
+
+def render_credits(home: dict, lang: str) -> str:
+    c = home["credits"]
+    items = "".join(
+        f'      <li><a href="{i["url"]}" target="_blank" rel="noopener">{esc(i["label"], lang)}'
+        f'<span aria-hidden="true">↗</span></a></li>\n'
+        for i in c["items"]
+    )
+    return (section_open("credits", lang, c["title"], lede=c["lede"]) +
+            f'    <ul class="credits">\n{items}    </ul>\n'
+            f'    <p class="band__tail">{esc(c["tail"], lang)}</p>\n' + section_close())
+
+
+# --------------------------------------------------------------- page shell
+
 def build_page(
+    page: str,
     lang: str,
     releases: list[dict],
+    home: dict,
     i18n: dict,
     partials: dict[str, str],
     template: str,
@@ -249,21 +534,53 @@ def build_page(
         entries = f'      <p class="log-empty">{html.escape(strings["EMPTY"])}</p>\n'
         latest_stamp = "<strong>—</strong>"
 
+    log_href = page_href(base, lang, "changelog")
+    hero_latest = (
+        f'<a class="hero__latest" href="{log_href}">'
+        f'<span class="hero__latest-label">{html.escape(strings["LATEST"])}</span>'
+        f'{latest_stamp}<span class="hero__latest-go">{html.escape(strings["NAV_LOG"])} →</span></a>'
+    ) if releases else ""
+
     values = {
         "SITE_BASE_PATH": base,
         "BUILD_TIME": build_time,
         "RELEASES": entries,
         "LATEST_STAMP": latest_stamp,
         "SITE_URL": f"{origin}{base}",
-        "HREF_SELF": lang_href(base, lang),
-        "HREF_ZH": lang_href(base, "zh"),
-        "HREF_EN": lang_href(base, "en"),
-        "ABS_HREF_SELF": origin + lang_href(base, lang),
-        "ABS_HREF_ZH": origin + lang_href(base, "zh"),
-        "ABS_HREF_EN": origin + lang_href(base, "en"),
+        "HREF_SELF": page_href(base, lang, page),
+        "HREF_ZH": page_href(base, "zh", page),
+        "HREF_EN": page_href(base, "en", page),
+        "HREF_HOME": page_href(base, lang, "home"),
+        "HREF_LOG": log_href,
+        "ABS_HREF_SELF": origin + page_href(base, lang, page),
+        "ABS_HREF_ZH": origin + page_href(base, "zh", page),
+        "ABS_HREF_EN": origin + page_href(base, "en", page),
+        "PAGE_LANG": lang,
+        "PAGE_NAME": page,
         "CLASS_ZH_ACTIVE": " lang-switch__item--active" if lang == "zh" else "",
         "CLASS_EN_ACTIVE": " lang-switch__item--active" if lang == "en" else "",
+        "CLASS_LOG_ACTIVE": " site-nav__link--current" if page == "changelog" else "",
     }
+
+    if page == "home":
+        values.update({
+            "HOME_HERO": render_hero(home, lang, strings, base, hero_latest),
+            "HOME_OVERVIEW": render_overview(home, lang),
+            "HOME_LORDS": render_lords(home, lang),
+            "HOME_COMPANIONS": render_companions(home, lang, base),
+            "HOME_UNITS": render_units(home, lang, base),
+            "HOME_BUILDINGS": render_buildings(home, lang),
+            "HOME_VICTORY": render_victory(home, lang),
+            "HOME_RELOCATIONS": render_relocations(home, lang),
+            "HOME_AI": render_ai(home, lang),
+            "HOME_COMPAT": render_compat(home, lang),
+            "HOME_CREDITS": render_credits(home, lang),
+        })
+
+    page_meta = strings["PAGES"][page]
+    values["T_PAGE_TITLE"] = page_meta["TITLE"]
+    values["T_META_DESCRIPTION"] = page_meta["DESCRIPTION"]
+
     # Most strings land as {{T_KEY}}; these three are used raw in attributes.
     verbatim = {"LANG_HTML", "OG_LOCALE", "WORKSHOP_URL"}
     for key, value in strings.items():
@@ -276,26 +593,69 @@ def build_page(
 
     leftovers = sorted(set(re.findall(r"\{\{([A-Z0-9_]+)\}\}", text)))
     if leftovers:
-        raise ValueError(f"[{lang}] unresolved placeholders: {', '.join(leftovers)}")
+        raise ValueError(f"[{lang}/{page}] unresolved placeholders: {', '.join(leftovers)}")
 
     if cache_bust:
         text = ASSET_RE.sub(lambda m: f'{m.group(1)}?v={cache_bust}"', text)
     return text
 
 
+def check_font_coverage(pages: dict[str, str]) -> None:
+    """Fail if a page needs a character the subset webfont does not carry.
+
+    site/assets/fonts/ holds LXGW WenKai GB cut down to exactly the characters
+    the site renders. A character outside that cut falls through to the system
+    stack, so one sentence ends up in two typefaces — the same failure the
+    --font-sans ordering comment in base.css describes. Catch it at build time
+    rather than in a screenshot.
+    """
+    if not FONT_COVERAGE.exists():
+        print("[build] WARNING: no font coverage manifest; run scripts/subset_fonts.py")
+        return
+
+    covered = set(FONT_COVERAGE.read_text(encoding="utf-8"))
+    missing: dict[str, set[str]] = {}
+    for lang, page in pages.items():
+        text = html.unescape(TAG_RE.sub(" ", page))
+        gaps = {
+            c for c in text
+            if ord(c) > 0x7F and not (0xFE00 <= ord(c) <= 0xFE0F) and c not in covered
+        }
+        if gaps:
+            missing[lang] = gaps
+
+    if missing:
+        detail = "; ".join(
+            f"[{lang}] {''.join(sorted(chars))}" for lang, chars in sorted(missing.items())
+        )
+        raise SystemExit(
+            f"font subset is missing {sum(len(c) for c in missing.values())} character(s): {detail}\n"
+            "These would render in a fallback typeface, mid-sentence. Regenerate with:\n"
+            "    pip install fonttools brotli && python3 scripts/subset_fonts.py"
+        )
+
+
 # -------------------------------------------------------------------- main
 
 def main() -> None:
-    if not TEMPLATE.exists():
-        raise SystemExit(f"template not found at {TEMPLATE}")
-
     i18n = json.loads(I18N_FILE.read_text(encoding="utf-8"))
     missing = [lang for lang in LANGS if lang not in i18n]
     if missing:
         raise SystemExit(f"content/i18n.json is missing language(s): {', '.join(missing)}")
+    for lang in LANGS:
+        gaps = [p for p in PAGES if p not in i18n[lang].get("PAGES", {})]
+        if gaps:
+            raise SystemExit(f"content/i18n.json [{lang}] has no PAGES entry for: {', '.join(gaps)}")
 
+    home = json.loads(HOME_FILE.read_text(encoding="utf-8"))
     partials = load_partials()
-    template = TEMPLATE.read_text(encoding="utf-8")
+    templates = {}
+    for page, (filename, _) in PAGES.items():
+        path = TEMPLATES_DIR / filename
+        if not path.exists():
+            raise SystemExit(f"template not found at {path}")
+        templates[page] = path.read_text(encoding="utf-8")
+
     releases = collect_releases()
     base = normalize_base_path(os.environ.get("SITE_BASE_PATH", ""))
     origin = (os.environ.get("SITE_ORIGIN") or FALLBACK_ORIGIN).rstrip("/")
@@ -312,12 +672,18 @@ def main() -> None:
             ignore=lambda _d, names: [n for n in names if n.startswith(".")],
         )
 
+    rendered = {}
     for lang in LANGS:
-        page = build_page(lang, releases, i18n, partials, template, base, origin, build_time, cache_bust)
-        out = DIST / "index.html" if lang == DEFAULT_LANG else DIST / lang / "index.html"
-        out.parent.mkdir(parents=True, exist_ok=True)
-        out.write_text(page, encoding="utf-8")
-        print(f"[build] {lang:>2} -> {out.relative_to(ROOT)}")
+        for page in PAGES:
+            text = build_page(page, lang, releases, home, i18n, partials, templates[page],
+                              base, origin, build_time, cache_bust)
+            out = DIST / page_href("", lang, page).strip("/") / "index.html"
+            out.parent.mkdir(parents=True, exist_ok=True)
+            out.write_text(text, encoding="utf-8")
+            rendered[f"{lang}/{page}"] = text
+            print(f"[build] {lang:>2} {page:<10} -> {out.relative_to(ROOT)}")
+
+    check_font_coverage(rendered)
 
     for release in releases:
         gaps = [lang for lang in LANGS if lang not in release["bodies"]]

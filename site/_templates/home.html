@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="{{LANG_HTML}}">
+<head>
+  <!-- include: head.html -->
+  <title>{{T_PAGE_TITLE}}</title>
+  <link rel="stylesheet" href="{{SITE_BASE_PATH}}/assets/css/home.css">
+</head>
+<body class="page page--home">
+  <!-- include: header.html -->
+
+  <main id="main">
+    <!-- Night: the poster voice. -->
+{{HOME_HERO}}
+
+    <!-- Day: the manifest voice. What is actually in the pack. -->
+    <div class="plate plate--day">
+{{HOME_OVERVIEW}}
+{{HOME_LORDS}}
+{{HOME_COMPANIONS}}
+{{HOME_UNITS}}
+{{HOME_BUILDINGS}}
+    </div>
+
+    <!-- Night again: the campaign's own fiction, and the fork it turns on. -->
+{{HOME_VICTORY}}
+
+    <!-- Day: reference material. Tables, caveats, thanks. -->
+    <div class="plate plate--day plate--reference">
+{{HOME_RELOCATIONS}}
+{{HOME_AI}}
+{{HOME_COMPAT}}
+{{HOME_CREDITS}}
+    </div>
+  </main>
+
+  <!-- include: footer.html -->
+</body>
+</html>

@@ -5,7 +5,7 @@
 <meta name="site-base-path" content="{{SITE_BASE_PATH}}">
 <meta name="description" content="{{T_META_DESCRIPTION}}">
 <meta property="og:type" content="website">
-<meta property="og:title" content="{{T_SITE_TITLE}}">
+<meta property="og:title" content="{{T_PAGE_TITLE}}">
 <meta property="og:description" content="{{T_META_DESCRIPTION}}">
 <meta property="og:image" content="{{SITE_URL}}/assets/preview.png">
 <meta property="og:locale" content="{{OG_LOCALE}}">
@@ -14,9 +14,26 @@
 <link rel="alternate" hreflang="zh-Hans" href="{{ABS_HREF_ZH}}">
 <link rel="alternate" hreflang="en" href="{{ABS_HREF_EN}}">
 <link rel="alternate" hreflang="x-default" href="{{ABS_HREF_ZH}}">
+<script>
+/* First visit only: send readers whose browser is not set to Chinese to the
+   English page. Using the language switch stores a choice, after which this
+   never runs again — one automatic decision, ever. Inline and blocking so the
+   redirect happens before anything paints. */
+(function () {
+  try {
+    var store = window.localStorage;
+    if (store && store.getItem("npex-lang")) return;
+    if ("{{PAGE_LANG}}" !== "zh") return;
+    var tags = navigator.languages || [navigator.language || ""];
+    for (var i = 0; i < tags.length; i++) if (/^zh/i.test(tags[i])) return;
+    location.replace("{{HREF_EN}}");
+  } catch (e) {}
+})();
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Sofia+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Sofia+Sans:wght@400;500;700&family=Sofia+Sans+Extra+Condensed:wght@700;800&display=swap" rel="stylesheet">
 <script>window.SITE_BASE_PATH = "{{SITE_BASE_PATH}}";</script>
+<link rel="stylesheet" href="{{SITE_BASE_PATH}}/assets/css/fonts.css">
 <link rel="stylesheet" href="{{SITE_BASE_PATH}}/assets/css/base.css">
 <link rel="icon" type="image/svg+xml" href="{{SITE_BASE_PATH}}/assets/favicon.svg">

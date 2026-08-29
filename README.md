@@ -1,9 +1,13 @@
-# 远征尼朋 · 更新记录站点
+# 远征尼朋 · 站点
 
-《Total War: WARHAMMER III》mod **「远征尼朋 · 玉海舰队 / Nippon Expedition · The Jade Sea Fleet」** 的版本更新记录，中英双语。
+《Total War: WARHAMMER III》mod **「远征尼朋 · 玉海舰队 / Nippon Expedition · The Jade Sea Fleet」** 的公开站点，中英双语。两个页面：
 
-- 中文：<https://camtrik.github.io/nippon-expedition-site/>
-- English：<https://camtrik.github.io/nippon-expedition-site/en/>
+| | 中文 | English |
+|---|---|---|
+| 简介（与创意工坊描述同步） | <https://camtrik.github.io/nippon-expedition-site/> | [`/en/`](https://camtrik.github.io/nippon-expedition-site/en/) |
+| 更新记录 | [`/changelog/`](https://camtrik.github.io/nippon-expedition-site/changelog/) | [`/en/changelog/`](https://camtrik.github.io/nippon-expedition-site/en/changelog/) |
+
+首次访问根路径时，浏览器语言里没有中文的读者会被自动送到 `/en/`。用导航栏的语言开关切过一次之后就不再自动跳——这个自动判断一辈子只做一次。
 
 创意工坊：[本体（中文）](https://steamcommunity.com/workshop/filedetails/?id=3790908242) ·
 [本体（English）](https://steamcommunity.com/workshop/filedetails/?id=3790908523) ·
@@ -14,6 +18,14 @@
 > 用 AI agent 维护本仓库请先读 [`AGENTS.md`](./AGENTS.md)：原料在哪、术语怎么查、有哪些坑。
 
 ---
+
+## 改简介页
+
+简介页的正文在 `content/home.json`，**中英文写在同一个字段里**（`{"zh": "…", "en": "…"}`），这样漏译一眼就能看出来。内容对着创意工坊描述 `../nippon_expedition/steam_description_{zh,main_en}.txt` 同步即可。
+
+专名不要现编，先查 `../nippon_expedition/_docs/translation/术语对照_*.tsv`，详见 [`AGENTS.md`](./AGENTS.md)。
+
+版式在 `site/_templates/home.html`（各区块的顺序）和 `site/assets/css/home.css`（样式）里；每个区块的 HTML 由 `scripts/build.py` 里对应的 `render_*()` 生成。
 
 ## 加一条更新记录
 
@@ -61,7 +73,7 @@ python3 scripts/build.py
 python3 -m http.server 8000 --directory site/_dist
 ```
 
-打开 <http://localhost:8000/>（英文在 `/en/`）。
+打开 <http://localhost:8000/>：简介页在 `/`，更新记录在 `/changelog/`，英文各自加 `/en` 前缀。
 
 模拟线上的子路径（GitHub Pages 项目站点是 `/nippon-expedition-site/`）：
 
@@ -77,15 +89,22 @@ SITE_BASE_PATH=/nippon-expedition-site SITE_ORIGIN=https://camtrik.github.io pyt
 .github/workflows/pages.yml   构建 + 部署
 content/i18n.json             页面界面文案（中英）
 content/releases/*.md         更新记录，一条一个文件
+content/home.json             简介页正文（中英同字段）
 scripts/build.py              渲染 site/_dist/
-site/_templates/log.html      页面骨架
+scripts/subset_fonts.py       把 LXGW WenKai GB 裁到站点用到的字
+site/_templates/home.html     简介页骨架
+site/_templates/log.html      更新记录页骨架
 site/partials/*.html          <!-- include: NAME.html --> 片段
-site/assets/                  CSS、favicon、og 预览图；原样拷进产物
+site/assets/css/base.css      设计 token、导航、页脚
+site/assets/css/home.css      简介页
+site/assets/css/log.css       更新记录页
+site/assets/img/              取自 mod 本体的美术资源
+site/assets/fonts/            字体子集（由 subset_fonts.py 生成）
 ```
 
 产物 `site/_dist/` 不入库，由 Actions 现场构建。
 
-视觉体系与构建做法沿用同作者的 investment 站点，强调色换成玉海舰队的碧玉绿 `#1F8A70` + 金 `#D4AF37`。
+视觉体系与构建做法沿用同作者的 investment 站点，强调色换成玉海舰队的碧玉绿 `#1F8A70` + 金 `#D4AF37`。简介页在此之上多了一套「夜色」token（`--deep` / `--foam` / `--ember`），取色自 mod 自己的战役读取图与阵营徽记，详见 `base.css` 里的注释。
 
 ### 正文写法的一个坑
 

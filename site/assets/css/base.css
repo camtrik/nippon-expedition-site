@@ -30,6 +30,23 @@
   --gold-soft: #F5EBCB;       /* gold at card-tint strength */
   --link: #1F6F8A;
 
+  /* ---- Night plates (landing page) ----
+     Every value here is sampled from the mod's own shipped art, not chosen:
+     --deep is the faction banner's navy (ui/flags/cth_npex_jade_sea_fleet),
+     --foam is the moonlit water in the campaign loading screen, and --ember is
+     that screen's harbour-lantern light — a parchment amber, not a saturated
+     gold, because the painting itself never goes that saturated. --canvas at
+     the top of this file is, to three digits, the same image's brightest
+     pixel, which is why the page can move from night to daylight without
+     changing worlds. */
+  --deep: #131E2C;            /* night plate ground */
+  --deep-lift: #1C2B3E;       /* raised block on the night plate */
+  --deep-line: rgba(206, 222, 240, 0.16);
+  --foam: #E7EDF4;            /* primary text on night */
+  --foam-dim: #A6B5C7;        /* secondary text on night */
+  --ember: #E4C08F;           /* warm accent on night */
+  --jade-lift: #4FC3A1;       /* --signal raised to carry on night */
+
   /* ---- Status tints ---- */
   --up: #146A3B;
   --down: #9A2A1A;
@@ -64,11 +81,23 @@
 
   /* ---- Typography ---- */
   /* Sofia Sans is Latin-only, so Han characters fall through to the next family.
-     A Simplified Chinese face must come first: with a Japanese font ahead of it
-     (Hiragino Sans, Yu Gothic) shared characters render in Japanese glyph forms
-     while simplified-only ones (铳 羁 阵 舰) fall past it to the SC face — two
-     typefaces inside one sentence. Hiragino Sans GB is Hiragino's SC face. */
-  --font-sans: "Sofia Sans", -apple-system, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
+     That next family is LXGW WenKai GB, self-hosted and subset to exactly the
+     characters this site renders (see scripts/subset_fonts.py). It carries two
+     weights: Regular at 400 and Medium mapped onto 700, which is what makes
+     <strong> visible — the previous system stack topped out at PingFang SC,
+     whose heaviest face is Semibold, so body 450 (which resolves up to Medium)
+     and strong 600 sat one notch apart and read as the same weight.
+     The system faces behind it are the offline fallback, and their order still
+     matters: a Simplified Chinese face must come before any Japanese one
+     (Hiragino Sans, Yu Gothic), or shared characters render in Japanese glyph
+     forms while simplified-only ones (铳 羁 阵 舰) fall past to the SC face —
+     two typefaces inside one sentence. Hiragino Sans GB is Hiragino's SC face. */
+  --font-sans: "Sofia Sans", "LXGW WenKai GB", -apple-system, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
+  /* The wordmark face is a width variant of the body face rather than a new
+     family, so the page gets its display personality from extreme width
+     contrast and the site stays one type system. Latin only by design — it
+     is only ever used to set "NIPPON EXPEDITION" and the route letters. */
+  --font-display: "Sofia Sans Extra Condensed", "Sofia Sans", sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
   --tracking-tight: -0.02em;
   --tracking-tightest: -0.03em;
@@ -384,6 +413,102 @@ hr { border: 0; height: 1px; background: var(--dust); margin: var(--s-4) 0; }
   .site-nav__links { gap: 18px; }
   .site-nav__links a { font-size: 14px; }
 }
+
+/* ---- Language switch (sits inside the nav pill) ---- */
+.lang-switch {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--dust);
+  border-radius: var(--r-pill);
+  overflow: hidden;
+  line-height: 1;
+  flex-shrink: 0;          /* never let the nav squeeze "EN" out of view */
+}
+.lang-switch__item {
+  padding: 5px 12px;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0;
+  color: var(--slate);
+  white-space: nowrap;
+}
+.lang-switch__item:hover { text-decoration: none; color: var(--ink); }
+.lang-switch__item--active {
+  background: var(--primary);
+  color: var(--canvas);
+}
+.lang-switch__item--active:hover { color: var(--canvas); }
+
+/* Under ~560px the pill runs out of room; the logo already links to this
+   same page, so the duplicate "changelog" link is the one to drop. */
+@media (max-width: 560px) {
+  .site-nav__link--log { display: none; }
+  .site-nav__links { gap: 14px; }
+}
+
+/* ---- Skip link ---- */
+.skip-link {
+  position: absolute;
+  left: var(--s-2);
+  top: var(--s-2);
+  z-index: 100;
+  padding: 10px 18px;
+  background: var(--primary);
+  color: var(--canvas);
+  border-radius: var(--r-pill);
+  font-size: 14px;
+  font-weight: 500;
+  transform: translateY(-200%);
+  transition: transform 0.15s ease;
+}
+.skip-link:focus-visible { transform: translateY(0); text-decoration: none; }
+
+/* ---- Visible focus, everywhere ---- */
+:focus-visible {
+  outline: 2px solid var(--signal);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+.plate--night :focus-visible,
+.hero :focus-visible,
+.band--victory :focus-visible { outline-color: var(--ember); }
+
+/* ---- Nav over the hero photograph ----
+   Dark by default, which is the state every reader starts in; the observer in
+   header.html drops .site-nav--landed once the pill clears the photograph and
+   the light treatment below takes back over. With scripting off the pill just
+   stays dark — a legible dark pill on cream, not a broken one. */
+.site-nav__pill,
+.site-nav__pill a,
+.lang-switch,
+.lang-switch__item { transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease; }
+
+/* On the landing page the photograph runs to the very top of the window, so
+   the pill floats over it rather than sitting in a strip above it. Sticky at
+   top:0 behaves the same as fixed except that it occupies flow, and that flow
+   is exactly the gap we do not want. The changelog page keeps sticky, where
+   content does start below the nav. */
+.page--home .site-nav { position: fixed; left: 0; right: 0; }
+
+.page--home .site-nav:not(.site-nav--landed) .site-nav__pill {
+  background: rgba(19, 30, 44, 0.66);
+  border-color: rgba(231, 237, 244, 0.16);
+  box-shadow: 0 10px 34px rgba(0, 0, 0, 0.3);
+}
+.page--home .site-nav:not(.site-nav--landed) .site-nav__logo { color: var(--foam); }
+.page--home .site-nav:not(.site-nav--landed) .site-nav__links a { color: var(--foam-dim); }
+.page--home .site-nav:not(.site-nav--landed) .site-nav__links a:hover { color: var(--foam); }
+.page--home .site-nav:not(.site-nav--landed) .site-nav__github { color: var(--foam-dim); }
+.page--home .site-nav:not(.site-nav--landed) .lang-switch { border-color: rgba(231, 237, 244, 0.3); }
+.page--home .site-nav:not(.site-nav--landed) .lang-switch__item { color: var(--foam-dim); }
+.page--home .site-nav:not(.site-nav--landed) .lang-switch__item--active {
+  background: var(--foam);
+  color: var(--deep);
+}
+
+/* Current page in the nav */
+.site-nav__link--current { color: var(--ink) !important; text-decoration: underline; text-decoration-thickness: 1px; }
+.page--home .site-nav:not(.site-nav--landed) .site-nav__link--current { color: var(--foam) !important; }
 
 /* ---- Footer (ink primary with white) ---- */
 .site-footer {
