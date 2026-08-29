@@ -403,7 +403,7 @@ hr { border: 0; height: 1px; background: var(--dust); margin: var(--s-4) 0; }
   color: var(--ink);
   text-decoration: none;
 }
-.site-nav__github {
+.site-nav__steam {
   display: flex;
   align-items: center;
   flex-shrink: 0;
@@ -498,7 +498,7 @@ hr { border: 0; height: 1px; background: var(--dust); margin: var(--s-4) 0; }
 .page--home .site-nav:not(.site-nav--landed) .site-nav__logo { color: var(--foam); }
 .page--home .site-nav:not(.site-nav--landed) .site-nav__links a { color: var(--foam-dim); }
 .page--home .site-nav:not(.site-nav--landed) .site-nav__links a:hover { color: var(--foam); }
-.page--home .site-nav:not(.site-nav--landed) .site-nav__github { color: var(--foam-dim); }
+.page--home .site-nav:not(.site-nav--landed) .site-nav__steam { color: var(--foam-dim); }
 .page--home .site-nav:not(.site-nav--landed) .lang-switch { border-color: rgba(231, 237, 244, 0.3); }
 .page--home .site-nav:not(.site-nav--landed) .lang-switch__item { color: var(--foam-dim); }
 .page--home .site-nav:not(.site-nav--landed) .lang-switch__item--active {
