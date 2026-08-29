@@ -290,7 +290,7 @@ def render_hero(home: dict, lang: str, strings: dict, base: str, latest: str) ->
     cta = "".join(
         f'\n          <a class="cta{"" if i else " cta--lead"}" href="{url}" target="_blank" rel="noopener">'
         f'{html.escape(strings[key])}<span aria-hidden="true">↗</span></a>'
-        for i, (key, url) in enumerate(workshop_ctas(lang))
+        for i, (key, url) in enumerate(workshop_ctas())
     )
     return f"""<section class="hero">
   <picture class="hero__art">
@@ -316,12 +316,15 @@ def render_hero(home: dict, lang: str, strings: dict, base: str, latest: str) ->
 """
 
 
-def workshop_ctas(lang: str) -> list[tuple[str, str]]:
-    """The three workshop listings, primary one first for the page's language."""
-    zh = ("WS_MAIN_ZH", "https://steamcommunity.com/workshop/filedetails/?id=3790908242")
-    en = ("WS_MAIN_EN", "https://steamcommunity.com/workshop/filedetails/?id=3790908523")
-    ai = ("WS_AI", "https://steamcommunity.com/workshop/filedetails/?id=3790907897")
-    return [zh, en, ai] if lang == "zh" else [en, zh, ai]
+def workshop_ctas() -> list[tuple[str, str]]:
+    """The three workshop listings: the mod itself, its English translation, the
+    AI submod — same order on both language pages, since the English listing is a
+    translation of the first one rather than a second main mod."""
+    return [
+        ("WS_MAIN_ZH", "https://steamcommunity.com/workshop/filedetails/?id=3790908242"),
+        ("WS_MAIN_EN", "https://steamcommunity.com/workshop/filedetails/?id=3790908523"),
+        ("WS_AI", "https://steamcommunity.com/workshop/filedetails/?id=3790907897"),
+    ]
 
 
 def render_overview(home: dict, lang: str) -> str:
