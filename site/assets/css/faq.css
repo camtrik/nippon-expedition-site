@@ -28,12 +28,12 @@
 }
 .faq-hero__eyebrow { margin-bottom: var(--s-2); }
 .faq-hero h1 {
-  /* Capped in em so the break lands with the display size rather than the
-     body size: three lines of English, one unbroken 常见问题 in Chinese. */
-  max-width: 8em;
-  font-size: clamp(44px, 6vw, 76px);
-  line-height: 1;
-  letter-spacing: var(--tracking-tightest);
+  /* Same page-title scale as the changelog — the two text pages open the
+     same way. Capped in em so the break follows the display size rather
+     than the body size: two lines of English, one unbroken 常见问题. */
+  max-width: 10em;
+  font-size: clamp(40px, 5vw, 60px);
+  line-height: 1.05;
 }
 
 /* Same shape as the changelog's .log-stamp — the two text pages
@@ -79,13 +79,12 @@
   top: 104px;
 }
 .faq-band__title {
-  /* Deliberately larger than the landing page's band titles: there the
-     heading labels a section a reader is already looking at, here it is
-     the only thing telling them which category they are inside. */
-  font-size: clamp(32px, 3.6vw, 46px);
-  font-weight: 600;
-  line-height: 1.08;
-  letter-spacing: var(--tracking-tightest);
+  /* Same size, weight and rail position as the landing page's .band__title,
+     so a category heading here reads exactly like 简介 does over there. */
+  font-size: clamp(24px, 2.4vw, 30px);
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: var(--tracking-tight);
   color: var(--ink);
 }
 .faq-band__count {
