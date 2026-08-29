@@ -8,6 +8,7 @@
 | --- | --- | --- | --- |
 | **简介** | `content/home.json`，与创意工坊描述同步 | `/` | `/en/` |
 | **更新记录** | `content/releases/*.md` | `/changelog/` | `/en/changelog/` |
+| **常见问题** | `content/faq.json`，与 mod 仓库的 `faq.md` 同步 | `/faq/` | `/en/faq/` |
 
 这是**内容仓库，不是 mod 仓库**——这里没有一行游戏数据，mod 本体在隔壁 `../nippon_expedition/`。
 
@@ -21,6 +22,7 @@
 | 原版专名中英对照（CA 官方译名） | `_docs/translation/术语对照_原版专名.tsv` |
 | 自造专名中英对照 + 定名政策 | `_docs/translation/术语对照_自造专名{,_说明}.*` |
 | IEE 地名英文（行省 / 定居点） | `_docs/references/IEE尼朋行省与定居点清单.md` |
+| **常见问题的原料**（中英双语成稿） | `faq.md` |
 | 工坊描述双语成稿 | `steam_description_{zh,en}.txt` |
 | NRS 兼容包说明 | `../nippon_expedition_nrs_compat/README_zh.md` |
 
@@ -53,6 +55,23 @@ grep "神華" ../nippon_expedition/_docs/references/IEE尼朋行省与定居点�
 - 工坊描述里没有、页面上有的东西（同伴的四章标题、羁绊四档）来自 mod 仓库 `text/db/*.loc.tsv` 的实装文本，英文取 `术语对照_自造专名.tsv` 里标「已定」的行。**不要自己编章节名。**
 - **两条长期胜利路线（海外帝国 / 天朝守护）不是二选一，两条都能打完。** 工坊描述的「（路线A）/（路线B）」写法容易让人误会——这里错过一次。并排版式不表示互斥，文案必须明说。
 - 区块 HTML 由 `build.py` 的 `render_*()` 生成，顺序在 `site/_templates/home.html`，样式在 `home.css`。
+
+## 常见问题页
+
+正文全在 `content/faq.json`，和简介页一样中英同字段。原料是 mod 仓库的 `faq.md`——**那边也是中英双语成稿，直接搬，别重译**；改了这边记得回头改那边，两份要一致。
+
+```json
+{ "slug": "caravans", "status": "updated", "version": "1.0.1",
+  "question": { "zh": "玉海舰队能用商队吗？", "en": "Can the Jade Sea Fleet use caravans?" },
+  "answer": [ { "zh": "……", "en": "…" } ] }
+```
+
+- `status` 是 `updated` / `fixed`，配 `version` 渲染成问题下面的小徽章。**答案正文里就不要再写一遍「在 v1.0.1 中已更新」**，那是徽章的活；两个都写会重复两遍。徽章文案在 `i18n.json` 的 `FAQ_STATUS`，`{version}` 会被替换。
+- `slug` 决定锚点 `#q-<slug>`，是给评论区回链用的（「详见 …/faq/#q-nrs」），**定了就别改**，改了外面贴出去的链接就断了。
+- `answer` 是段落数组，每段走 `inline_md()`：粗体、行内链接可以，列表和标题不行。要挂外链用同级的 `links`（会渲染成带 ↗ 的单独一行）。
+- 分类顺序 = `sections` 顺序；分类名会以显示级字号钉在左栏（`.faq-band__rail`，随滚动跟着走），下面自动带条数，`slug` 是分类锚点。
+- **页面没有导语，别加回去。** 那句「答案跟着版本走」原来是段废话，现在由标题下的印章代替——`FAQ_CURRENT` 配最新一条更新记录的版本号自动生成，不用手填。
+- **修复清单不进 FAQ。** 页面结尾已经指向更新记录：FAQ 只说「现在是怎样」，「什么时候改的」归更新记录，一份内容不要维护两处。（`faq.md` 末尾那段 `## Fixed` 就是因此没有搬过来。）
 
 ## 加一条更新记录
 
@@ -129,6 +148,7 @@ python3 scripts/subset_fonts.py
 ```
 content/i18n.json             界面文案 + 每页 title / description（zh / en）
 content/home.json             简介页正文（中英同字段）
+content/faq.json              常见问题正文（中英同字段）
 content/releases/*.md         更新记录，一条一个文件
 scripts/build.py              渲染到 site/_dist/
 scripts/subset_fonts.py       切中文字体子集（加了新字才需要跑）
@@ -136,7 +156,7 @@ site/_templates/*.html        页面骨架
 site/partials/*.html          <!-- include: NAME.html --> 片段
 site/assets/css/fonts.css     @font-face，subset_fonts.py 生成，别手改
 site/assets/css/base.css      设计 token + 全局 + 导航 + 页脚
-site/assets/css/{home,log}.css
+site/assets/css/{home,log,faq}.css
 site/assets/fonts/            文楷 GB 子集 + coverage.txt，都要提交
 site/assets/img/              从 mod 本体拷来压缩的美术资源，要换图去那边取原图重压
 ```

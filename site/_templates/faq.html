@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="{{LANG_HTML}}">
+<head>
+  <!-- include: head.html -->
+  <title>{{T_PAGE_TITLE}}</title>
+  <link rel="stylesheet" href="{{SITE_BASE_PATH}}/assets/css/faq.css">
+</head>
+<body class="page page--faq">
+  <!-- include: header.html -->
+
+  <main id="main">
+    <section class="section section--no-pad-top section--no-pad-bottom">
+      <div class="section__inner">
+        <header class="faq-hero">
+          <div class="eyebrow eyebrow--with-dot faq-hero__eyebrow">FAQ</div>
+          <h1>{{T_FAQ_HEADING}}</h1>
+          {{FAQ_STAMP}}
+        </header>
+
+{{FAQ_BANDS}}
+
+        <div class="faq-close">
+          {{FAQ_TAIL}}
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- include: footer.html -->
+</body>
+</html>

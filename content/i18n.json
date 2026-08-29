@@ -5,7 +5,9 @@
     "SITE_NAME": "远征尼朋",
     "SITE_TITLE": "远征尼朋 · 玉海舰队",
     "NAV_ARIA": "主导航",
+    "NAV_HOME": "简介",
     "NAV_LOG": "更新记录",
+    "NAV_FAQ": "常见问题",
     "NAV_WORKSHOP": "创意工坊",
     "SKIP_TO_CONTENT": "跳到正文",
     "WORKSHOP_URL": "https://steamcommunity.com/workshop/filedetails/?id=3790908242",
@@ -17,10 +19,17 @@
       "changelog": {
         "TITLE": "更新记录 — 远征尼朋 · 玉海舰队",
         "DESCRIPTION": "《战锤3》mod「远征尼朋 · 玉海舰队」的版本更新记录，含本体与各个子 mod。"
+      },
+      "faq": {
+        "TITLE": "常见问题 — 远征尼朋 · 玉海舰队",
+        "DESCRIPTION": "《战锤3》mod「远征尼朋 · 玉海舰队」的常见问题：商队与建筑的解锁条件、合邦、与其他 mod 的兼容，以及后续计划。"
       }
     },
     "HERO_CTA_LABEL": "在创意工坊订阅",
     "LOG_HEADING": "更新记录",
+    "FAQ_HEADING": "常见问题",
+    "FAQ_CURRENT": "答案对应 v{version}",
+    "FAQ_TAIL_LINK": "更新记录",
     "LATEST": "最新版本",
     "EMPTY": "还没有更新记录。",
     "UNTRANSLATED": "本条目暂无中文版本，以下为英文原文。",
@@ -35,6 +44,14 @@
       "balance": "平衡调整",
       "hotfix": "紧急修复"
     },
+    "FAQ_COUNT": {
+      "one": "1 问",
+      "other": "{n} 问"
+    },
+    "FAQ_STATUS": {
+      "updated": "v{version} 已更新",
+      "fixed": "v{version} 已修复"
+    },
     "TAGS": {
       "main": "本体",
       "stronger-ai": "AI 强化",
@@ -47,7 +64,9 @@
     "SITE_NAME": "Nippon Expedition",
     "SITE_TITLE": "Nippon Expedition · The Jade Sea Fleet",
     "NAV_ARIA": "Main navigation",
+    "NAV_HOME": "Overview",
     "NAV_LOG": "Changelog",
+    "NAV_FAQ": "FAQ",
     "NAV_WORKSHOP": "Workshop",
     "SKIP_TO_CONTENT": "Skip to content",
     "WORKSHOP_URL": "https://steamcommunity.com/workshop/filedetails/?id=3790908523",
@@ -59,10 +78,17 @@
       "changelog": {
         "TITLE": "Changelog — Nippon Expedition · The Jade Sea Fleet",
         "DESCRIPTION": "Version history for the Total War: Warhammer III mod Nippon Expedition · The Jade Sea Fleet and its submods."
+      },
+      "faq": {
+        "TITLE": "FAQ — Nippon Expedition · The Jade Sea Fleet",
+        "DESCRIPTION": "Frequently asked questions about the Total War: Warhammer III mod Nippon Expedition · The Jade Sea Fleet: unlock conditions, confederation, compatibility with other mods, and what is planned."
       }
     },
     "HERO_CTA_LABEL": "Subscribe on the Workshop",
     "LOG_HEADING": "Changelog",
+    "FAQ_HEADING": "Frequently asked questions",
+    "FAQ_CURRENT": "Answers current as of v{version}",
+    "FAQ_TAIL_LINK": "changelog",
     "LATEST": "Latest",
     "EMPTY": "No entries yet.",
     "UNTRANSLATED": "No English version of this entry yet — showing the Chinese original.",
@@ -76,6 +102,14 @@
       "content": "Content",
       "balance": "Balance",
       "hotfix": "Hotfix"
+    },
+    "FAQ_COUNT": {
+      "one": "1 question",
+      "other": "{n} questions"
+    },
+    "FAQ_STATUS": {
+      "updated": "Updated in v{version}",
+      "fixed": "Fixed in v{version}"
     },
     "TAGS": {
       "main": "Main mod",

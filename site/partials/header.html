@@ -1,9 +1,13 @@
 <a class="skip-link" href="#main">{{T_SKIP_TO_CONTENT}}</a>
 <nav class="site-nav" aria-label="{{T_NAV_ARIA}}">
   <div class="site-nav__pill">
-    <a href="{{HREF_HOME}}" class="site-nav__logo">{{T_SITE_NAME}}</a>
+    <a href="{{HREF_HOME}}" class="site-nav__logo" aria-label="{{T_SITE_NAME}}">
+      <img class="site-nav__mark" src="{{SITE_BASE_PATH}}/assets/favicon.svg" alt="" width="24" height="24" aria-hidden="true">
+      <span class="site-nav__logo-text">{{T_SITE_NAME}}</span>
+    </a>
     <div class="site-nav__links">
-      <a href="{{HREF_LOG}}" class="site-nav__link--log{{CLASS_LOG_ACTIVE}}">{{T_NAV_LOG}}</a>
+      <a href="{{HREF_LOG}}" class="site-nav__page{{CLASS_LOG_ACTIVE}}">{{T_NAV_LOG}}</a>
+      <a href="{{HREF_FAQ}}" class="site-nav__page{{CLASS_FAQ_ACTIVE}}">{{T_NAV_FAQ}}</a>
       <span class="lang-switch">
         <a href="{{HREF_ZH}}" class="lang-switch__item{{CLASS_ZH_ACTIVE}}" hreflang="zh-Hans" data-lang="zh">中</a>
         <a href="{{HREF_EN}}" class="lang-switch__item{{CLASS_EN_ACTIVE}}" hreflang="en" data-lang="en">EN</a>

@@ -1,0 +1,194 @@
+{
+  "_comment": "常见问题正文，原料是 ../nippon_expedition/faq.md（私有仓库，来源为创意工坊评论区）。中英写在同一字段里，改一边就改另一边。`status` + `version` 会渲染成问题右侧的小徽章（updated / fixed），所以答案正文里不要再写一遍「在 v1.0.1 中已更新」。专名一律查 ../nippon_expedition/_docs/translation/术语对照_*.tsv，不要现编。",
+  "sections": [
+    {
+      "slug": "gameplay",
+      "title": {
+        "zh": "玩法",
+        "en": "Gameplay"
+      },
+      "items": [
+        {
+          "slug": "caravans",
+          "status": "updated",
+          "version": "1.0.1",
+          "question": {
+            "zh": "玉海舰队能用商队吗？",
+            "en": "Can the Jade Sea Fleet use caravans?"
+          },
+          "answer": [
+            {
+              "zh": "玉海舰队的商队开局不可使用，完成占领黎山或玉江三角洲的任务即可解锁。解锁后科技树里的商队节点一并生效。",
+              "en": "Caravans are locked at the start and unlocked by a mission: take Mount Li or the Jade River Delta. Once unlocked, the caravan technology nodes work as well."
+            }
+          ]
+        },
+        {
+          "slug": "landmarks",
+          "status": "updated",
+          "version": "1.0.1",
+          "question": {
+            "zh": "其他震旦派系打下尼朋的城之后，能建当地的地标吗？",
+            "en": "Can other Cathay factions build the Nippon landmarks after taking a settlement there?"
+          },
+          "answer": [
+            {
+              "zh": "占领对应定居点即可建造。",
+              "en": "Capturing the settlement is enough."
+            }
+          ]
+        },
+        {
+          "slug": "shrine-and-hall",
+          "status": "updated",
+          "version": "1.0.1",
+          "question": {
+            "zh": "其他震旦派系能建神社链和侍所链吗？",
+            "en": "Can other Cathay factions build the Shrine and Samurai Hall chains?"
+          },
+          "answer": [
+            {
+              "zh": "占领竜舰海港解锁侍所链，占领橙色神華大社解锁神社链，开局会收到对应任务。解锁后不再受地域限制。武士大将与巫女的招募随同解锁。",
+              "en": "Capture Dragon Fleet Port to unlock the Samurai Hall chain and the Temple of the Orange Simca to unlock the Shrine chain; a mission for each is issued at the start. Once unlocked they are no longer restricted by region. Samurai Taisho and Miko recruitment unlocks with them."
+            }
+          ]
+        },
+        {
+          "slug": "confederation",
+          "question": {
+            "zh": "合邦了玉海舰队，就能建尼朋建筑、招募这些兵种了吗？",
+            "en": "If I confederate the Jade Sea Fleet, can I build the Nippon buildings and recruit those units?"
+          },
+          "answer": [
+            {
+              "zh": "不能。要自己占领对应城市并完成任务，合邦不传递这个资格。",
+              "en": "No. You have to own the settlement and complete the mission yourself; confederation does not carry the unlock over."
+            }
+          ]
+        },
+        {
+          "slug": "ai-heroes",
+          "status": "updated",
+          "version": "1.0.1",
+          "question": {
+            "zh": "玩其他派系时，AI 沈长风会有那三位传奇英雄吗？合邦之后能拿到吗？",
+            "en": "When I play another faction, does the AI Shen Changfeng get her three legendary heroes, and do they come with a confederation?"
+          },
+          "answer": [
+            {
+              "zh": "AI 的玉海舰队会在第 2、3、4 回合自动获得三位传奇英雄，合邦时会随之一起过来。",
+              "en": "The AI Jade Sea Fleet is given all three legendary heroes on turns 2, 3 and 4, and they come across with the confederation."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "compatibility",
+      "title": {
+        "zh": "兼容性",
+        "en": "Compatibility"
+      },
+      "items": [
+        {
+          "slug": "nrs",
+          "status": "updated",
+          "version": "1.0.1",
+          "question": {
+            "zh": "能和 Nippon, Land of the Rising Sun 一起玩吗？",
+            "en": "Can I run this alongside Nippon, Land of the Rising Sun?"
+          },
+          "answer": [
+            {
+              "zh": "装上兼容子 mod 即可，两者不再互相顶掉传奇领主。**需要开新存档。**",
+              "en": "Install the compatibility submod and the two mods no longer overwrite each other's legendary lord. **A new campaign is required.**"
+            }
+          ],
+          "links": [
+            {
+              "label": {
+                "zh": "Nippon, Land of the Rising Sun",
+                "en": "Nippon, Land of the Rising Sun"
+              },
+              "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3770643554"
+            },
+            {
+              "label": {
+                "zh": "兼容子 mod",
+                "en": "Compatibility submod"
+              },
+              "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3792001152"
+            }
+          ]
+        },
+        {
+          "slug": "yin-yin",
+          "question": {
+            "zh": "和胤隐的 mod 兼容吗？",
+            "en": "Is it compatible with Yin-Yin's mod?"
+          },
+          "answer": [
+            {
+              "zh": "可以同时游玩。目前没有加入胤隐 mod 的兵种招募，这部分计划以单独的子 mod 形式做兼容。",
+              "en": "The two can be played together. Recruitment of Yin-Yin's units is not included; that is planned as a separate compatibility submod."
+            }
+          ]
+        },
+        {
+          "slug": "other-cathay-buildings",
+          "status": "fixed",
+          "version": "1.0.1",
+          "question": {
+            "zh": "别的 mod 给震旦加的建筑和地标，玉海舰队能造吗？",
+            "en": "Do Cathay buildings and landmarks added by other mods show up for the Jade Sea Fleet?"
+          },
+          "answer": [
+            {
+              "zh": "之前一条都不出现，现在可以正常建造。",
+              "en": "None of them appeared before; they can be built normally now."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "plans",
+      "title": {
+        "zh": "设定与计划",
+        "en": "Design and plans"
+      },
+      "items": [
+        {
+          "slug": "island-clans",
+          "question": {
+            "zh": "奥本氏、山陽氏这些本土派系会做成盟友、或者直接占用他们的槽位吗？",
+            "en": "Will the Okumoto and Sanyo Clans be made into allies?"
+          },
+          "answer": [
+            {
+              "zh": "它们是有意做成可以打掉、也可以结盟的存在，默认已经给了一些强度加成。周边其他震旦小派系基本很快就会覆灭，所以没有改动。",
+              "en": "They are meant to be factions you can either destroy or ally with, and they already have some strength bonuses by default. The other small Cathay factions nearby tend to be wiped out early, so they have not been changed."
+            }
+          ]
+        },
+        {
+          "slug": "more-content",
+          "question": {
+            "zh": "以后还会加兵种和传奇英雄吗？",
+            "en": "Will there be more units and legendary lords or heroes?"
+          },
+          "answer": [
+            {
+              "zh": "会，都在计划中。",
+              "en": "Yes, both are planned."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "tail": {
+    "zh": "每个版本具体改了什么，见",
+    "en": "For what each version actually changed, see the"
+  }
+}
