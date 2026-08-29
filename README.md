@@ -10,7 +10,7 @@
 首次访问根路径时，浏览器语言里没有中文的读者会被自动送到 `/en/`。用导航栏的语言开关切过一次之后就不再自动跳——这个自动判断一辈子只做一次。
 
 创意工坊：[本体（中文）](https://steamcommunity.com/workshop/filedetails/?id=3790908242) ·
-[本体（English）](https://steamcommunity.com/workshop/filedetails/?id=3790908523) ·
+[English Translation](https://steamcommunity.com/workshop/filedetails/?id=3790908523) ·
 [周边 AI 强化子 mod](https://steamcommunity.com/workshop/filedetails/?id=3790907897)
 
 ---
