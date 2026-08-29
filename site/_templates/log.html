@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="{{LANG_HTML}}">
+<head>
+  <!-- include: head.html -->
+  <title>{{T_PAGE_TITLE}}</title>
+  <link rel="stylesheet" href="{{SITE_BASE_PATH}}/assets/css/log.css">
+</head>
+<body>
+  <!-- include: header.html -->
+
+  <main>
+    <section class="section section--no-pad-top section--no-pad-bottom">
+      <div class="section__inner">
+        <header class="log-hero">
+          <div class="eyebrow eyebrow--with-dot log-hero__eyebrow">CHANGELOG</div>
+          <h1>{{T_LOG_HEADING}}</h1>
+          <p class="log-hero__lede">{{T_LOG_LEDE}}</p>
+          <div class="log-hero__meta">
+            <span class="log-stamp">
+              {{T_LATEST}} <strong>{{LATEST_VERSION}}</strong> · <strong>{{LATEST_DATE}}</strong>
+            </span>
+            <span class="log-hero__links">
+              <a class="pill pill--outline" href="https://steamcommunity.com/workshop/filedetails/?id=3007996493" target="_blank" rel="noopener">IEE ↗</a>
+              <a class="pill pill--outline" href="https://steamcommunity.com/sharedfiles/filedetails/?id=2859968660" target="_blank" rel="noopener">MIXER ↗</a>
+            </span>
+          </div>
+        </header>
+
+        <div class="log-timeline">
+{{RELEASES}}
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- include: footer.html -->
+</body>
+</html>

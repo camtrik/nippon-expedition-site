@@ -1,0 +1,447 @@
+/* ============================================================
+   base.css — Design tokens + global reset + shared primitives
+   Editorial layout system (cream canvas → cards → ink footer).
+   Accent palette taken from the Jade Sea Fleet's faction colours
+   in db/factions_tables/cth_npex: jade #1F8A70 + gold #D4AF37.
+   ============================================================ */
+
+:root {
+  /* ---- Surfaces (page rhythm: cream → tinted → cream) ---- */
+  --canvas: #fbf9f8;          /* page background (lighter than original putty) */
+  --canvas-lifted: #FCFBFA;
+  --surface-low: #f5f3f3;     /* alternate tinted section bg */
+  --surface-card: #ffffff;    /* card surface (on either canvas or surface-low) */
+  --bone: #efeded;
+  --white: #ffffff;
+
+  /* ---- Ink ---- */
+  --ink: #1b1c1c;             /* primary text */
+  --primary: #000000;         /* CTA bg, footer bg, icon-circle bg */
+  --charcoal: #262627;
+  --slate: #5f5e5d;           /* secondary text (eyebrow muted, captions) */
+  --granite: #454747;
+  --dust: #c7c7c0;            /* dividers, outlines */
+
+  /* ---- Accents (use sparingly) ---- */
+  --signal: #1F8A70;          /* jade — faction primary; version numbers, rail dots */
+  --signal-light: #2FA98A;    /* lighter jade — eyebrow dots, stamp dot */
+  --clay: #146A5A;            /* deep jade — hover / pressed accents */
+  --gold: #D4AF37;            /* faction secondary — release badge, rail cap */
+  --gold-soft: #F5EBCB;       /* gold at card-tint strength */
+  --link: #1F6F8A;
+
+  /* ---- Status tints ---- */
+  --up: #146A3B;
+  --down: #9A2A1A;
+
+  /* ---- Spacing (base 8) ---- */
+  --s-1: 8px;
+  --s-2: 16px;
+  --s-3: 24px;
+  --s-4: 32px;
+  --s-5: 48px;
+  --s-6: 64px;
+  --s-7: 96px;
+  --s-8: 128px;
+
+  /* Section vertical padding tokens to match design */
+  --section-pad: 112px;       /* py-section-v-desktop */
+  --section-pad-mobile: 56px;
+
+  /* ---- Radii (Mastercard scale: tiny / 20 / 40 / pill) ---- */
+  --r-xs: 6px;
+  --r-md: 20px;
+  --r-lg: 24px;
+  --r-xl: 40px;
+  --r-pill: 999px;
+  --r-circle: 50%;
+
+  /* ---- Shadows (atmospheric, not directional) ---- */
+  --shadow-1: 0 4px 24px rgba(0, 0, 0, 0.04);
+  --shadow-card: 0 12px 24px rgba(0, 0, 0, 0.03);
+  --shadow-2: 0 24px 48px rgba(0, 0, 0, 0.05);
+  --shadow-3: 0 70px 110px rgba(0, 0, 0, 0.25);
+
+  /* ---- Typography ---- */
+  --font-sans: "Sofia Sans", -apple-system, "Hiragino Sans", "PingFang SC", "Yu Gothic", "Microsoft YaHei", sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  --tracking-tight: -0.02em;
+  --tracking-tightest: -0.03em;
+  --tracking-eyebrow: 0.04em;
+
+  /* ---- Layout ---- */
+  --content-max: 1280px;
+  --gutter: 48px;
+  --gutter-mobile: 24px;
+  --margin-container: 24px;   /* horizontal page padding in design */
+}
+
+* { box-sizing: border-box; }
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--canvas);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-weight: 450;
+  font-size: 16px;
+  line-height: 1.4;
+  font-variant-numeric: tabular-nums;
+  text-rendering: optimizeLegibility;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main { flex: 1 0 auto; }
+
+h1, h2, h3, h4, h5 {
+  margin: 0;
+  font-weight: 500;
+  letter-spacing: var(--tracking-tight);
+  color: var(--ink);
+}
+h1 { font-size: clamp(40px, 5vw, 64px); line-height: 1.05; }
+h2 { font-size: clamp(28px, 3vw, 36px); line-height: 1.22; }
+h3 { font-size: 24px; line-height: 1.2; }
+h4 { font-size: 18px; line-height: 1.3; }
+
+p { margin: 0 0 var(--s-2); }
+p:last-child { margin-bottom: 0; }
+
+a { color: var(--ink); text-decoration: none; text-underline-offset: 3px; }
+a:hover { text-decoration: underline; }
+a.link-blue { color: var(--link); }
+
+img, svg { max-width: 100%; display: block; }
+
+hr { border: 0; height: 1px; background: var(--dust); margin: var(--s-4) 0; }
+
+/* ---- Material symbols inline ---- */
+.material-symbols-outlined {
+  font-family: "Material Symbols Outlined", sans-serif;
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: "liga";
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---- Eyebrow label (accent dot + uppercase tracking) ---- */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+  color: var(--ink);
+  line-height: 1;
+}
+.eyebrow--with-dot::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--signal-light);
+  flex-shrink: 0;
+}
+.eyebrow--muted { color: var(--slate); }
+
+/* ---- Pills (small chip badges) ---- */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--white);
+  border-radius: var(--r-pill);
+  padding: 6px 14px;
+  font-size: 13px;
+  color: var(--ink);
+  border: 1px solid transparent;
+  letter-spacing: 0;
+  line-height: 1;
+}
+.pill--ink { background: var(--primary); color: var(--canvas); }
+.pill--outline { background: transparent; border-color: var(--ink); }
+.pill--ghost { background: transparent; border-color: var(--dust); color: var(--slate); }
+.pill--view {
+  background: var(--primary);
+  color: var(--canvas);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+  padding: 6px 16px;
+  box-shadow: var(--shadow-card);
+}
+
+/* ---- Buttons ---- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 24px;
+  font: inherit;
+  font-weight: 500;
+  font-size: 16px;
+  letter-spacing: var(--tracking-tight);
+  border: 1.5px solid var(--ink);
+  border-radius: var(--r-md);
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 0.08s ease;
+}
+.btn--primary { background: var(--primary); color: var(--canvas); }
+.btn--secondary { background: var(--white); color: var(--ink); font-weight: 450; }
+.btn:active { transform: translateY(1px); }
+
+/* ============================================================
+   Section layout primitives
+   Use .section as the full-width wrapper, .section__inner as the
+   max-width container, and either .section-2col or .feature-card
+   for content.
+   ============================================================ */
+
+.section {
+  padding: var(--section-pad) 0;
+}
+.section--top-border .section__inner {
+  border-top: 1px solid var(--dust);
+  padding-top: var(--section-pad);
+  margin-top: calc(var(--section-pad) * -1);
+}
+.section--tinted { background: var(--surface-low); }
+.section--no-pad-top { padding-top: 0; }
+.section--no-pad-bottom { padding-bottom: 0; }
+.section--compact { padding: var(--s-5) 0; }
+@media (max-width: 768px) {
+  .section { padding: var(--section-pad-mobile) 0; }
+  .section--top-border .section__inner {
+    padding-top: var(--section-pad-mobile);
+    margin-top: calc(var(--section-pad-mobile) * -1);
+  }
+}
+
+.section__inner {
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: 0 var(--margin-container);
+}
+
+/* 2-column section: sticky h2 (4 of 12) + content (8 of 12) */
+.section-2col {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--gutter);
+}
+.section-2col__head { grid-column: 1 / span 4; }
+.section-2col__head > h2 {
+  font-size: clamp(28px, 3vw, 36px);
+  line-height: 1.2;
+  color: var(--ink);
+}
+.section-2col__body {
+  grid-column: 5 / span 8;
+}
+@media (max-width: 900px) {
+  .section-2col { grid-template-columns: 1fr; gap: var(--s-3); }
+  .section-2col__head,
+  .section-2col__body { grid-column: 1 / -1; }
+}
+
+/* Feature card: white card with icon + h2 + content (used in tinted sections) */
+.feature-card {
+  background: var(--surface-card);
+  border-radius: var(--r-xl);
+  padding: var(--s-5) var(--s-6);
+  box-shadow: var(--shadow-2);
+}
+@media (max-width: 768px) {
+  .feature-card { padding: var(--s-4); border-radius: var(--r-lg); }
+}
+.feature-card__icon {
+  width: 48px;
+  height: 48px;
+  background: var(--primary);
+  color: var(--canvas);
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--s-1);
+}
+.feature-card__icon .material-symbols-outlined { font-size: 22px; }
+.feature-card > h2 { margin: 0; }
+
+/* Plain section header (h2 sitting above content, full width) */
+.section-plain__head {
+  margin-bottom: var(--s-4);
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--s-2);
+}
+.section-plain__head h2 { font-size: clamp(28px, 3vw, 36px); }
+.section-plain__head .section-plain__meta {
+  font-size: 13px;
+  color: var(--slate);
+}
+
+/* ---- Container (legacy / homepage utility) ---- */
+.container {
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: 0 var(--margin-container);
+}
+
+/* ---- Navigation pill (floating, sticky-ish) ---- */
+.site-nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  justify-content: center;
+  padding-top: 24px;
+  padding-bottom: var(--s-3);
+  pointer-events: none;
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+              opacity 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.site-nav--hidden {
+  transform: translateY(calc(-100% - 24px));
+  opacity: 0;
+}
+.site-nav__pill {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--gutter);
+  width: calc(100% - var(--gutter));
+  max-width: 800px;
+  background: rgba(252, 251, 250, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: var(--r-pill);
+  padding: 14px 28px;
+  box-shadow: var(--shadow-1);
+  pointer-events: auto;
+  border: 1px solid rgba(199, 199, 192, 0.2);
+}
+.site-nav__pill a {
+  font-weight: 500;
+  font-size: 16px;
+  letter-spacing: var(--tracking-tightest);
+  color: var(--ink);
+  white-space: nowrap;
+}
+.site-nav__logo {
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: var(--tracking-tight);
+  flex-shrink: 0;
+}
+.site-nav__links {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+.site-nav__links a {
+  color: var(--slate);
+  font-weight: 500;
+}
+.site-nav__links a:hover {
+  color: var(--ink);
+  text-decoration: none;
+}
+.site-nav__github {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+@media (max-width: 640px) {
+  .site-nav__pill { gap: 16px; padding: 12px 18px; }
+  .site-nav__links { gap: 18px; }
+  .site-nav__links a { font-size: 14px; }
+}
+
+/* ---- Footer (ink primary with white) ---- */
+.site-footer {
+  background: var(--primary);
+  color: var(--white);
+  padding: var(--s-6) var(--margin-container) 100px;
+  margin-top: 0;
+}
+.site-footer__inner {
+  max-width: var(--content-max);
+  margin: 0 auto;
+}
+.site-footer__lede {
+  color: var(--white);
+  font-size: clamp(28px, 3vw, 40px);
+  font-weight: 500;
+  letter-spacing: var(--tracking-tight);
+  line-height: 1.15;
+  margin: 0 0 var(--s-5);
+}
+.site-footer__divider {
+  border: 0;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.25);
+  margin: var(--s-4) 0 var(--s-3);
+}
+.site-footer__bottom {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-3);
+  align-items: center;
+  justify-content: space-between;
+  font-size: 13px;
+  color: var(--dust);
+}
+.site-footer__bottom a {
+  color: var(--white);
+  text-decoration: none;
+  font-weight: 450;
+}
+.site-footer__bottom a:hover { text-decoration: underline; }
+@media (max-width: 768px) {
+  .site-footer { padding: var(--s-5) var(--gutter-mobile) 64px; }
+}
+
+/* ---- Utility ---- */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+.num { font-variant-numeric: tabular-nums; }
+.muted { color: var(--slate); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

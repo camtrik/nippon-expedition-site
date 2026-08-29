@@ -1,0 +1,84 @@
+# 远征尼朋 · 更新记录站点
+
+《Total War: WARHAMMER III》mod **「远征尼朋 · 玉海舰队 / Nippon Expedition · The Jade Sea Fleet」** 的版本更新记录，中英双语。
+
+- 中文：<https://camtrik.github.io/nippon-expedition-site/>
+- English：<https://camtrik.github.io/nippon-expedition-site/en/>
+
+创意工坊：[本体（中文）](https://steamcommunity.com/workshop/filedetails/?id=3790908242) ·
+[本体（English）](https://steamcommunity.com/workshop/filedetails/?id=3790908523) ·
+[周边 AI 强化子 mod](https://steamcommunity.com/workshop/filedetails/?id=3790907897)
+
+---
+
+## 加一条更新记录
+
+在 `content/releases/` 下新建 `<日期>-v<版本>.md`，中英文写在同一个文件里：
+
+```markdown
+---
+version: 1.1.0
+date: 2026-09-15
+type: content
+tags: main
+---
+
+<!-- lang: zh -->
+
+### 新增
+- ……
+
+<!-- lang: en -->
+
+### Added
+- ...
+```
+
+front matter 字段：
+
+| 字段 | 必填 | 说明 |
+|---|---|---|
+| `version` | ✅ | 版本号，页面上显示为 `v1.1.0`。排序时按数字段比较，`1.10.0` 排在 `1.9.0` 之上 |
+| `date` | ✅ | `YYYY-MM-DD`。列表按日期倒序，同日再按版本号倒序 |
+| `type` | | `release` / `content` / `balance` / `hotfix`，默认 `release`。决定右上角徽章 |
+| `tags` | | 逗号分隔，目前支持 `main`（本体）、`stronger-ai`（AI 强化） |
+
+正文用 `<!-- lang: zh -->` / `<!-- lang: en -->` 分段，**中文块必填**。缺英文块时英文页会回落到中文正文，并显示一条「尚未翻译」提示——所以可以先发中文、之后再补翻译。正文标题请从 `###` 起（`#`/`##` 留给页面本身）。
+
+徽章、标签、导航、页脚等界面文案在 `content/i18n.json` 里改；新增 `type` 或 `tags` 取值时，记得同时补 `i18n.json` 的 `TYPE` / `TAGS` 两张表，以及 `scripts/build.py` 顶部的 `KNOWN_TYPES`。
+
+推到 `main` 后 GitHub Actions 自动构建并部署。
+
+## 本地预览
+
+```bash
+pip install markdown
+python3 scripts/build.py
+python3 -m http.server 8000 --directory site/_dist
+```
+
+打开 <http://localhost:8000/>（英文在 `/en/`）。
+
+模拟线上的子路径（GitHub Pages 项目站点是 `/nippon-expedition-site/`）：
+
+```bash
+SITE_BASE_PATH=/nippon-expedition-site SITE_ORIGIN=https://camtrik.github.io python3 scripts/build.py
+```
+
+此时产物里所有站内链接都会带上前缀，需要用 `--directory site` 之类的方式挂到对应路径下才能直接点开；平时本地预览用不带环境变量的那条命令即可。
+
+## 结构
+
+```
+.github/workflows/pages.yml   构建 + 部署
+content/i18n.json             页面界面文案（中英）
+content/releases/*.md         更新记录，一条一个文件
+scripts/build.py              渲染 site/_dist/
+site/_templates/log.html      页面骨架
+site/partials/*.html          <!-- include: NAME.html --> 片段
+site/assets/                  CSS、favicon、og 预览图；原样拷进产物
+```
+
+产物 `site/_dist/` 不入库，由 Actions 现场构建。
+
+视觉体系与构建做法沿用同作者的 investment 站点，强调色换成玉海舰队的碧玉绿 `#1F8A70` + 金 `#D4AF37`。

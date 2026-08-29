@@ -1,0 +1,66 @@
+{
+  "zh": {
+    "LANG_HTML": "zh-CN",
+    "OG_LOCALE": "zh_CN",
+    "SITE_NAME": "远征尼朋",
+    "SITE_TITLE": "远征尼朋 · 玉海舰队 — 更新记录",
+    "PAGE_TITLE": "更新记录 — 远征尼朋 · 玉海舰队",
+    "META_DESCRIPTION": "《战锤3》mod「远征尼朋 · 玉海舰队」的版本更新记录，含本体与周边 AI 强化子 mod。",
+    "NAV_ARIA": "主导航",
+    "NAV_LOG": "更新记录",
+    "NAV_WORKSHOP": "创意工坊",
+    "WORKSHOP_URL": "https://steamcommunity.com/workshop/filedetails/?id=3790908242",
+    "LOG_HEADING": "更新记录",
+    "LOG_LEDE": "「远征尼朋 · 玉海舰队」及其周边 AI 强化子 mod 的版本历史。每次工坊更新在这里留一条记录，新的在最上面。",
+    "LATEST": "最新版本",
+    "EMPTY": "还没有更新记录。",
+    "UNTRANSLATED": "本条目暂无中文版本，以下为英文原文。",
+    "FOOTER_LEDE": "沈长风率领舰队远征尼朋，她需要在新的土地上寻找立足之地。",
+    "FOOTER_DEPLOYED": "最后部署：",
+    "WS_MAIN_ZH": "本体（中文）",
+    "WS_MAIN_EN": "本体（English）",
+    "WS_AI": "AI 强化子 mod",
+    "TYPE": {
+      "release": "版本发布",
+      "content": "内容更新",
+      "balance": "平衡调整",
+      "hotfix": "紧急修复"
+    },
+    "TAGS": {
+      "main": "本体",
+      "stronger-ai": "AI 强化"
+    }
+  },
+  "en": {
+    "LANG_HTML": "en",
+    "OG_LOCALE": "en_US",
+    "SITE_NAME": "Nippon Expedition",
+    "SITE_TITLE": "Nippon Expedition · The Jade Sea Fleet — Changelog",
+    "PAGE_TITLE": "Changelog — Nippon Expedition · The Jade Sea Fleet",
+    "META_DESCRIPTION": "Version history for the Total War: Warhammer III mod Nippon Expedition · The Jade Sea Fleet and its Stronger AI submod.",
+    "NAV_ARIA": "Main navigation",
+    "NAV_LOG": "Changelog",
+    "NAV_WORKSHOP": "Workshop",
+    "WORKSHOP_URL": "https://steamcommunity.com/workshop/filedetails/?id=3790908523",
+    "LOG_HEADING": "Changelog",
+    "LOG_LEDE": "Version history for Nippon Expedition · The Jade Sea Fleet and its Stronger AI submod. Every Workshop update gets an entry here, newest first.",
+    "LATEST": "Latest",
+    "EMPTY": "No entries yet.",
+    "UNTRANSLATED": "No English version of this entry yet — showing the Chinese original.",
+    "FOOTER_LEDE": "Shen Changfeng leads her fleet east to Nippon, where she must carve out a foothold on new soil.",
+    "FOOTER_DEPLOYED": "Last deployed: ",
+    "WS_MAIN_ZH": "Main mod (中文)",
+    "WS_MAIN_EN": "Main mod (English)",
+    "WS_AI": "Stronger AI submod",
+    "TYPE": {
+      "release": "Release",
+      "content": "Content",
+      "balance": "Balance",
+      "hotfix": "Hotfix"
+    },
+    "TAGS": {
+      "main": "Main mod",
+      "stronger-ai": "Stronger AI"
+    }
+  }
+}
