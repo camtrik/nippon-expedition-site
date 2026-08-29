@@ -9,7 +9,7 @@
   font-style: normal;
   font-weight: 100 500;
   font-display: swap;
-  src: url("../fonts/lxgw-wenkai-gb-regular.d1e1b72a.woff2") format("woff2");
+  src: url("../fonts/lxgw-wenkai-gb-regular.c0e8cea3.woff2") format("woff2");
 }
 
 @font-face {
@@ -17,5 +17,5 @@
   font-style: normal;
   font-weight: 600 900;
   font-display: swap;
-  src: url("../fonts/lxgw-wenkai-gb-medium.565a3bfe.woff2") format("woff2");
+  src: url("../fonts/lxgw-wenkai-gb-medium.7ba3e416.woff2") format("woff2");
 }
