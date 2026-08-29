@@ -5,13 +5,13 @@
     "SITE_NAME": "远征尼朋",
     "SITE_TITLE": "远征尼朋 · 玉海舰队 — 更新记录",
     "PAGE_TITLE": "更新记录 — 远征尼朋 · 玉海舰队",
-    "META_DESCRIPTION": "《战锤3》mod「远征尼朋 · 玉海舰队」的版本更新记录，含本体与周边 AI 强化子 mod。",
+    "META_DESCRIPTION": "《战锤3》mod「远征尼朋 · 玉海舰队」的版本更新记录，含本体与各个子 mod。",
     "NAV_ARIA": "主导航",
     "NAV_LOG": "更新记录",
     "NAV_WORKSHOP": "创意工坊",
     "WORKSHOP_URL": "https://steamcommunity.com/workshop/filedetails/?id=3790908242",
     "LOG_HEADING": "更新记录",
-    "LOG_LEDE": "「远征尼朋 · 玉海舰队」及其周边 AI 强化子 mod 的版本历史。每次工坊更新在这里留一条记录，新的在最上面。",
+    "LOG_LEDE": "「远征尼朋 · 玉海舰队」及其各个子 mod 的版本历史。每次工坊更新在这里留一条记录，新的在最上面。",
     "LATEST": "最新版本",
     "EMPTY": "还没有更新记录。",
     "UNTRANSLATED": "本条目暂无中文版本，以下为英文原文。",
@@ -28,8 +28,10 @@
     },
     "TAGS": {
       "main": "本体",
-      "stronger-ai": "AI 强化"
-    }
+      "stronger-ai": "AI 强化",
+      "nrs-compat": "NRS 兼容包"
+    },
+    "UNRELEASED": "未发布"
   },
   "en": {
     "LANG_HTML": "en",
@@ -37,13 +39,13 @@
     "SITE_NAME": "Nippon Expedition",
     "SITE_TITLE": "Nippon Expedition · The Jade Sea Fleet — Changelog",
     "PAGE_TITLE": "Changelog — Nippon Expedition · The Jade Sea Fleet",
-    "META_DESCRIPTION": "Version history for the Total War: Warhammer III mod Nippon Expedition · The Jade Sea Fleet and its Stronger AI submod.",
+    "META_DESCRIPTION": "Version history for the Total War: Warhammer III mod Nippon Expedition · The Jade Sea Fleet and its submods.",
     "NAV_ARIA": "Main navigation",
     "NAV_LOG": "Changelog",
     "NAV_WORKSHOP": "Workshop",
     "WORKSHOP_URL": "https://steamcommunity.com/workshop/filedetails/?id=3790908523",
     "LOG_HEADING": "Changelog",
-    "LOG_LEDE": "Version history for Nippon Expedition · The Jade Sea Fleet and its Stronger AI submod. Every Workshop update gets an entry here, newest first.",
+    "LOG_LEDE": "Version history for Nippon Expedition · The Jade Sea Fleet and its submods. Every Workshop update gets an entry here, newest first.",
     "LATEST": "Latest",
     "EMPTY": "No entries yet.",
     "UNTRANSLATED": "No English version of this entry yet — showing the Chinese original.",
@@ -60,7 +62,9 @@
     },
     "TAGS": {
       "main": "Main mod",
-      "stronger-ai": "Stronger AI"
-    }
+      "stronger-ai": "Stronger AI",
+      "nrs-compat": "NRS compat"
+    },
+    "UNRELEASED": "Unreleased"
   }
 }

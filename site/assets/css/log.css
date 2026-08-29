@@ -37,6 +37,15 @@
 }
 
 /* ============================================================
+   Reading column — hero and entries share one measure so their
+   left edges line up and body lines stay readable.
+   ============================================================ */
+.log-column {
+  max-width: 880px;
+  margin: 0 auto;
+}
+
+/* ============================================================
    Hero
    ============================================================ */
 .log-hero {
@@ -99,79 +108,37 @@
 .log-hero__links .pill { box-shadow: var(--shadow-1); }
 
 /* ============================================================
-   Release timeline
+   Release timeline — plain flow, one hairline between versions.
+   No cards: the version heading carries the hierarchy.
    ============================================================ */
 .log-timeline {
   padding-bottom: var(--s-7);
 }
 
 .release {
-  position: relative;
-  display: grid;
-  grid-template-columns: 28px 1fr;
-  gap: var(--s-3);
-  padding-bottom: var(--s-5);
+  padding: var(--s-5) 0;
+  border-bottom: 1px solid var(--dust);
 }
-.release:last-child { padding-bottom: 0; }
-
-/* Left rail: vertical line + jade dot, gold ring on the newest entry */
-.release__rail {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  padding-top: 10px;
-}
-.release__rail::before {
-  content: "";
-  position: absolute;
-  top: 26px;
-  bottom: calc(var(--s-5) * -1);
-  left: 50%;
-  width: 1px;
-  background: var(--dust);
-  transform: translateX(-50%);
-}
-.release:last-child .release__rail::before { display: none; }
-.release__dot {
-  position: relative;
-  z-index: 1;
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: var(--signal);
-  box-shadow: 0 0 0 4px var(--canvas);
-  flex-shrink: 0;
-}
-.release--latest .release__dot {
-  background: var(--signal);
-  box-shadow: 0 0 0 3px var(--gold), 0 0 0 7px var(--canvas);
-}
-
-.release__card {
-  background: var(--canvas-lifted);
-  border-radius: var(--r-xl);
-  padding: var(--s-4) var(--s-5);
-  box-shadow: var(--shadow-1);
-  min-width: 0;
-}
+.release:first-child { padding-top: var(--s-2); }
+.release:last-child { border-bottom: 0; }
 
 .release__head {
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
   gap: var(--s-2);
-  padding-bottom: var(--s-2);
   margin-bottom: var(--s-3);
-  border-bottom: 1px solid var(--dust);
 }
 .release__version {
-  font-size: 26px;
+  font-size: 30px;
   font-weight: 500;
   letter-spacing: var(--tracking-tight);
   line-height: 1.1;
   color: var(--ink);
   font-variant-numeric: tabular-nums;
 }
+.release--latest .release__version { color: var(--signal); }
+.release--unreleased .release__version { color: var(--slate); }
 .release__date {
   font-size: 12px;
   font-weight: 700;
@@ -180,6 +147,7 @@
   color: var(--slate);
   font-variant-numeric: tabular-nums;
 }
+.release__date--unreleased { color: var(--clay); }
 .release__badges {
   display: flex;
   flex-wrap: wrap;
@@ -242,8 +210,8 @@
 }
 
 @media (max-width: 768px) {
-  .release { grid-template-columns: 20px 1fr; gap: var(--s-2); }
-  .release__card { padding: var(--s-3); border-radius: var(--r-lg); }
+  .release { padding: var(--s-4) 0; }
+  .release__version { font-size: 26px; }
   .release__badges { margin-left: 0; width: 100%; }
   .log-hero { padding: var(--s-5) 0 var(--s-4); }
 }

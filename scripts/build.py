@@ -52,6 +52,7 @@ FRONT_MATTER_RE = re.compile(r"\A---\s*\n(.*?)\n---\s*\n", re.DOTALL)
 LANG_MARKER_RE = re.compile(r"^[ \t]*<!--\s*lang:\s*([a-zA-Z-]+)\s*-->[ \t]*$", re.MULTILINE)
 
 KNOWN_TYPES = {"release", "content", "balance", "hotfix"}
+KNOWN_STATUSES = {"released", "unreleased"}
 
 
 # ------------------------------------------------------------------ helpers
@@ -117,11 +118,18 @@ def parse_release(path: Path) -> dict:
         raise ValueError(f"{path.name}: missing `---` front matter block")
     meta = parse_front_matter(fm_match.group(1))
 
-    for required in ("version", "date"):
-        if not meta.get(required):
-            raise ValueError(f"{path.name}: front matter is missing `{required}`")
-    if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", meta["date"]):
-        raise ValueError(f"{path.name}: `date` must be YYYY-MM-DD, got {meta['date']!r}")
+    if not meta.get("version"):
+        raise ValueError(f"{path.name}: front matter is missing `version`")
+
+    status = meta.get("status", "released")
+    if status not in KNOWN_STATUSES:
+        raise ValueError(f"{path.name}: unknown `status` {status!r}; expected one of {sorted(KNOWN_STATUSES)}")
+
+    date = meta.get("date", "")
+    if status == "released" and not date:
+        raise ValueError(f"{path.name}: a released entry needs a `date` (or set `status: unreleased`)")
+    if date and not re.fullmatch(r"\d{4}-\d{2}-\d{2}", date):
+        raise ValueError(f"{path.name}: `date` must be YYYY-MM-DD, got {date!r}")
 
     entry_type = meta.get("type", "release")
     if entry_type not in KNOWN_TYPES:
@@ -136,7 +144,8 @@ def parse_release(path: Path) -> dict:
     return {
         "source": path.name,
         "version": meta["version"],
-        "date": meta["date"],
+        "date": date,
+        "status": status,
         "type": entry_type,
         "tags": meta.get("tags", []),
         "bodies": bodies,
@@ -153,24 +162,34 @@ def collect_releases() -> list[dict]:
     if not RELEASES_DIR.exists():
         return []
     releases = [parse_release(p) for p in sorted(RELEASES_DIR.glob("*.md"))]
-    releases.sort(key=lambda r: (r["date"], version_key(r["version"])), reverse=True)
+    # Unreleased entries sit above everything shipped, newest version first.
+    releases.sort(key=lambda r: (r["status"] == "unreleased", r["date"], version_key(r["version"])), reverse=True)
     return releases
 
 
 # --------------------------------------------------------------- rendering
 
 EXTERNAL_LINK_RE = re.compile(r'<a href="(https?://[^"]+)"')
+# Python-Markdown ends a list at any blank line inside an item, silently folding
+# the following bullets into one paragraph. Catch that instead of shipping it.
+SWALLOWED_BULLET_RE = re.compile(r"<p>[^<]*(?:^|\s)- \S", re.MULTILINE)
 
 
 def render_markdown(text: str) -> str:
     import markdown as md_lib
 
     rendered = md_lib.Markdown(extensions=["tables", "fenced_code", "sane_lists"]).convert(text)
+    if SWALLOWED_BULLET_RE.search(rendered):
+        raise ValueError(
+            "a list was broken by a blank line: bullets ended up inside a paragraph. "
+            "Indent continuation text as a nested `    - ` sub-bullet instead of a blank-line paragraph."
+        )
     # Workshop / dependency links in entry bodies always leave the site.
     return EXTERNAL_LINK_RE.sub(r'<a href="\1" target="_blank" rel="noopener"', rendered)
 
 
 def render_release(release: dict, lang: str, i18n: dict, is_latest: bool) -> str:
+    """Render one entry; markdown errors are re-raised with the source filename."""
     strings = i18n[lang]
     body_lang = lang if lang in release["bodies"] else DEFAULT_LANG
     notice = ""
@@ -186,23 +205,33 @@ def render_release(release: dict, lang: str, i18n: dict, is_latest: bool) -> str
         slug = re.sub(r"[^a-z0-9]+", "-", tag.lower()).strip("-")
         badges.append(f'<span class="tag-pill tag-pill--{slug}">{html.escape(label)}</span>')
 
-    classes = "release release--latest" if is_latest else "release"
-    body_html = render_markdown(release["bodies"][body_lang])
+    try:
+        body_html = render_markdown(release["bodies"][body_lang])
+    except ValueError as exc:
+        raise ValueError(f"{release['source']} [{body_lang}]: {exc}") from exc
+
+    classes = "release"
+    if release["status"] == "unreleased":
+        classes += " release--unreleased"
+    elif is_latest:
+        classes += " release--latest"
+
+    if release["status"] == "unreleased":
+        date_html = f'<span class="release__date release__date--unreleased">{html.escape(strings["UNRELEASED"])}</span>'
+    else:
+        date_html = f'<span class="release__date">{html.escape(release["date"])}</span>'
 
     return (
         f'      <article class="{classes}" data-version="{html.escape(release["version"])}" '
         f'data-tags="{html.escape(" ".join(release["tags"]))}">\n'
-        f'        <div class="release__rail"><span class="release__dot"></span></div>\n'
-        f'        <div class="release__card">\n'
-        f'          <div class="release__head">\n'
-        f'            <span class="release__version">v{html.escape(release["version"])}</span>\n'
-        f'            <span class="release__date">{html.escape(release["date"])}</span>\n'
-        f'            <span class="release__badges">{"".join(badges)}</span>\n'
-        f'          </div>\n'
+        f'        <div class="release__head">\n'
+        f'          <span class="release__version">v{html.escape(release["version"])}</span>\n'
+        f'          {date_html}\n'
+        f'          <span class="release__badges">{"".join(badges)}</span>\n'
+        f'        </div>\n'
         f'{notice}'
-        f'          <div class="release-body" lang="{html.escape(i18n[body_lang]["LANG_HTML"])}">\n'
+        f'        <div class="release-body" lang="{html.escape(i18n[body_lang]["LANG_HTML"])}">\n'
         f'{body_html}\n'
-        f'          </div>\n'
         f'        </div>\n'
         f'      </article>\n'
     )
@@ -222,15 +251,18 @@ def build_page(
     strings = i18n[lang]
 
     if releases:
+        # "latest" marks the newest entry players can actually download.
+        newest_shipped = next((r["source"] for r in releases if r["status"] == "released"), None)
         entries = "".join(
-            render_release(r, lang, i18n, is_latest=(i == 0)) for i, r in enumerate(releases)
+            render_release(r, lang, i18n, is_latest=(r["source"] == newest_shipped)) for r in releases
         )
-        latest_version = f'v{releases[0]["version"]}'
-        latest_date = releases[0]["date"]
     else:
         entries = f'      <p class="log-empty">{html.escape(strings["EMPTY"])}</p>\n'
-        latest_version = "—"
-        latest_date = "—"
+
+    # The stamp advertises what players can actually download.
+    shipped = [r for r in releases if r["status"] == "released"]
+    latest_version = f'v{shipped[0]["version"]}' if shipped else "—"
+    latest_date = shipped[0]["date"] if shipped else "—"
 
     values = {
         "SITE_BASE_PATH": base,
@@ -307,6 +339,10 @@ def main() -> None:
         gaps = [lang for lang in LANGS if lang not in release["bodies"]]
         if gaps:
             print(f"[build] WARNING: {release['source']} has no {'/'.join(gaps)} body; falling back to {DEFAULT_LANG}")
+
+    for release in releases:
+        if release["status"] == "unreleased":
+            print(f"[build] NOTE: {release['source']} is marked unreleased; shown as such on both pages")
 
     print(f"[build] releases: {len(releases)}   partials: {len(partials)}")
     print(f"[build] BUILD_TIME = {build_time}")
