@@ -322,13 +322,15 @@ def render_hero(home: dict, lang: str, strings: dict, base: str, latest: str) ->
 
 
 def workshop_ctas() -> list[tuple[str, str]]:
-    """The three workshop listings: the mod itself, its English translation, the
-    AI submod — same order on both language pages, since the English listing is a
-    translation of the first one rather than a second main mod."""
+    """The four workshop listings: the mod itself, its English translation, then
+    the two optional submods — same order on both language pages, since the
+    English listing is a translation of the first one rather than a second main
+    mod. Keep this in step with the footer's link row."""
     return [
         ("WS_MAIN_ZH", "https://steamcommunity.com/workshop/filedetails/?id=3790908242"),
         ("WS_MAIN_EN", "https://steamcommunity.com/workshop/filedetails/?id=3790908523"),
         ("WS_AI", "https://steamcommunity.com/workshop/filedetails/?id=3790907897"),
+        ("WS_NRS", "https://steamcommunity.com/sharedfiles/filedetails/?id=3792001152"),
     ]
 
 
