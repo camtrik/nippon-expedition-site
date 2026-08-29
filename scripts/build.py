@@ -52,7 +52,6 @@ FRONT_MATTER_RE = re.compile(r"\A---\s*\n(.*?)\n---\s*\n", re.DOTALL)
 LANG_MARKER_RE = re.compile(r"^[ \t]*<!--\s*lang:\s*([a-zA-Z-]+)\s*-->[ \t]*$", re.MULTILINE)
 
 KNOWN_TYPES = {"release", "content", "balance", "hotfix"}
-KNOWN_STATUSES = {"released", "unreleased"}
 
 
 # ------------------------------------------------------------------ helpers
@@ -121,13 +120,7 @@ def parse_release(path: Path) -> dict:
     if not meta.get("version"):
         raise ValueError(f"{path.name}: front matter is missing `version`")
 
-    status = meta.get("status", "released")
-    if status not in KNOWN_STATUSES:
-        raise ValueError(f"{path.name}: unknown `status` {status!r}; expected one of {sorted(KNOWN_STATUSES)}")
-
     date = meta.get("date", "")
-    if status == "released" and not date:
-        raise ValueError(f"{path.name}: a released entry needs a `date` (or set `status: unreleased`)")
     if date and not re.fullmatch(r"\d{4}-\d{2}-\d{2}", date):
         raise ValueError(f"{path.name}: `date` must be YYYY-MM-DD, got {date!r}")
 
@@ -145,7 +138,6 @@ def parse_release(path: Path) -> dict:
         "source": path.name,
         "version": meta["version"],
         "date": date,
-        "status": status,
         "type": entry_type,
         "tags": meta.get("tags", []),
         "bodies": bodies,
@@ -162,8 +154,8 @@ def collect_releases() -> list[dict]:
     if not RELEASES_DIR.exists():
         return []
     releases = [parse_release(p) for p in sorted(RELEASES_DIR.glob("*.md"))]
-    # Unreleased entries sit above everything shipped, newest version first.
-    releases.sort(key=lambda r: (r["status"] == "unreleased", r["date"], version_key(r["version"])), reverse=True)
+    # A dateless entry is one not dated yet, so it belongs above everything dated.
+    releases.sort(key=lambda r: (r["date"] or "9999-99-99", version_key(r["version"])), reverse=True)
     return releases
 
 
@@ -210,16 +202,11 @@ def render_release(release: dict, lang: str, i18n: dict, is_latest: bool) -> str
     except ValueError as exc:
         raise ValueError(f"{release['source']} [{body_lang}]: {exc}") from exc
 
-    classes = "release"
-    if release["status"] == "unreleased":
-        classes += " release--unreleased"
-    elif is_latest:
-        classes += " release--latest"
-
-    if release["status"] == "unreleased":
-        date_html = f'<span class="release__date release__date--unreleased">{html.escape(strings["UNRELEASED"])}</span>'
-    else:
-        date_html = f'<span class="release__date">{html.escape(release["date"])}</span>'
+    classes = "release release--latest" if is_latest else "release"
+    date_html = (
+        f'<span class="release__date">{html.escape(release["date"])}</span>'
+        if release["date"] else ""
+    )
 
     return (
         f'      <article class="{classes}" data-version="{html.escape(release["version"])}" '
@@ -251,25 +238,22 @@ def build_page(
     strings = i18n[lang]
 
     if releases:
-        # "latest" marks the newest entry players can actually download.
-        newest_shipped = next((r["source"] for r in releases if r["status"] == "released"), None)
         entries = "".join(
-            render_release(r, lang, i18n, is_latest=(r["source"] == newest_shipped)) for r in releases
+            render_release(r, lang, i18n, is_latest=(i == 0)) for i, r in enumerate(releases)
         )
+        newest = releases[0]
+        latest_stamp = f'<strong>v{html.escape(newest["version"])}</strong>'
+        if newest["date"]:
+            latest_stamp += f' · <strong>{html.escape(newest["date"])}</strong>'
     else:
         entries = f'      <p class="log-empty">{html.escape(strings["EMPTY"])}</p>\n'
-
-    # The stamp advertises what players can actually download.
-    shipped = [r for r in releases if r["status"] == "released"]
-    latest_version = f'v{shipped[0]["version"]}' if shipped else "—"
-    latest_date = shipped[0]["date"] if shipped else "—"
+        latest_stamp = "<strong>—</strong>"
 
     values = {
         "SITE_BASE_PATH": base,
         "BUILD_TIME": build_time,
         "RELEASES": entries,
-        "LATEST_VERSION": latest_version,
-        "LATEST_DATE": latest_date,
+        "LATEST_STAMP": latest_stamp,
         "SITE_URL": f"{origin}{base}",
         "HREF_SELF": lang_href(base, lang),
         "HREF_ZH": lang_href(base, "zh"),
@@ -339,10 +323,6 @@ def main() -> None:
         gaps = [lang for lang in LANGS if lang not in release["bodies"]]
         if gaps:
             print(f"[build] WARNING: {release['source']} has no {'/'.join(gaps)} body; falling back to {DEFAULT_LANG}")
-
-    for release in releases:
-        if release["status"] == "unreleased":
-            print(f"[build] NOTE: {release['source']} is marked unreleased; shown as such on both pages")
 
     print(f"[build] releases: {len(releases)}   partials: {len(partials)}")
     print(f"[build] BUILD_TIME = {build_time}")

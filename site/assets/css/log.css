@@ -131,7 +131,6 @@
   font-variant-numeric: tabular-nums;
 }
 .release--latest .release__version { color: var(--signal); }
-.release--unreleased .release__version { color: var(--slate); }
 .release__date {
   font-size: 12px;
   font-weight: 700;
@@ -140,7 +139,6 @@
   color: var(--slate);
   font-variant-numeric: tabular-nums;
 }
-.release__date--unreleased { color: var(--clay); }
 .release__badges {
   display: flex;
   flex-wrap: wrap;

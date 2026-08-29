@@ -29,8 +29,7 @@
       "main": "本体",
       "stronger-ai": "AI 强化",
       "nrs-compat": "NRS 兼容包"
-    },
-    "UNRELEASED": "未发布"
+    }
   },
   "en": {
     "LANG_HTML": "en",
@@ -62,7 +61,6 @@
       "main": "Main mod",
       "stronger-ai": "Stronger AI",
       "nrs-compat": "NRS compat"
-    },
-    "UNRELEASED": "Unreleased"
+    }
   }
 }
