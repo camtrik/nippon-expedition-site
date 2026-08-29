@@ -61,6 +61,96 @@
   flex-shrink: 0;
 }
 
+
+/* ============================================================
+   Channel switch — two column headers over the ledger.
+
+   The indicator is a segment of rule, not a pill: this page is built out of
+   hairlines (every .release border, the hero's border-top), and a segmented
+   control would import furniture from a design system that isn't this one.
+   The two channels take the faction's own two colours — jade for the main mod,
+   gold for the submods — in the darkened variants, because --signal is 4.1:1
+   and --gold is 2.0:1 on cream, neither of which can carry 15px text.
+
+   No script: the switch is a real radio group, so arrow keys, focus and the
+   default state all come from the browser. The inputs sit in .log-column ahead
+   of both the labels and the panels, which is the only place `:checked ~` can
+   reach both.
+   ============================================================ */
+/* The tabs hang off the rule the hero already draws — the indicator marks a
+   segment of that line rather than introducing a second one below it. Zeroing
+   the row's padding is keyed on the radios, which exist only when there are
+   tabs to switch, so the untabbed page keeps its original spacing. */
+#log-view-main ~ .log-hero .log-hero__meta { padding-top: 0; }
+
+.log-views {
+  /* Equal columns sized to the wider label, so the ink bar's 50% is exact and
+     switching channels never resizes the control. */
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  width: max-content;
+  position: relative;
+  /* Stretching to the row means the ink sits on the rule no matter how tall the
+     stamp beside it grows. */
+  align-self: stretch;
+  min-height: 58px;
+}
+.log-views + .log-stamp { margin-left: auto; }
+
+.log-views__tab {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 0 var(--s-3);
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: var(--tracking-tight);
+  line-height: 1.2;
+  color: var(--slate);
+  white-space: nowrap;
+  cursor: pointer;
+  transition: color 0.18s ease;
+}
+.log-views__tab:hover { color: var(--ink); }
+
+/* How many entries are behind each tab — the one number the header can carry
+   that the reader could not otherwise get without switching. */
+.log-views__count {
+  font-size: 12px;
+  color: var(--slate);
+  font-variant-numeric: tabular-nums;
+}
+
+.log-views__ink {
+  position: absolute;
+  left: 0;
+  top: -1px;
+  width: 50%;
+  height: 2px;
+  background: var(--clay);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s ease;
+}
+
+#log-view-main:checked ~ .log-hero .log-views__tab[for="log-view-main"] { color: var(--clay); }
+#log-view-submod:checked ~ .log-hero .log-views__tab[for="log-view-submod"] { color: var(--gold-ink); }
+#log-view-submod:checked ~ .log-hero .log-views__ink {
+  transform: translateX(100%);
+  background: var(--gold-ink);
+}
+
+/* The radios are clipped, so focus has to show on the label they drive. */
+#log-view-main:focus-visible ~ .log-hero .log-views__tab[for="log-view-main"],
+#log-view-submod:focus-visible ~ .log-hero .log-views__tab[for="log-view-submod"] {
+  outline: 2px solid var(--signal);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.log-panel { display: none; }
+#log-view-main:checked ~ .log-timeline .log-panel--main,
+#log-view-submod:checked ~ .log-timeline .log-panel--submod { display: block; }
+
 /* ============================================================
    Release timeline — plain flow, one hairline between versions.
    No cards: the version heading carries the hierarchy.
@@ -91,7 +181,14 @@
   color: var(--ink);
   font-variant-numeric: tabular-nums;
 }
+.release__version--named {
+  font-size: 24px;
+  font-variant-numeric: normal;
+  letter-spacing: var(--tracking-tight);
+}
 .release--latest .release__version { color: var(--signal); }
+/* Each channel's newest entry is marked in that channel's own colour. */
+.log-panel--submod .release--latest .release__version { color: var(--gold-ink); }
 .release__date {
   font-size: 12px;
   font-weight: 700;
@@ -118,7 +215,7 @@
   line-height: 1.3;
   white-space: nowrap;
 }
-.type-badge--release { background: var(--gold-soft); color: #7A5C0B; }
+.type-badge--release { background: var(--gold-soft); color: var(--gold-ink); }
 .type-badge--hotfix  { background: #fde8e4; color: #b91c1c; }
 .type-badge--balance { background: #e4f3ec; color: #146A3B; }
 .type-badge--content { background: #e6f1f5; color: #1F6F8A; }
@@ -164,6 +261,12 @@
 @media (max-width: 768px) {
   .release { padding: var(--s-4) 0; }
   .release__version { font-size: 26px; }
+  .release__version--named { font-size: 21px; white-space: normal; }
+  .log-views { width: 100%; min-height: 52px; }
+  .log-views__tab { padding-inline: var(--s-2); }
+  /* Once the stamp wraps onto its own line, `auto` would strand it on the
+     right while every other line on the page starts at the left margin. */
+  .log-views + .log-stamp { margin-left: 0; }
   .release__badges { margin-left: 0; width: 100%; }
   .log-hero { padding: var(--s-5) 0 var(--s-4); }
 }

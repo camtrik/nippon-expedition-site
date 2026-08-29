@@ -12,10 +12,12 @@ description: "给「远征尼朋 / Nippon Expedition」更新记录站点加一�
 唯一权威原料是 [`../nippon_expedition/_docs/backlog/version.md`](../nippon_expedition/_docs/backlog/version.md)——mod 仓库那边按「一条改动 = 一行、只写玩家看得懂的功能变化」维护的流水账，粒度正好。
 
 ```bash
-sed -n '/^## [0-9]/,$p' ../nippon_expedition/_docs/backlog/version.md | head -40
+sed -n '/^---$/,$p' ../nippon_expedition/_docs/backlog/version.md | head -60
 ```
 
 注意版本号后面的标记：`(未发布)` 表示还没上工坊。
+
+那边有个和版本小节**同级、不参与版本号进位**的「## 追加兼容子 mod」小节，每接入一个第三方 mod 追加一行。它排在版本小节之上，所以从 `## <数字>` 开始截会整段漏掉——上面的命令从分隔线起截就是为了带上它。这类条目进站点的**子 mod** 页签，写法见第 2 步。
 
 **绝对不要**从 `../nippon_expedition/_docs/log.md` 取料。那是开发流水账，写的是表名、字段、key、根因排查，属于开发者视角，不上公开站。
 
@@ -52,12 +54,32 @@ tags: main
 
 front matter 规则：
 
-- `version` 必填。排序按数字段比较，`1.10.0` 排在 `1.9.0` 之上。
+- `version` 必填。排序按数字段比较，`1.10.0` 排在 `1.9.0` 之上。**子 mod 条目例外，见下。**
 - `date` 可选。**还没上工坊就留空**——该条会排在所有有日期的之上，页面上不显示日期。别编一个假日期。真发布了再补。
 - `type`：`release` / `content` / `balance` / `hotfix`，默认 `release`。
-- `tags`：`main` / `stronger-ai` / `nrs-compat`，逗号分隔。
+- `tags`：`main` / `stronger-ai` / `nrs-compat` / `cathay-compat`，逗号分隔。
+- `channel`：`main`（默认）/ `submod`，决定进哪个页签。
 
 新增 `type` 或 `tags` 取值时同时改 `content/i18n.json` 的 `TYPE`/`TAGS`（中英各一份）和 `scripts/build.py` 的 `KNOWN_TYPES`，漏了会构建报错。
+
+### 子 mod 的条目用 `title` 代标题
+
+子 mod 按自己的节奏发，不占本体的版本号，所以这类条目不写 `version`，改用 `title` 当标题。文件名也不带版本号，`content/releases/<日期>-<子 mod 短名>.md`：
+
+```markdown
+---
+title.zh: 震旦机制兼容包
+title.en: Cathay Mechanics Compatibility Patch
+channel: submod
+date: 2026-08-30
+type: release
+tags: cathay-compat
+---
+```
+
+- `key.zh` / `key.en` 两行写一个双语字段。`version` 和 `title` 至少要有一个。
+- 接的是**已有**兼容包的新一条时，不要新建文件——改那个包已有的条目，或按日期新开一条，别把两个包混进一条。
+- 子 mod 的中英文案，隔壁 `../nippon_expedition_<包名>/README_{zh,en}.md` 通常已经是作者定稿的双语成文，**直接沿用，别重译**（查表顺序里的第 4 档）。
 
 正文按「新增 / 修复 / 调整」分组，用 `###` 起（`#`/`##` 留给页面本身）。写玩家视角的「加了什么、修了什么」，判据是**读者不打开 pack 能不能看懂**——不写表名、key、字段、力量类型。
 

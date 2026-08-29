@@ -31,6 +31,11 @@
     "FAQ_CURRENT": "答案对应 v{version}",
     "FAQ_TAIL_LINK": "更新记录",
     "LATEST": "最新版本",
+    "LOG_VIEWS_LABEL": "显示哪些更新记录",
+    "LOG_VIEWS": {
+      "main": "本体",
+      "submod": "子 mod"
+    },
     "EMPTY": "还没有更新记录。",
     "UNTRANSLATED": "本条目暂无中文版本，以下为英文原文。",
     "FOOTER_LEDE": "沈长风率领舰队远征尼朋，她需要在新的土地上寻找立足之地。",
@@ -56,7 +61,8 @@
     "TAGS": {
       "main": "本体",
       "stronger-ai": "AI 强化",
-      "nrs-compat": "NRS 兼容包"
+      "nrs-compat": "NRS 兼容包",
+      "cathay-compat": "震旦兼容包"
     }
   },
   "en": {
@@ -91,6 +97,11 @@
     "FAQ_CURRENT": "Answers current as of v{version}",
     "FAQ_TAIL_LINK": "changelog",
     "LATEST": "Latest",
+    "LOG_VIEWS_LABEL": "Which entries to show",
+    "LOG_VIEWS": {
+      "main": "Main mod",
+      "submod": "Submods"
+    },
     "EMPTY": "No entries yet.",
     "UNTRANSLATED": "No English version of this entry yet — showing the Chinese original.",
     "FOOTER_LEDE": "Shen Changfeng leads her fleet east to Nippon, where she must carve out a foothold on new soil.",
@@ -116,7 +127,8 @@
     "TAGS": {
       "main": "Main mod",
       "stronger-ai": "Stronger AI",
-      "nrs-compat": "NRS compat"
+      "nrs-compat": "NRS compat",
+      "cathay-compat": "Cathay compat"
     }
   }
 }

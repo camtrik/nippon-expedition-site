@@ -28,6 +28,8 @@
   --clay: #146A5A;            /* deep jade — hover / pressed accents */
   --gold: #D4AF37;            /* faction secondary — release badge, rail cap */
   --gold-soft: #F5EBCB;       /* gold at card-tint strength */
+  --gold-ink: #7A5C0B;        /* gold dark enough to set text on cream (5.9:1);
+                                 --gold itself is 2.0:1 and is fill-only */
   --link: #1F6F8A;
 
   /* ---- Night plates (landing page) ----

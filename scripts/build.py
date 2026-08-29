@@ -67,6 +67,11 @@ FRONT_MATTER_RE = re.compile(r"\A---\s*\n(.*?)\n---\s*\n", re.DOTALL)
 LANG_MARKER_RE = re.compile(r"^[ \t]*<!--\s*lang:\s*([a-zA-Z-]+)\s*-->[ \t]*$", re.MULTILINE)
 
 KNOWN_TYPES = {"release", "content", "balance", "hotfix"}
+# Which timeline an entry belongs to. The main mod carries the version number
+# the whole site quotes; a submod ships on its own clock and must not perturb
+# that number, so the two are counted and displayed apart.
+CHANNEL_ORDER = ("main", "submod")
+DEFAULT_CHANNEL = "main"
 
 FONT_COVERAGE = ASSETS_DIR / "fonts" / "coverage.txt"
 TAG_RE = re.compile(r"<[^>]+>")
@@ -116,7 +121,9 @@ def esc(field, lang: str) -> str:
 # ------------------------------------------------------------ release files
 
 def parse_front_matter(block: str) -> dict:
-    """Minimal `key: value` parser — values are scalars or comma lists."""
+    """Minimal `key: value` parser — values are scalars, comma lists, or
+    `key.<lang>` lines that collect into one bilingual dict, matching how the
+    JSON content files keep both languages in a single field."""
     meta: dict = {}
     for line in block.splitlines():
         line = line.strip()
@@ -128,6 +135,11 @@ def parse_front_matter(block: str) -> dict:
         key, value = key.strip(), value.strip()
         if key == "tags":
             meta[key] = [t.strip() for t in value.split(",") if t.strip()]
+        elif "." in key:
+            field, lang = key.rsplit(".", 1)
+            if not isinstance(meta.get(field), dict):
+                meta[field] = {}
+            meta[field][lang] = value
         else:
             meta[key] = value
     return meta
@@ -152,8 +164,18 @@ def parse_release(path: Path) -> dict:
         raise ValueError(f"{path.name}: missing `---` front matter block")
     meta = parse_front_matter(fm_match.group(1))
 
-    if not meta.get("version"):
-        raise ValueError(f"{path.name}: front matter is missing `version`")
+    title = meta.get("title") or ""
+    if not meta.get("version") and not title:
+        raise ValueError(
+            f"{path.name}: front matter needs a `version`, or a `title.zh` heading "
+            f"for an entry that does not ride the main mod's version number"
+        )
+
+    channel = meta.get("channel", DEFAULT_CHANNEL)
+    if channel not in CHANNEL_ORDER:
+        raise ValueError(
+            f"{path.name}: unknown `channel` {channel!r}; expected one of {sorted(CHANNEL_ORDER)}"
+        )
 
     date = meta.get("date", "")
     if date and not re.fullmatch(r"\d{4}-\d{2}-\d{2}", date):
@@ -171,7 +193,9 @@ def parse_release(path: Path) -> dict:
 
     return {
         "source": path.name,
-        "version": meta["version"],
+        "version": meta.get("version", ""),
+        "title": title,
+        "channel": channel,
         "date": date,
         "type": entry_type,
         "tags": meta.get("tags", []),
@@ -255,12 +279,19 @@ def render_release(release: dict, lang: str, i18n: dict, is_latest: bool) -> str
         f'<span class="release__date">{html.escape(release["date"])}</span>'
         if release["date"] else ""
     )
+    # A submod has no place in the main mod's version sequence, so it is headed
+    # by its name instead. Set as prose, not as a number: no tabular figures.
+    if release["title"]:
+        heading = f'<span class="release__version release__version--named">{esc(release["title"], lang)}</span>'
+    else:
+        heading = f'<span class="release__version">v{html.escape(release["version"])}</span>'
+    version_attr = f' data-version="{html.escape(release["version"])}"' if release["version"] else ""
 
     return (
-        f'      <article class="{classes}" data-version="{html.escape(release["version"])}" '
+        f'      <article class="{classes}"{version_attr} '
         f'data-tags="{html.escape(" ".join(release["tags"]))}">\n'
         f'        <div class="release__head">\n'
-        f'          <span class="release__version">v{html.escape(release["version"])}</span>\n'
+        f'          {heading}\n'
         f'          {date_html}\n'
         f'          <span class="release__badges">{"".join(badges)}</span>\n'
         f'        </div>\n'
@@ -270,6 +301,70 @@ def render_release(release: dict, lang: str, i18n: dict, is_latest: bool) -> str
         f'        </div>\n'
         f'      </article>\n'
     )
+
+
+def group_by_channel(releases: list[dict]) -> dict[str, list[dict]]:
+    return {ch: [r for r in releases if r["channel"] == ch] for ch in CHANNEL_ORDER}
+
+
+def render_log_timeline(groups: dict[str, list[dict]], lang: str, i18n: dict, tabbed: bool) -> str:
+    """The entries themselves. Each channel highlights its own newest entry —
+    `--latest` marks the top of the list you are reading, not of the file set."""
+    strings = i18n[lang]
+    if not any(groups.values()):
+        return f'      <p class="log-empty">{html.escape(strings["EMPTY"])}</p>\n'
+
+    out = []
+    for channel in CHANNEL_ORDER:
+        group = groups[channel]
+        if not group:
+            continue
+        entries = "".join(
+            render_release(r, lang, i18n, is_latest=(i == 0)) for i, r in enumerate(group)
+        )
+        if not tabbed:
+            return entries
+        out.append(
+            f'      <div class="log-panel log-panel--{channel}">\n{entries}      </div>\n'
+        )
+    return "".join(out)
+
+
+def render_log_views(groups: dict[str, list[dict]], strings: dict) -> tuple[str, str]:
+    """The channel switch: (radio inputs, label strip).
+
+    CSS-only on purpose — the one script this site ships is the first-visit
+    language check, and a tab strip is not worth a second. The inputs are a real
+    radio group, so arrow keys and focus work without faking a JS tablist; they
+    have to sit as direct children of .log-column for `:checked ~` to reach both
+    the labels in the hero and the panels in the timeline.
+
+    Returns two empty strings when a channel has nothing in it: one live tab
+    beside one dead tab is worse than the plain list this page started as.
+    """
+    if not all(groups[ch] for ch in CHANNEL_ORDER):
+        return "", ""
+
+    inputs, tabs = [], []
+    for i, channel in enumerate(CHANNEL_ORDER):
+        checked = " checked" if i == 0 else ""
+        inputs.append(
+            f'        <input class="sr-only log-views__radio" type="radio" '
+            f'name="log-view" id="log-view-{channel}"{checked}>\n'
+        )
+        tabs.append(
+            f'              <label class="log-views__tab" for="log-view-{channel}">'
+            f'{html.escape(strings["LOG_VIEWS"][channel])}'
+            f'<span class="log-views__count">{len(groups[channel])}</span></label>\n'
+        )
+    strip = (
+        f'            <div class="log-views" role="group" '
+        f'aria-label="{html.escape(strings["LOG_VIEWS_LABEL"])}">\n'
+        f'{"".join(tabs)}'
+        f'              <span class="log-views__ink" aria-hidden="true"></span>\n'
+        f'            </div>\n'
+    )
+    return "".join(inputs), strip
 
 
 # ---------------------------------------------------------- landing page
@@ -605,16 +700,19 @@ def build_page(
 ) -> str:
     strings = i18n[lang]
 
-    if releases:
-        entries = "".join(
-            render_release(r, lang, i18n, is_latest=(i == 0)) for i, r in enumerate(releases)
-        )
-        newest = releases[0]
+    groups = group_by_channel(releases)
+    view_inputs, view_strip = render_log_views(groups, strings)
+    entries = render_log_timeline(groups, lang, i18n, tabbed=bool(view_strip))
+
+    # The stamp quotes the main mod's version, on this page and on the other two.
+    # A submod entry sorts to the top of the timeline on its release date, so
+    # reading releases[0] here would hand the whole site the wrong number.
+    newest = next((r for r in groups["main"] if r["version"]), None)
+    if newest:
         latest_stamp = f'<strong>v{html.escape(newest["version"])}</strong>'
         if newest["date"]:
             latest_stamp += f' · <strong>{html.escape(newest["date"])}</strong>'
     else:
-        entries = f'      <p class="log-empty">{html.escape(strings["EMPTY"])}</p>\n'
         latest_stamp = "<strong>—</strong>"
 
     log_href = page_href(base, lang, "changelog")
@@ -628,6 +726,8 @@ def build_page(
         "SITE_BASE_PATH": base,
         "BUILD_TIME": build_time,
         "RELEASES": entries,
+        "LOG_VIEW_INPUTS": view_inputs,
+        "LOG_VIEWS": view_strip,
         "LATEST_STAMP": latest_stamp,
         "SITE_URL": f"{origin}{base}",
         "HREF_SELF": page_href(base, lang, page),
@@ -664,7 +764,7 @@ def build_page(
 
     if page == "faq":
         values.update({
-            "FAQ_STAMP": render_faq_stamp(strings, releases[0]["version"] if releases else ""),
+            "FAQ_STAMP": render_faq_stamp(strings, newest["version"] if newest else ""),
             "FAQ_BANDS": render_faq_bands(faq, lang, strings),
             "FAQ_TAIL": render_faq_tail(faq, lang, strings, log_href),
         })

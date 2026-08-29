@@ -96,12 +96,34 @@ tags: main
 - ...
 ```
 
-- `version` 必填，排序按数字段比较（`1.10.0` 在 `1.9.0` 之上）。
+- `version` 必填，排序按数字段比较（`1.10.0` 在 `1.9.0` 之上）。**唯一的例外见下面「子 mod 的条目」。**
 - `date` **留空 = 还没定发布日期**，该条排最上、页面不显示日期，工坊真发布了再补。别编一个日期。
 - `type`：`release` / `content` / `balance` / `hotfix`，默认 `release`，决定右上角徽章。
-- `tags`：逗号分隔的 `main` / `stronger-ai` / `nrs-compat`。
+- `tags`：逗号分隔的 `main` / `stronger-ai` / `nrs-compat` / `cathay-compat`。
+- `channel`：`main`（默认）/ `submod`，决定进哪个页签，见下。
 - 新增 `type` / `tags` 取值要同时改 `content/i18n.json` 的两张表和 `build.py` 的 `KNOWN_TYPES`，漏了构建报错。
 - 中文块必填；英文块可缺，缺了英文页自动回落中文并显示「尚未翻译」。
+
+### 子 mod 的条目
+
+更新记录页分两个页签：**本体**（`channel: main`，默认）和**子 mod**（`channel: submod`）。子 mod 按自己的节奏发，不占本体的版本号，所以这类条目**用 `title` 代替 `version`** 当标题：
+
+```markdown
+---
+title.zh: 震旦机制兼容包
+title.en: Cathay Mechanics Compatibility Patch
+channel: submod
+date: 2026-08-30
+type: release
+tags: cathay-compat
+---
+```
+
+- front matter 支持 `key.zh` / `key.en` 两行写一个双语字段，和 JSON 里中英同字段是一个意思。
+- `version` 和 `title` **至少要有一个**，两个都没有构建报错。
+- 页签只在两边都有条目时才出现；只有一边有的话页面就是原来那条时间线，不会挂一个空页签。
+- 页面各处的「最新版本」印章（更新记录页、主页 hero、常见问题页）取的是**本体**最新的带版本号的条目——子 mod 条目按日期排在最上面也不会顶掉它。这一点改 `build.py` 时别写回 `releases[0]`。
+- 页签是**纯 CSS**（`.log-column` 下的一组 radio + `:checked ~`）。全站的 JS 只有首访语言判断那一处，别为了页签加第二处。
 
 **正文写法的坑：列表里不能有空行。** Python-Markdown 会在列表项内部的空行处结束整个列表，后面的 `- ` 变成段落里的裸横线（踩过一次，构建不报错，只有看页面才发现）。补充说明要写成**缩进 4 空格的子条目**：
 
