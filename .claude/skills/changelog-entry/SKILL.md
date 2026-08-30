@@ -62,23 +62,36 @@ front matter 规则：
 
 新增 `type` 或 `tags` 取值时同时改 `content/i18n.json` 的 `TYPE`/`TAGS`（中英各一份）和 `scripts/build.py` 的 `KNOWN_TYPES`，漏了会构建报错。
 
-### 子 mod 的条目用 `title` 代标题
+### 子 mod：一个包一个文件，日期落在每条改动上
 
-子 mod 按自己的节奏发，不占本体的版本号，所以这类条目不写 `version`，改用 `title` 当标题。文件名也不带版本号，`content/releases/<日期>-<子 mod 短名>.md`：
+子 mod 没有版本号，组织方式和本体不同——**一个子 mod 一个文件**，标题用 `title`，每条改动自己带日期，倒序追加。和 `version.md` 的「子 mod 更新记录」小节一一对应，那边加一行，这边也加一行。
+
+文件是 `content/releases/submod-<短名>.md`，**文件名不带日期**：
 
 ```markdown
 ---
 title.zh: 震旦机制兼容包
 title.en: Cathay Mechanics Compatibility Patch
 channel: submod
-date: 2026-08-30
-type: release
+url: https://steamcommunity.com/sharedfiles/filedetails/?id=3792252212
 tags: cathay-compat
 ---
+
+<!-- lang: zh -->
+
+一句话说明这个包干什么、谁需要装。
+
+- 2026-08-30 接入 **[某某 mod](链接)**：……
+    - 补充说明写成缩进子条目，不带日期。
+- 2026-08-30 上线，首个接入 **[某某 mod](链接)**：……
 ```
 
+- **加新一条就是在已有文件顶部加一行**，不要为一次更新新建文件，也别把两个包混进一个文件。
+- **不写 `date`**：排序日期从正文里最新的日期算出来，没有第二处要同步。
+- `url` 是这个包自己的工坊页，标题会渲染成带 ↗ 的链接。**正文里别再自链一次**，导语直接说「这个 mod」/「this mod」。
+- 默认不显示 `type` 徽章——一个文件横跨多次改动，标一个「版本发布」是假的。
+- 正文按时间倒序，不按「新增 / 修复」分组；日期就是分组。
 - `key.zh` / `key.en` 两行写一个双语字段。`version` 和 `title` 至少要有一个。
-- 接的是**已有**兼容包的新一条时，不要新建文件——改那个包已有的条目，或按日期新开一条，别把两个包混进一条。
 - 子 mod 的中英文案，隔壁 `../nippon_expedition_<包名>/README_{zh,en}.md` 通常已经是作者定稿的双语成文，**直接沿用，别重译**（查表顺序里的第 4 档）。
 
 正文按「新增 / 修复 / 调整」分组，用 `###` 起（`#`/`##` 留给页面本身）。写玩家视角的「加了什么、修了什么」，判据是**读者不打开 pack 能不能看懂**——不写表名、key、字段、力量类型。

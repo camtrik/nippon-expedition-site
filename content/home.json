@@ -46,6 +46,59 @@
         "en": "Relocates vanilla legendary lords to Nippon and the lands around it (can be switched off in MCT)"
       },
       {
+        "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3792001152",
+        "name": {
+          "zh": "远征尼朋 · NRS 兼容包",
+          "en": "Nippon Expedition · Nippon Rising Sun Compatibility Patch"
+        },
+        "note": {
+          "zh": "[Nippon, Land of the Rising Sun](https://steamcommunity.com/workshop/filedetails/?id=3770643554)（NRS）兼容子 mod。可选，两者同时使用时需要。",
+          "en": "[Nippon, Land of the Rising Sun](https://steamcommunity.com/workshop/filedetails/?id=3770643554) (NRS) compatibility submod. Optional, needed only when running both mods together."
+        },
+        "points": [
+          {
+            "zh": "修复了启动 NRS 时定居点模型不显示，其他派系无法占领定居点等问题",
+            "en": "Fixes settlement models not rendering, and other factions being unable to occupy settlements, while NRS is running"
+          },
+          {
+            "zh": "增加了一系列尼朋兵种招募建筑，震旦的派系可以通过任务解锁尼朋系列建筑（玉海舰队默认解锁）",
+            "en": "Adds a series of Nippon unit-recruitment buildings, which Cathay factions can unlock through missions (unlocked by default for the Jade Sea Fleet)"
+          }
+        ]
+      },
+      {
+        "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3792252212",
+        "name": {
+          "zh": "远征尼朋 · 震旦机制兼容包",
+          "en": "Nippon Expedition · Cathay Mechanics Compatibility Patch"
+        },
+        "note": {
+          "zh": "震旦机制兼容子 mod。已支持：",
+          "en": "Cathay mechanics compatibility submod. Currently supports:"
+        },
+        "points": [
+          {
+            "zh": "[五行罗盘大修](https://steamcommunity.com/sharedfiles/filedetails/?id=3727513610)",
+            "en": "[Cathay Compass Overhaul](https://steamcommunity.com/sharedfiles/filedetails/?id=3727513610)"
+          },
+          {
+            "zh": "[南皋工坊](https://steamcommunity.com/sharedfiles/filedetails/?id=3723969862)",
+            "en": "[Cathay Mechanism Expansion: Nan-Gau Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=3723969862)"
+          }
+        ]
+      },
+      {
+        "url": "https://steamcommunity.com/workshop/filedetails/?id=3790907897",
+        "name": {
+          "zh": "远征尼朋 · 周边 AI 强化",
+          "en": "Nippon Expedition · Stronger Surrounding AI"
+        },
+        "note": {
+          "zh": "AI 强化子 mod，可选。对整体 AI 进行了强化，并且对尼朋以及震旦周边的 AI 进行一些特殊强化。",
+          "en": "Stronger AI submod, optional. It strengthens the AI across the whole map, with extra tuning for Nippon and the lands around Cathay."
+        }
+      },
+      {
         "zh": "**需要 MIXER 和 IEE 扩展**：[Immortal Empires Expanded](https://steamcommunity.com/sharedfiles/filedetails/?id=3007996493) 与 [Mixu's Unlocker](https://steamcommunity.com/sharedfiles/filedetails/?id=2859968660)；可选 [Mod Configuration Tool](https://steamcommunity.com/sharedfiles/filedetails/?id=2927955021)",
         "en": "**Requires MIXER and IEE**: [Immortal Empires Expanded](https://steamcommunity.com/sharedfiles/filedetails/?id=3007996493) and [Mixu's Unlocker](https://steamcommunity.com/sharedfiles/filedetails/?id=2859968660); optional [Mod Configuration Tool](https://steamcommunity.com/sharedfiles/filedetails/?id=2927955021)"
       }

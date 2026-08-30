@@ -72,6 +72,9 @@ KNOWN_TYPES = {"release", "content", "balance", "hotfix"}
 # that number, so the two are counted and displayed apart.
 CHANNEL_ORDER = ("main", "submod")
 DEFAULT_CHANNEL = "main"
+# A submod has no version number, so the date rides on each change instead of on
+# the entry: one section per submod, newest line first, mirroring version.md.
+BODY_DATE_RE = re.compile(r"^\s*-\s+(\d{4}-\d{2}-\d{2})\b", re.MULTILINE)
 
 FONT_COVERAGE = ASSETS_DIR / "fonts" / "coverage.txt"
 TAG_RE = re.compile(r"<[^>]+>")
@@ -181,8 +184,8 @@ def parse_release(path: Path) -> dict:
     if date and not re.fullmatch(r"\d{4}-\d{2}-\d{2}", date):
         raise ValueError(f"{path.name}: `date` must be YYYY-MM-DD, got {date!r}")
 
-    entry_type = meta.get("type", "release")
-    if entry_type not in KNOWN_TYPES:
+    entry_type = meta.get("type", "release" if channel == DEFAULT_CHANNEL else "")
+    if entry_type and entry_type not in KNOWN_TYPES:
         raise ValueError(f"{path.name}: unknown `type` {entry_type!r}; expected one of {sorted(KNOWN_TYPES)}")
 
     bodies = split_lang_bodies(text[fm_match.end():])
@@ -191,12 +194,19 @@ def parse_release(path: Path) -> dict:
     if DEFAULT_LANG not in bodies:
         raise ValueError(f"{path.name}: missing a `<!-- lang: {DEFAULT_LANG} -->` block")
 
+    # Entries that date their individual changes sort on the newest of those,
+    # so adding a line is the whole edit — no front-matter date to keep in step.
+    body_dates = BODY_DATE_RE.findall(bodies[DEFAULT_LANG])
+    sort_date = date or (max(body_dates) if body_dates else "")
+
     return {
         "source": path.name,
         "version": meta.get("version", ""),
         "title": title,
+        "url": meta.get("url", ""),
         "channel": channel,
         "date": date,
+        "sort_date": sort_date,
         "type": entry_type,
         "tags": meta.get("tags", []),
         "bodies": bodies,
@@ -214,7 +224,7 @@ def collect_releases() -> list[dict]:
         return []
     releases = [parse_release(p) for p in sorted(RELEASES_DIR.glob("*.md"))]
     # A dateless entry is one not dated yet, so it belongs above everything dated.
-    releases.sort(key=lambda r: (r["date"] or "9999-99-99", version_key(r["version"])), reverse=True)
+    releases.sort(key=lambda r: (r["sort_date"] or "9999-99-99", version_key(r["version"])), reverse=True)
     return releases
 
 
@@ -224,6 +234,9 @@ EXTERNAL_LINK_RE = re.compile(r'<a href="(https?://[^"]+)"')
 # Python-Markdown ends a list at any blank line inside an item, silently folding
 # the following bullets into one paragraph. Catch that instead of shipping it.
 SWALLOWED_BULLET_RE = re.compile(r"<p>[^<]*(?:^|\s)- \S", re.MULTILINE)
+# `- 2026-08-30 ...` in a submod section: the leading date is a label, not prose.
+# Only top-level items carry one, so nested sub-bullets are left alone.
+LIST_DATE_RE = re.compile(r"(<li>(?:<p>)?)(\d{4}-\d{2}-\d{2})\s+")
 
 
 def render_markdown(text: str) -> str:
@@ -235,6 +248,7 @@ def render_markdown(text: str) -> str:
             "a list was broken by a blank line: bullets ended up inside a paragraph. "
             "Indent continuation text as a nested `    - ` sub-bullet instead of a blank-line paragraph."
         )
+    rendered = LIST_DATE_RE.sub(r'\1<span class="entry-date">\2</span>', rendered)
     # Workshop / dependency links in entry bodies always leave the site.
     return EXTERNAL_LINK_RE.sub(r'<a href="\1" target="_blank" rel="noopener"', rendered)
 
@@ -260,10 +274,12 @@ def render_release(release: dict, lang: str, i18n: dict, is_latest: bool) -> str
     if body_lang != lang:
         notice = f'          <p class="release__untranslated">{html.escape(strings["UNTRANSLATED"])}</p>\n'
 
-    type_label = strings["TYPE"].get(release["type"], release["type"])
-    badges = [
-        f'<span class="type-badge type-badge--{release["type"]}">{html.escape(type_label)}</span>'
-    ]
+    badges = []
+    if release["type"]:
+        type_label = strings["TYPE"].get(release["type"], release["type"])
+        badges.append(
+            f'<span class="type-badge type-badge--{release["type"]}">{html.escape(type_label)}</span>'
+        )
     for tag in release["tags"]:
         label = strings["TAGS"].get(tag, tag)
         slug = re.sub(r"[^a-z0-9]+", "-", tag.lower()).strip("-")
@@ -282,7 +298,15 @@ def render_release(release: dict, lang: str, i18n: dict, is_latest: bool) -> str
     # A submod has no place in the main mod's version sequence, so it is headed
     # by its name instead. Set as prose, not as a number: no tabular figures.
     if release["title"]:
-        heading = f'<span class="release__version release__version--named">{esc(release["title"], lang)}</span>'
+        name = esc(release["title"], lang)
+        if release["url"]:
+            heading = (
+                f'<a class="release__version release__version--named" '
+                f'href="{release["url"]}" target="_blank" rel="noopener">'
+                f'{name}<span aria-hidden="true">↗</span></a>'
+            )
+        else:
+            heading = f'<span class="release__version release__version--named">{name}</span>'
     else:
         heading = f'<span class="release__version">v{html.escape(release["version"])}</span>'
     version_attr = f' data-version="{html.escape(release["version"])}"' if release["version"] else ""
@@ -319,8 +343,12 @@ def render_log_timeline(groups: dict[str, list[dict]], lang: str, i18n: dict, ta
         group = groups[channel]
         if not group:
             continue
+        # Only the main channel has a "latest": there an entry is one release.
+        # A submod entry is that package's whole running log, so none of them is
+        # newer than another — and their order is a date tie broken by filename.
         entries = "".join(
-            render_release(r, lang, i18n, is_latest=(i == 0)) for i, r in enumerate(group)
+            render_release(r, lang, i18n, is_latest=(i == 0 and channel == DEFAULT_CHANNEL))
+            for i, r in enumerate(group)
         )
         if not tabbed:
             return entries
@@ -417,23 +445,49 @@ def render_hero(home: dict, lang: str, strings: dict, base: str, latest: str) ->
 
 
 def workshop_ctas() -> list[tuple[str, str]]:
-    """The four workshop listings: the mod itself, its English translation, then
-    the two optional submods — same order on both language pages, since the
-    English listing is a translation of the first one rather than a second main
-    mod. Keep this in step with the footer's link row."""
+    """Every workshop listing: the mod itself, its English translation, then the
+    optional submods — same order on both language pages, since the English
+    listing is a translation of the first one rather than a second main mod.
+    The hero CTAs and the footer row are both generated from this list, so a new
+    listing only has to be added here — and to home.json's `submods` if it is a
+    compatibility patch, which is the one place the copy actually differs."""
     return [
         ("WS_MAIN_ZH", "https://steamcommunity.com/workshop/filedetails/?id=3790908242"),
         ("WS_MAIN_EN", "https://steamcommunity.com/workshop/filedetails/?id=3790908523"),
         ("WS_AI", "https://steamcommunity.com/workshop/filedetails/?id=3790907897"),
         ("WS_NRS", "https://steamcommunity.com/sharedfiles/filedetails/?id=3792001152"),
+        ("WS_CATHAY", "https://steamcommunity.com/sharedfiles/filedetails/?id=3792252212"),
     ]
 
 
 def render_overview(home: dict, lang: str) -> str:
+    """Mostly one-line points. An item carrying a `name` is a submod instead:
+    it gets its workshop link as the heading and its own points underneath,
+    because a patch needs to say what it is for, not just that it exists."""
     o = home["overview"]
-    items = "".join(f'      <li>{inline_md(i, lang)}</li>\n' for i in o["items"])
+    rows = []
+    for i in o["items"]:
+        if not i.get("name"):
+            rows.append(f'      <li>{inline_md(i, lang)}</li>\n')
+            continue
+        points = "".join(
+            f'          <li>{inline_md(pt, lang)}</li>\n' for pt in i.get("points", [])
+        )
+        # A patch with nothing to enumerate gets the note alone, not an empty list.
+        points_html = (
+            f'        <ul class="overview__mod-points">\n{points}        </ul>\n'
+            if points else ""
+        )
+        rows.append(
+            f'      <li class="overview__mod">\n'
+            f'        <a class="overview__mod-name" href="{i["url"]}" target="_blank" rel="noopener">'
+            f'{esc(i["name"], lang)}<span aria-hidden="true">↗</span></a>\n'
+            f'        <p class="overview__mod-note">{inline_md(i["note"], lang)}</p>\n'
+            f'{points_html}'
+            f'      </li>\n'
+        )
     return (section_open("overview", lang, o["title"]) +
-            f'    <ul class="overview__list">\n{items}    </ul>\n' + section_close())
+            f'    <ul class="overview__list">\n{"".join(rows)}    </ul>\n' + section_close())
 
 
 def render_lords(home: dict, lang: str) -> str:
@@ -704,10 +758,12 @@ def build_page(
     view_inputs, view_strip = render_log_views(groups, strings)
     entries = render_log_timeline(groups, lang, i18n, tabbed=bool(view_strip))
 
-    # The stamp quotes the main mod's version, on this page and on the other two.
-    # A submod entry sorts to the top of the timeline on its release date, so
-    # reading releases[0] here would hand the whole site the wrong number.
-    newest = next((r for r in groups["main"] if r["version"]), None)
+    # The stamp quotes the main mod's current *released* version, on this page
+    # and on the other two. Two entries can sit above that one and must not be
+    # mistaken for it: a submod, which sorts in on its own release date, and an
+    # entry with no date, which by this repo's convention is a version that has
+    # not shipped to the Workshop yet. Neither is a number to quote at players.
+    newest = next((r for r in groups["main"] if r["version"] and r["date"]), None)
     if newest:
         latest_stamp = f'<strong>v{html.escape(newest["version"])}</strong>'
         if newest["date"]:
@@ -725,6 +781,11 @@ def build_page(
     values = {
         "SITE_BASE_PATH": base,
         "BUILD_TIME": build_time,
+        "FOOTER_WS_LINKS": "".join(
+            f'      <a href="{url}" target="_blank" rel="noopener">'
+            f'{html.escape(strings[key])} ↗</a>\n'
+            for key, url in workshop_ctas()
+        ).rstrip("\n"),
         "RELEASES": entries,
         "LOG_VIEW_INPUTS": view_inputs,
         "LOG_VIEWS": view_strip,

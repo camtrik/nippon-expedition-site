@@ -1,14 +1,16 @@
+走一条独立的建筑树。
+
 # AGENTS.md
 
 ## 这是什么仓库
 
-《Total War: WARHAMMER III》mod **「远征尼朋 · 玉海舰队 / Nippon Expedition · The Jade Sea Fleet」** 的**公开站点**。中英双语，Python 静态构建，GitHub Pages 部署。线上：<https://camtrik.github.io/nippon-expedition-site/>
+《Total War: WARHAMMER III》mod **「远征尼朋 · 玉海舰队 / Nippon Expedition · The Jade Sea Fleet」** 的**公开站点**。中英双语，Python 静态构建，GitHub Pages 部署。线上：[https://camtrik.github.io/nippon-expedition-site/](https://camtrik.github.io/nippon-expedition-site/)
 
-| 页面 | 内容来源 | 中文 | English |
-| --- | --- | --- | --- |
-| **简介** | `content/home.json`，与创意工坊描述同步 | `/` | `/en/` |
-| **更新记录** | `content/releases/*.md` | `/changelog/` | `/en/changelog/` |
-| **常见问题** | `content/faq.json`，与 mod 仓库的 `faq.md` 同步 | `/faq/` | `/en/faq/` |
+| 页面               | 内容来源                                            | 中文            | English            |
+| ------------------ | --------------------------------------------------- | --------------- | ------------------ |
+| **简介**     | `content/home.json`，与创意工坊描述同步           | `/`           | `/en/`           |
+| **更新记录** | `content/releases/*.md`                           | `/changelog/` | `/en/changelog/` |
+| **常见问题** | `content/faq.json`，与 mod 仓库的 `faq.md` 同步 | `/faq/`       | `/en/faq/`       |
 
 这是**内容仓库，不是 mod 仓库**——这里没有一行游戏数据，mod 本体在隔壁 `../nippon_expedition/`。
 
@@ -16,15 +18,15 @@
 
 写正文的原料**全部不在本仓库**，在同级的私有仓库 `wh3-mod-projects` 中。下面路径相对本仓库根目录，**只在维护者本机成立**；CI 和别人 clone 的副本里都没有。
 
-| 要什么 | 去哪拿（`../nippon_expedition/` 下） |
-| --- | --- |
-| **更新记录的原料**（一条改动一行，玩家视角） | `_docs/backlog/version.md` |
-| 原版专名中英对照（CA 官方译名） | `_docs/translation/术语对照_原版专名.tsv` |
-| 自造专名中英对照 + 定名政策 | `_docs/translation/术语对照_自造专名{,_说明}.*` |
-| IEE 地名英文（行省 / 定居点） | `_docs/references/IEE尼朋行省与定居点清单.md` |
-| **常见问题的原料**（中英双语成稿） | `faq.md` |
-| 工坊描述双语成稿 | `steam_description_{zh,en}.txt` |
-| NRS 兼容包说明 | `../nippon_expedition_nrs_compat/README_zh.md` |
+| 要什么                                             | 去哪拿（`../nippon_expedition/` 下）            |
+| -------------------------------------------------- | ------------------------------------------------- |
+| **更新记录的原料**（一条改动一行，玩家视角） | `_docs/backlog/version.md`                      |
+| 原版专名中英对照（CA 官方译名）                    | `_docs/translation/术语对照_原版专名.tsv`       |
+| 自造专名中英对照 + 定名政策                        | `_docs/translation/术语对照_自造专名{,_说明}.*` |
+| IEE 地名英文（行省 / 定居点）                      | `_docs/references/IEE尼朋行省与定居点清单.md`   |
+| **常见问题的原料**（中英双语成稿）           | `faq.md`                                        |
+| 工坊描述双语成稿                                   | `steam_description_{zh,en}.txt`                 |
+| NRS 兼容包说明                                     | `../nippon_expedition_nrs_compat/README_zh.md`  |
 
 `version.md` 是更新记录的**唯一权威原料**，已经是「一条改动 = 一行、只写玩家看得懂的功能变化」的粒度，直接改写即可。
 
@@ -55,6 +57,8 @@ grep "神華" ../nippon_expedition/_docs/references/IEE尼朋行省与定居点�
 - 工坊描述里没有、页面上有的东西（同伴的四章标题、羁绊四档）来自 mod 仓库 `text/db/*.loc.tsv` 的实装文本，英文取 `术语对照_自造专名.tsv` 里标「已定」的行。**不要自己编章节名。**
 - **两条长期胜利路线（海外帝国 / 天朝守护）不是二选一，两条都能打完。** 工坊描述的「（路线A）/（路线B）」写法容易让人误会——这里错过一次。并排版式不表示互斥，文案必须明说。
 - 区块 HTML 由 `build.py` 的 `render_*()` 生成，顺序在 `site/_templates/home.html`，样式在 `home.css`。
+- **简介区块里两个兼容包的文案来自各子 mod 仓库的 `README_{zh,en}.md`**，那两份是作者定稿的双语成文，**直接搬，别重译**。改了那边记得回来改这边。
+- **工坊链接只有一处**：`build.py` 的 `workshop_ctas()`。hero 的 CTA 行和页脚的链接行都由它生成——以前页脚是手抄的第二份，加子 mod 时漏过一次。新增一个工坊条目只需要改这个函数；如果是兼容包，再往 `home.json` 的 `overview` 加一条（那里是唯一需要另写文案的地方）。
 
 ## 常见问题页
 
@@ -106,23 +110,38 @@ tags: main
 
 ### 子 mod 的条目
 
-更新记录页分两个页签：**本体**（`channel: main`，默认）和**子 mod**（`channel: submod`）。子 mod 按自己的节奏发，不占本体的版本号，所以这类条目**用 `title` 代替 `version`** 当标题：
+更新记录页分两个页签：**本体**（`channel: main`，默认）和**子 mod**（`channel: submod`）。
+
+子 mod 没有版本号，所以组织方式和本体不同：**一个子 mod 一个条目**（不是一次发布一个条目），标题用 `title` 代替 `version`，**日期落在每一条改动上**，倒序追加。这和 `version.md` 的「子 mod 更新记录」小节是一一对应的，加一条就是加一行。
 
 ```markdown
 ---
 title.zh: 震旦机制兼容包
 title.en: Cathay Mechanics Compatibility Patch
 channel: submod
-date: 2026-08-30
-type: release
+url: https://steamcommunity.com/sharedfiles/filedetails/?id=3792252212
 tags: cathay-compat
 ---
+
+<!-- lang: zh -->
+
+一句话说明这个包是干什么的、谁需要装。
+
+- 2026-08-30 接入 **[某某 mod](链接)**：……
+    - 补充说明写成缩进子条目。
+- 2026-08-30 上线，首个接入 **[某某 mod](链接)**：……
 ```
 
+- 文件名 `content/releases/submod-<短名>.md`，不带日期——日期在正文里。
+- `url` 是这个包自己的工坊页，标题会渲染成带 ↗ 的链接。**正文里就别再自链一次**，导语直接说「这个 mod」/「this mod」。
 - front matter 支持 `key.zh` / `key.en` 两行写一个双语字段，和 JSON 里中英同字段是一个意思。
 - `version` 和 `title` **至少要有一个**，两个都没有构建报错。
+- 顶级条目以 `YYYY-MM-DD ` 开头时，`build.py` 会把它包成 `.entry-date` 标签；缩进子条目不带日期，也不会被包。
+- 子 mod 条目**不写 front matter 的 `date`**：排序日期由正文里最新的那个日期算出来，加一行就自动往上排，没有第二处要同步。
+- 子 mod 条目默认**不显示 `type` 徽章**——一个条目横跨多次改动，标一个「版本发布」是假的。真要标就显式写 `type:`。
+- 正文按时间倒序排，不再按「新增 / 修复」分组——日期就是分组。
 - 页签只在两边都有条目时才出现；只有一边有的话页面就是原来那条时间线，不会挂一个空页签。
-- 页面各处的「最新版本」印章（更新记录页、主页 hero、常见问题页）取的是**本体**最新的带版本号的条目——子 mod 条目按日期排在最上面也不会顶掉它。这一点改 `build.py` 时别写回 `releases[0]`。
+- 页面各处的「最新版本」印章（更新记录页、主页 hero、常见问题页）取的是**本体**最新的**既有版本号又有日期**的条目。两种条目会排在它上面但都不算数：子 mod（按自己的日期排进来），以及 `date` 留空的条目（按约定 = 还没上工坊）。印章是报给玩家的当前版本号，不能报一个订阅不到的版本。这一点改 `build.py` 时别图省事写回 `releases[0]`。
 - 页签是**纯 CSS**（`.log-column` 下的一组 radio + `:checked ~`）。全站的 JS 只有首访语言判断那一处，别为了页签加第二处。
 
 **正文写法的坑：列表里不能有空行。** Python-Markdown 会在列表项内部的空行处结束整个列表，后面的 `- ` 变成段落里的裸横线（踩过一次，构建不报错，只有看页面才发现）。补充说明要写成**缩进 4 空格的子条目**：
