@@ -198,6 +198,10 @@ def parse_release(path: Path) -> dict:
     # so adding a line is the whole edit — no front-matter date to keep in step.
     body_dates = BODY_DATE_RE.findall(bodies[DEFAULT_LANG])
     sort_date = date or (max(body_dates) if body_dates else "")
+    # The oldest dated line is the day that package went up. Two submods touched
+    # the same day tie on sort_date, and there the newer package is the newer
+    # thing — so this breaks the tie rather than leaving it to the filename.
+    launch_date = min(body_dates) if body_dates else ""
 
     return {
         "source": path.name,
@@ -207,6 +211,7 @@ def parse_release(path: Path) -> dict:
         "channel": channel,
         "date": date,
         "sort_date": sort_date,
+        "launch_date": launch_date,
         "type": entry_type,
         "tags": meta.get("tags", []),
         "bodies": bodies,
@@ -223,8 +228,20 @@ def collect_releases() -> list[dict]:
     if not RELEASES_DIR.exists():
         return []
     releases = [parse_release(p) for p in sorted(RELEASES_DIR.glob("*.md"))]
-    # A dateless entry is one not dated yet, so it belongs above everything dated.
-    releases.sort(key=lambda r: (r["sort_date"] or "9999-99-99", version_key(r["version"])), reverse=True)
+    # Newest first, on four keys: latest activity — a dateless entry is one not
+    # dated yet, so it belongs above everything dated — then the package's own
+    # launch day, then the version, then the filename. The last one is arbitrary
+    # but stable; it only decides two packages launched *and* touched the same
+    # day, and renaming a file is the lever if that order is ever wrong.
+    releases.sort(
+        key=lambda r: (
+            r["sort_date"] or "9999-99-99",
+            r["launch_date"],
+            version_key(r["version"]),
+            r["source"],
+        ),
+        reverse=True,
+    )
     return releases
 
 
@@ -457,6 +474,7 @@ def workshop_ctas() -> list[tuple[str, str]]:
         ("WS_AI", "https://steamcommunity.com/workshop/filedetails/?id=3790907897"),
         ("WS_NRS", "https://steamcommunity.com/sharedfiles/filedetails/?id=3792001152"),
         ("WS_CATHAY", "https://steamcommunity.com/sharedfiles/filedetails/?id=3792252212"),
+        ("WS_YINYIN", "https://steamcommunity.com/sharedfiles/filedetails/?id=3792695478"),
     ]
 
 
@@ -490,18 +508,60 @@ def render_overview(home: dict, lang: str) -> str:
             f'    <ul class="overview__list">\n{"".join(rows)}    </ul>\n' + section_close())
 
 
-def render_lords(home: dict, lang: str) -> str:
-    d = home["lords"]
-    cards = "".join(
-        f'      <li class="lord">\n'
-        f'        <p class="lord__kind">{esc(i["kind"], lang)}</p>\n'
-        f'        <h3 class="lord__name">{esc(i["name"], lang)}</h3>\n'
-        f'        <p class="lord__body">{inline_md(i["body"], lang)}</p>\n'
-        f'      </li>\n'
-        for i in d["items"]
+def lord_card(person: dict, lang: str, base: str, captioned: bool) -> str:
+    """One recruitment card. A lone card sits directly above its own <h3>, so
+    captioning it would print the name twice — it takes the name as alt text
+    instead. In the trio the captions are the name line, so alt is empty and
+    the caption does the naming."""
+    name = esc(person["name"], lang)
+    caption = f'\n            <span class="cast__name">{name}</span>' if captioned else ""
+    return (
+        f'          <li class="cast">\n'
+        f'            <img class="cast__art" src="{base}/assets/img/char-{person["slug"]}.webp" '
+        f'alt="{"" if captioned else name}" width="240" height="520" loading="lazy" decoding="async">'
+        f'{caption}\n'
+        f'          </li>\n'
     )
+
+
+def render_lords(home: dict, lang: str, base: str) -> str:
+    """A roster read as three bands, with the cards alternating sides so the
+    section has a rhythm instead of one long left rail: the admiral, then the
+    three companions, then the two types you recruit as many of as you can pay
+    for — those two share a band because they are the same kind of entry and
+    two more full-height rows would have made the section twice as tall.
+
+    A band with one card names its character in the heading; a band with several
+    labels each card instead, because a shared heading cannot say which face is
+    which. `rank` colours the eyebrow — one-of-a-kind versus recruitable is the
+    section's only real split, and every eyebrow being jade hid it."""
+    d = home["lords"]
+    bands = ""
+    for row in d["rows"]:
+        cards, entries = "", ""
+        for i in row["items"]:
+            people = i.get("people")
+            heading = ("" if people else
+                       f'          <h3 class="lord__name">{esc(i["name"], lang)}</h3>\n')
+            if people:
+                cards += "".join(lord_card(p, lang, base, captioned=True) for p in people)
+            else:
+                cards += lord_card(i, lang, base, captioned=False)
+            entries += (
+                f'        <div class="lord__entry lord--{i["rank"]}">\n'
+                f'          <p class="lord__kind">{esc(i["kind"], lang)}</p>\n'
+                f'{heading}'
+                f'          <p class="lord__body">{inline_md(i["body"], lang)}</p>\n'
+                f'        </div>\n'
+            )
+        bands += (
+            f'      <li class="lord lord--cards-{row["side"]}">\n'
+            f'        <ul class="lord__cast">\n{cards}        </ul>\n'
+            f'        <div class="lord__entries">\n{entries}        </div>\n'
+            f'      </li>\n'
+        )
     return (section_open("lords", lang, d["title"]) +
-            f'    <ul class="lords">\n{cards}    </ul>\n' + section_close())
+            f'    <ul class="lords">\n{bands}    </ul>\n' + section_close())
 
 
 def render_companions(home: dict, lang: str, base: str) -> str:
@@ -812,7 +872,7 @@ def build_page(
         values.update({
             "HOME_HERO": render_hero(home, lang, strings, base, hero_latest),
             "HOME_OVERVIEW": render_overview(home, lang),
-            "HOME_LORDS": render_lords(home, lang),
+            "HOME_LORDS": render_lords(home, lang, base),
             "HOME_COMPANIONS": render_companions(home, lang, base),
             "HOME_UNITS": render_units(home, lang, base),
             "HOME_BUILDINGS": render_buildings(home, lang),

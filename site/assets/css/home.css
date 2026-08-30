@@ -292,6 +292,58 @@
   text-transform: uppercase;
   color: var(--signal);
 }
+/* The roster's portraits: the mod's own recruitment cards, at the same width
+   as the unit grid so the page has one card idiom used twice — full-figure
+   scenes for units, busts for the people who command them. */
+.lord__cast {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2);
+  margin: 0;
+  padding: 0;
+}
+.cast { width: 132px; }
+.cast__art {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 240 / 520;
+  border-radius: var(--r-xs);
+  background: var(--deep-lift);
+}
+.cast__name {
+  display: block;
+  margin-top: 10px;
+  font-size: 13.5px;
+  line-height: 1.35;
+  color: var(--granite);
+}
+/* The cards take one side of the band and the copy the other, alternating down
+   the section. Both start at the band's top edge: with the sides alternating
+   there is no vertical spine left, so the line the bands share is a horizontal
+   one — centring the copy instead left the companions' two lines floating in
+   the middle of an empty half. Cards come first in the markup, which is also
+   the order a narrow screen stacks them in. */
+.lord {
+  display: grid;
+  column-gap: var(--s-4);
+  align-items: start;
+}
+.lord--cards-left { grid-template-columns: auto minmax(0, 1fr); }
+.lord--cards-right { grid-template-columns: minmax(0, 1fr) auto; }
+/* Row 1 on both, explicitly: the cards come first in the markup, so on a
+   cards-right band auto-placement would refuse to move the copy back to
+   column 1 and would drop it onto a row of its own underneath. */
+.lord--cards-left .lord__cast { grid-area: 1 / 1; }
+.lord--cards-left .lord__entries { grid-area: 1 / 2; }
+.lord--cards-right .lord__cast { grid-area: 1 / 2; }
+.lord--cards-right .lord__entries { grid-area: 1 / 1; }
+/* Two entries share the third band; they read as one column of copy. */
+.lord__entries { display: grid; gap: var(--s-4); }
+/* Rank is the section's only real split — one of a kind, or as many as you can
+   pay for — so the eyebrow carries it instead of all of them reading as jade. */
+.lord--generic .lord__kind { color: var(--slate); }
 .lord__name, .build__name {
   margin: 0 0 6px;
   font-size: 20px;
@@ -709,5 +761,10 @@
   .cta { font-size: 14px; padding: 10px 18px; }
   .companions { grid-template-columns: 1fr; gap: var(--s-5); }
   .trunk, .route { padding: var(--s-3); }
-  .unit { width: calc((100% - var(--s-2) * 2) / 3); min-width: 96px; }
+  .unit, .cast { width: calc((100% - var(--s-2) * 2) / 3); min-width: 96px; }
+  /* No room to set cards beside a paragraph: a 110px card leaves the copy two
+     words wide. Every band stacks cards over copy instead. */
+  .lord { display: block; }
+  .lord__cast { margin: 0 0 var(--s-2); }
+  .lord__entries { gap: var(--s-4); }
 }

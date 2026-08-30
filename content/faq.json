@@ -129,8 +129,24 @@
           },
           "answer": [
             {
-              "zh": "可以同时游玩。目前没有加入胤隐 mod 的兵种招募，这部分计划以单独的子 mod 形式做兼容。",
-              "en": "The two can be played together. Recruitment of Yin-Yin's units is not included; that is planned as a separate compatibility submod."
+              "zh": "可以同时游玩。装上兵种兼容子 mod 后，震旦的派系还可以招募胤隐 mod 中的兵种。",
+              "en": "The two can be played together. With the unit compatibility submod installed, Cathay factions can also recruit the units added by the Yin-Yin mod."
+            }
+          ],
+          "links": [
+            {
+              "label": {
+                "zh": "溟龙胤隐",
+                "en": "Roar of the Jade Sea: Yin-Yin"
+              },
+              "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2989226363"
+            },
+            {
+              "label": {
+                "zh": "兵种兼容子 mod",
+                "en": "Unit compatibility submod"
+              },
+              "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3792695478"
             }
           ]
         },

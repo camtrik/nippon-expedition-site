@@ -88,6 +88,27 @@
         ]
       },
       {
+        "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3792695478",
+        "name": {
+          "zh": "远征尼朋 · 溟龙胤隐兵种兼容包",
+          "en": "Nippon Expedition · Yin-Yin Unit Compatibility Patch"
+        },
+        "note": {
+          "zh": "[溟龙胤隐](https://steamcommunity.com/sharedfiles/filedetails/?id=2989226363)兵种兼容子 mod。可选，两者同时使用时需要。",
+          "en": "[Roar of the Jade Sea: Yin-Yin, the Sea Dragon](https://steamcommunity.com/sharedfiles/filedetails/?id=2989226363) unit compatibility submod. Optional, needed only when running both mods together."
+        },
+        "points": [
+          {
+            "zh": "震旦的派系可以招募胤隐 mod 的兵种",
+            "en": "Cathay factions can recruit the units added by the Yin-Yin mod"
+          },
+          {
+            "zh": "玉海舰队的旗舰新增「海贼舱」建筑链",
+            "en": "A new Corsair Berth chain on the Jade Sea Fleet's flagship"
+          }
+        ]
+      },
+      {
         "url": "https://steamcommunity.com/workshop/filedetails/?id=3790907897",
         "name": {
           "zh": "远征尼朋 · 周边 AI 强化",
@@ -106,65 +127,107 @@
   },
   "lords": {
     "title": {
-      "zh": "新的传奇领主和英雄",
-      "en": "New Legendary Lord and Heroes"
+      "zh": "新的领主和英雄",
+      "en": "New Lords and Heroes"
     },
-    "items": [
+    "_comment": "一行可以放一到多个条目，`side` 决定兵牌图落在文字的哪一侧。两个通用角色合成一行，所以第三行有两个条目。",
+    "rows": [
       {
-        "kind": {
-          "zh": "新传奇领主",
-          "en": "New Legendary Lord"
-        },
-        "name": {
-          "zh": "『无冕提督』沈长风",
-          "en": "Shen Changfeng, the Uncrowned Admiral"
-        },
-        "body": {
-          "zh": "具有特色游牧系统，可使用深渊系，阳系法术。可使用『云帆号跃迁』系统",
-          "en": "A nomadic faction with its own mechanics. Casts from the Lore of the Deep and the Lore of Yang. Can use the Cloud Sails leap."
-        }
+        "side": "left",
+        "items": [
+          {
+            "rank": "legendary",
+            "slug": "shen-changfeng",
+            "kind": {
+              "zh": "新传奇领主",
+              "en": "New Legendary Lord"
+            },
+            "name": {
+              "zh": "『无冕提督』沈长风",
+              "en": "Shen Changfeng, the Uncrowned Admiral"
+            },
+            "body": {
+              "zh": "具有特色游牧系统，可使用深渊系，阳系法术。可使用『云帆号跃迁』系统",
+              "en": "A nomadic faction with its own mechanics. Casts from the Lore of the Deep and the Lore of Yang. Can use the Cloud Sails leap."
+            }
+          }
+        ]
       },
       {
-        "kind": {
-          "zh": "三位传奇英雄",
-          "en": "Three Legendary Heroes"
-        },
-        "name": {
-          "zh": "『战鬼』立花直虎 · 『阴阳之巫女』纱代 · 瑟兰娜",
-          "en": "Tachibana Naotora, the Ghost · Sayo, the Onmyo Miko · Serena"
-        },
-        "body": {
-          "zh": "可通过远征同伴系统招募。",
-          "en": "Recruited through the Expedition Companions system."
-        }
+        "side": "right",
+        "items": [
+          {
+            "rank": "legendary",
+            "kind": {
+              "zh": "三位传奇英雄",
+              "en": "Three Legendary Heroes"
+            },
+            "people": [
+              {
+                "slug": "naotora",
+                "name": {
+                  "zh": "立花直虎",
+                  "en": "Tachibana Naotora"
+                }
+              },
+              {
+                "slug": "sayo",
+                "name": {
+                  "zh": "纱代",
+                  "en": "Sayo"
+                }
+              },
+              {
+                "slug": "serena",
+                "name": {
+                  "zh": "瑟兰娜",
+                  "en": "Serena"
+                }
+              }
+            ],
+            "body": {
+              "zh": "可通过远征同伴系统招募。",
+              "en": "Recruited through the Expedition Companions system."
+            }
+          }
+        ]
       },
       {
-        "kind": {
-          "zh": "通用领主",
-          "en": "Generic lord"
-        },
-        "name": {
-          "zh": "武士大将",
-          "en": "Samurai Taisho"
-        },
-        "body": {
-          "zh": "尼朋武将，可为尼朋兵种提供独特加成。可骑乘麒麟。",
-          "en": "A Nipponese commander granting unique bonuses to Nipponese units. Mountable on a Kirin."
-        }
-      },
-      {
-        "kind": {
-          "zh": "通用英雄",
-          "en": "Generic hero"
-        },
-        "name": {
-          "zh": "巫女",
-          "en": "Miko"
-        },
-        "body": {
-          "zh": "侍奉尼朋诸神的神职之女。可使用全新的巫女系法术。",
-          "en": "A shrine maiden serving Nippon's gods, with an entirely new Miko spell lore."
-        }
+        "side": "left",
+        "items": [
+          {
+            "rank": "generic",
+            "slug": "samurai-taisho",
+            "kind": {
+              "zh": "通用领主",
+              "en": "Generic lord"
+            },
+            "name": {
+              "zh": "武士大将",
+              "en": "Samurai Taisho"
+            },
+            "body": {
+              "zh": "尼朋武将，可为尼朋兵种提供独特加成。可骑乘麒麟。",
+              "en": "A Nipponese commander granting unique bonuses to Nipponese units. Mountable on a Kirin."
+            }
+          },
+          {
+            "rank": "generic",
+            "slug": "miko",
+            "kind": {
+              "zh": "通用英雄",
+              "en": "Generic hero"
+            },
+            "name": {
+              "zh": "巫女",
+              "en": "Miko"
+            },
+            "body": {
+              "zh": "侍奉尼朋诸神的神职之女。可使用全新的巫女系法术。",
+              "en": "A shrine maiden serving Nippon's gods, with an entirely new Miko spell lore."
+            }
+          }
+        ]
       }
     ]
   },

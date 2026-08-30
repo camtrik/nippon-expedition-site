@@ -21,7 +21,7 @@ sed -n '/^---$/,$p' ../nippon_expedition/_docs/backlog/version.md | head -60
 
 **绝对不要**从 `../nippon_expedition/_docs/log.md` 取料。那是开发流水账，写的是表名、字段、key、根因排查，属于开发者视角，不上公开站。
 
-其他可选参考：工坊描述双语成稿 `../nippon_expedition/steam_description_{zh,en}.txt`（大段介绍已有现成译文，首发条目就是从这里提炼的）；子 mod 说明 `../nippon_expedition_nrs_compat/README_zh.md`。
+其他可选参考：工坊描述双语成稿 `../nippon_expedition/steam_description_{zh,en}.txt`（大段介绍已有现成译文，首发条目就是从这里提炼的）；子 mod 说明 `../nippon_expedition_{nrs,cathay,yinyin}_compat/README_{zh,en}.md`（都是作者定稿的双语成文，直接搬）。
 
 ## 第 2 步：建文件、写中文
 
@@ -57,7 +57,7 @@ front matter 规则：
 - `version` 必填。排序按数字段比较，`1.10.0` 排在 `1.9.0` 之上。**子 mod 条目例外，见下。**
 - `date` 可选。**还没上工坊就留空**——该条会排在所有有日期的之上，页面上不显示日期。别编一个假日期。真发布了再补。
 - `type`：`release` / `content` / `balance` / `hotfix`，默认 `release`。
-- `tags`：`main` / `stronger-ai` / `nrs-compat` / `cathay-compat`，逗号分隔。
+- `tags`：`main` / `stronger-ai` / `nrs-compat` / `cathay-compat` / `yinyin-compat`，逗号分隔。
 - `channel`：`main`（默认）/ `submod`，决定进哪个页签。
 
 新增 `type` 或 `tags` 取值时同时改 `content/i18n.json` 的 `TYPE`/`TAGS`（中英各一份）和 `scripts/build.py` 的 `KNOWN_TYPES`，漏了会构建报错。

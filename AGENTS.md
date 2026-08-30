@@ -26,7 +26,7 @@
 | IEE 地名英文（行省 / 定居点）                      | `_docs/references/IEE尼朋行省与定居点清单.md`   |
 | **常见问题的原料**（中英双语成稿）           | `faq.md`                                        |
 | 工坊描述双语成稿                                   | `steam_description_{zh,en}.txt`                 |
-| NRS 兼容包说明                                     | `../nippon_expedition_nrs_compat/README_zh.md`  |
+| 各兼容包说明                                       | `../nippon_expedition_{nrs,cathay,yinyin}_compat/README_{zh,en}.md` |
 
 `version.md` 是更新记录的**唯一权威原料**，已经是「一条改动 = 一行、只写玩家看得懂的功能变化」的粒度，直接改写即可。
 
@@ -57,7 +57,7 @@ grep "神華" ../nippon_expedition/_docs/references/IEE尼朋行省与定居点�
 - 工坊描述里没有、页面上有的东西（同伴的四章标题、羁绊四档）来自 mod 仓库 `text/db/*.loc.tsv` 的实装文本，英文取 `术语对照_自造专名.tsv` 里标「已定」的行。**不要自己编章节名。**
 - **两条长期胜利路线（海外帝国 / 天朝守护）不是二选一，两条都能打完。** 工坊描述的「（路线A）/（路线B）」写法容易让人误会——这里错过一次。并排版式不表示互斥，文案必须明说。
 - 区块 HTML 由 `build.py` 的 `render_*()` 生成，顺序在 `site/_templates/home.html`，样式在 `home.css`。
-- **简介区块里两个兼容包的文案来自各子 mod 仓库的 `README_{zh,en}.md`**，那两份是作者定稿的双语成文，**直接搬，别重译**。改了那边记得回来改这边。
+- **简介区块里各个兼容包的文案来自各子 mod 仓库的 `README_{zh,en}.md`**，那几份都是作者定稿的双语成文，**直接搬，别重译**。改了那边记得回来改这边。
 - **工坊链接只有一处**：`build.py` 的 `workshop_ctas()`。hero 的 CTA 行和页脚的链接行都由它生成——以前页脚是手抄的第二份，加子 mod 时漏过一次。新增一个工坊条目只需要改这个函数；如果是兼容包，再往 `home.json` 的 `overview` 加一条（那里是唯一需要另写文案的地方）。
 
 ## 常见问题页
@@ -103,7 +103,7 @@ tags: main
 - `version` 必填，排序按数字段比较（`1.10.0` 在 `1.9.0` 之上）。**唯一的例外见下面「子 mod 的条目」。**
 - `date` **留空 = 还没定发布日期**，该条排最上、页面不显示日期，工坊真发布了再补。别编一个日期。
 - `type`：`release` / `content` / `balance` / `hotfix`，默认 `release`，决定右上角徽章。
-- `tags`：逗号分隔的 `main` / `stronger-ai` / `nrs-compat` / `cathay-compat`。
+- `tags`：逗号分隔的 `main` / `stronger-ai` / `nrs-compat` / `cathay-compat` / `yinyin-compat`。
 - `channel`：`main`（默认）/ `submod`，决定进哪个页签，见下。
 - 新增 `type` / `tags` 取值要同时改 `content/i18n.json` 的两张表和 `build.py` 的 `KNOWN_TYPES`，漏了构建报错。
 - 中文块必填；英文块可缺，缺了英文页自动回落中文并显示「尚未翻译」。
@@ -138,6 +138,7 @@ tags: cathay-compat
 - `version` 和 `title` **至少要有一个**，两个都没有构建报错。
 - 顶级条目以 `YYYY-MM-DD ` 开头时，`build.py` 会把它包成 `.entry-date` 标签；缩进子条目不带日期，也不会被包。
 - 子 mod 条目**不写 front matter 的 `date`**：排序日期由正文里最新的那个日期算出来，加一行就自动往上排，没有第二处要同步。
+- 同一天动过的两个包，再比**正文里最早的那个日期**（= 这个包上线那天），新包排前面；上线和改动都同一天才落到文件名倒序，那是唯一一处随意但确定的排法，真要固定顺序就改文件名。
 - 子 mod 条目默认**不显示 `type` 徽章**——一个条目横跨多次改动，标一个「版本发布」是假的。真要标就显式写 `type:`。
 - 正文按时间倒序排，不再按「新增 / 修复」分组——日期就是分组。
 - 页签只在两边都有条目时才出现；只有一边有的话页面就是原来那条时间线，不会挂一个空页签。
@@ -200,6 +201,8 @@ site/assets/css/base.css      设计 token + 全局 + 导航 + 页脚
 site/assets/css/{home,log,faq}.css
 site/assets/fonts/            文楷 GB 子集 + coverage.txt，都要提交
 site/assets/img/              从 mod 本体拷来压缩的美术资源，要换图去那边取原图重压
+                              兵牌图 unit-*/char-*.webp 原图是 ../nippon_expedition/ui/units/infopics/*.png
+                              （120×260），LANCZOS 放大 2 倍到 240×520 再 cwebp -q 90
 ```
 
 配色 token 是从 mod 自己的美术里取样的，改之前先看 `base.css` 的注释。

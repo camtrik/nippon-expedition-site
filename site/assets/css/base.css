@@ -581,6 +581,16 @@ hr { border: 0; height: 1px; background: var(--dust); margin: var(--s-4) 0; }
   font-size: 13px;
   color: var(--dust);
 }
+/* Three groups, not nine loose children: the byline pair, the workshop links,
+   and GitHub. space-between across nine items flung the byline and the deploy
+   time to opposite ends, and once the sixth listing no longer fit, English
+   dropped a lone link onto a row with GitHub stranded at the far end. */
+.site-footer__meta,
+.site-footer__ws {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-3);
+}
 .site-footer__bottom a {
   color: var(--white);
   text-decoration: none;

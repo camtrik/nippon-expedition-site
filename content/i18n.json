@@ -45,6 +45,7 @@
     "WS_AI": "AI 强化",
     "WS_NRS": "NRS 兼容包",
     "WS_CATHAY": "震旦兼容包",
+    "WS_YINYIN": "胤隐兼容包",
     "TYPE": {
       "release": "版本发布",
       "content": "内容更新",
@@ -63,7 +64,8 @@
       "main": "本体",
       "stronger-ai": "AI 强化",
       "nrs-compat": "NRS 兼容包",
-      "cathay-compat": "震旦兼容包"
+      "cathay-compat": "震旦兼容包",
+      "yinyin-compat": "胤隐兼容包"
     }
   },
   "en": {
@@ -112,6 +114,7 @@
     "WS_AI": "Stronger AI",
     "WS_NRS": "NRS Compatibility Patch",
     "WS_CATHAY": "Cathay Compatibility Patch",
+    "WS_YINYIN": "Yin-Yin Compatibility Patch",
     "TYPE": {
       "release": "Release",
       "content": "Content",
@@ -130,7 +133,8 @@
       "main": "Main mod",
       "stronger-ai": "Stronger AI",
       "nrs-compat": "NRS compat",
-      "cathay-compat": "Cathay compat"
+      "cathay-compat": "Cathay compat",
+      "yinyin-compat": "Yin-Yin compat"
     }
   }
 }
