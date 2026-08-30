@@ -427,12 +427,12 @@
       },
       {
         "name": {
-          "zh": "侍所链（2 级）",
-          "en": "Samurai Hall chain (2 levels)"
+          "zh": "侍所链（3 级）",
+          "en": "Samurai Hall chain (3 levels)"
         },
         "body": {
-          "zh": "侍所 → 旗本番。依次解锁长枪武士与铁炮武士，然后是雷刃旗本。",
-          "en": "Samurai Hall → Hatamoto Guard. Unlocks Yari Samurai and Teppo Samurai, then Thunderblade Hatamoto."
+          "zh": "番所 → 侍所 → 旗本番。依次解锁长枪武士、铁炮武士、雷刃旗本。",
+          "en": "Watch Post → Samurai Hall → Hatamoto Guard. Unlocks Yari Samurai, Teppo Samurai, then Thunderblade Hatamoto."
         }
       }
     ]
