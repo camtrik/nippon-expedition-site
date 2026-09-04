@@ -38,8 +38,8 @@
         "en": "A new playable Grand Cathay faction"
       },
       {
-        "zh": "1 名新传奇领主，3 名新传奇英雄，1 种通用领主，1 种通用英雄，8 个新兵种，1 种新法系",
-        "en": "1 Legendary Lord, 3 Legendary Heroes, 1 generic lord, 1 generic hero, 8 new units, 1 new spell lore"
+        "zh": "1 名新传奇领主，3 名新传奇英雄，1 种通用领主，1 种通用英雄，10 个新兵种，1 种新法系",
+        "en": "1 Legendary Lord, 3 Legendary Heroes, 1 generic lord, 1 generic hero, 10 new units, 1 new spell lore"
       },
       {
         "zh": "自动搬家一些原版传奇领主到尼朋以及尼朋周边区域（可在 MCT 中关闭）",
@@ -84,6 +84,10 @@
           {
             "zh": "[南皋工坊](https://steamcommunity.com/sharedfiles/filedetails/?id=3723969862)",
             "en": "[Cathay Mechanism Expansion: Nan-Gau Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=3723969862)"
+          },
+          {
+            "zh": "[与龙同行](https://steamcommunity.com/sharedfiles/filedetails/?id=2789903784)",
+            "en": "[Walking with Dragons (DEER24 Cathay)](https://steamcommunity.com/sharedfiles/filedetails/?id=2789903784)"
           }
         ]
       },
@@ -105,6 +109,23 @@
           {
             "zh": "玉海舰队的旗舰新增「海贼舱」建筑链",
             "en": "A new Corsair Berth chain on the Jade Sea Fleet's flagship"
+          }
+        ]
+      },
+      {
+        "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3795596611",
+        "name": {
+          "zh": "远征尼朋 · 兵戈天下兵种兼容包",
+          "en": "Nippon Expedition · War under Heaven Unit Compatibility Patch"
+        },
+        "note": {
+          "zh": "[兵戈天下](https://steamcommunity.com/sharedfiles/filedetails/?id=3297754796)兵种兼容子 mod。可选，两者同时使用时需要。",
+          "en": "[War under Heaven](https://steamcommunity.com/sharedfiles/filedetails/?id=3297754796) unit compatibility submod. Optional, needed only when running both mods together."
+        },
+        "points": [
+          {
+            "zh": "玉海舰队可以在旗舰上招募卫东列省的特色兵种，开局即可招",
+            "en": "The Jade Sea Fleet can recruit the Eastern Provinces' special units aboard the flagship, from the start of the campaign"
           }
         ]
       },
@@ -403,6 +424,20 @@
             "name": {
               "zh": "舰队铳手",
               "en": "Fleet Gunners"
+            }
+          },
+          {
+            "slug": "empyrean-guard",
+            "name": {
+              "zh": "云霄禁卫",
+              "en": "Empyrean Guard"
+            }
+          },
+          {
+            "slug": "abyssal-grand-cannon",
+            "name": {
+              "zh": "沧溟巨炮",
+              "en": "Abyssal Grand Cannon"
             }
           }
         ]

@@ -26,7 +26,7 @@
 | IEE 地名英文（行省 / 定居点）                      | `_docs/references/IEE尼朋行省与定居点清单.md`   |
 | **常见问题的原料**（中英双语成稿）           | `faq.md`                                        |
 | 工坊描述双语成稿                                   | `steam_description_{zh,en}.txt`                 |
-| 各兼容包说明                                       | `../nippon_expedition_{nrs,cathay,yinyin}_compat/README_{zh,en}.md` |
+| 各兼容包说明                                       | `../nippon_expedition_{nrs,cathay,yinyin,wuh}_compat/README_{zh,en}.md` |
 
 `version.md` 是更新记录的**唯一权威原料**，已经是「一条改动 = 一行、只写玩家看得懂的功能变化」的粒度，直接改写即可。
 
@@ -101,9 +101,9 @@ tags: main
 ```
 
 - `version` 必填，排序按数字段比较（`1.10.0` 在 `1.9.0` 之上）。**唯一的例外见下面「子 mod 的条目」。**
-- `date` **留空 = 还没定发布日期**，该条排最上、页面不显示日期，工坊真发布了再补。别编一个日期。
+- `date` **留空 = 还没定发布日期**，该条排最上、页面不显示日期，工坊真发布了再补。别编一个日期。此时文件名也不带日期，就叫 `v<版本>.md`（如 `v1.0.3.md`）——文件名里的日期读起来就是发布日期，先填一个再改等于编了一次。发布后再补 `date` 并把文件改名。
 - `type`：`release` / `content` / `balance` / `hotfix`，默认 `release`，决定右上角徽章。
-- `tags`：逗号分隔的 `main` / `stronger-ai` / `nrs-compat` / `cathay-compat` / `yinyin-compat`。
+- `tags`：逗号分隔的 `main` / `stronger-ai` / `nrs-compat` / `cathay-compat` / `yinyin-compat` / `wuh-compat`。
 - `channel`：`main`（默认）/ `submod`，决定进哪个页签，见下。
 - 新增 `type` / `tags` 取值要同时改 `content/i18n.json` 的两张表和 `build.py` 的 `KNOWN_TYPES`，漏了构建报错。
 - 中文块必填；英文块可缺，缺了英文页自动回落中文并显示「尚未翻译」。
