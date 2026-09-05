@@ -63,15 +63,21 @@ FACES = [
     ("LXGWWenKaiGB-Medium.ttf", "600 900", "lxgw-wenkai-gb-medium"),
 ]
 
-# Everything the renderer can put on the page. build.py is in the list because
-# it synthesises characters of its own that appear in no content file — the
-# CHAPTER_NUMERALS 壹/贰/叁/肆, for one.
+# Everything the renderer can put on the page. The renderer's own source is in
+# the list because it can synthesise characters that appear in no content file.
+#
+# Deliberately not "scripts/*.py": that would sweep in this file, whose own
+# prose about the GB cut names characters (骨 and friends) the site never
+# renders. One stray codepoint means a new subset, new hashed filenames and a
+# binary diff on a change that rendered nothing new.
 SOURCE_GLOBS = [
     "content/*.json",
+    "content/home/*.json",
     "content/releases/*.md",
     "site/_templates/*.html",
     "site/partials/*.html",
     "scripts/build.py",
+    "scripts/sitegen/**/*.py",
 ]
 
 # Punctuation and symbols the templates or future entries may reach for even
