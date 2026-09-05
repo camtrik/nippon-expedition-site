@@ -1,0 +1,29 @@
+{
+  "hero": {
+    "eyebrow": {
+      "zh": "《全面战争：战锤3》派系 MOD",
+      "en": "Total War: WARHAMMER III · Faction mod"
+    },
+    "wordmark": "NIPPON EXPEDITION",
+    "name": {
+      "zh": "远征尼朋 · 玉海舰队",
+      "en": "The Jade Sea Fleet"
+    },
+    "premise": {
+      "zh": "沈长风率领舰队远征尼朋，她需要在新的土地上寻找立足之地。",
+      "en": "Shen Changfeng leads her fleet east to Nippon, where she must carve out a foothold on new soil."
+    },
+    "note": {
+      "zh": "",
+      "en": "The English text is AI-translated. Corrections welcome in the comments."
+    },
+    "crest_alt": {
+      "zh": "玉海舰队徽记",
+      "en": "Crest of the Jade Sea Fleet"
+    },
+    "art_alt": {
+      "zh": "玉海舰队在尼朋近海抛锚，沈长风立于岸上远眺",
+      "en": "The Jade Sea Fleet at anchor off Nippon, Shen Changfeng watching from the shore"
+    }
+  }
+}

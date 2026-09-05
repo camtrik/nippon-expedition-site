@@ -1,0 +1,96 @@
+{
+  "units": {
+    "title": {
+      "zh": "兵种",
+      "en": "Units"
+    },
+    "groups": [
+      {
+        "name": {
+          "zh": "舰队",
+          "en": "Fleet"
+        },
+        "items": [
+          {
+            "slug": "jade-sea-warriors",
+            "name": {
+              "zh": "玉海潮勇",
+              "en": "Jade Sea Warriors"
+            }
+          },
+          {
+            "slug": "tide-guard",
+            "name": {
+              "zh": "潮汐禁卫",
+              "en": "Tide Guard"
+            }
+          },
+          {
+            "slug": "fleet-gunners",
+            "name": {
+              "zh": "舰队铳手",
+              "en": "Fleet Gunners"
+            }
+          },
+          {
+            "slug": "empyrean-guard",
+            "name": {
+              "zh": "云霄禁卫",
+              "en": "Empyrean Guard"
+            }
+          },
+          {
+            "slug": "abyssal-grand-cannon",
+            "name": {
+              "zh": "沧溟巨炮",
+              "en": "Abyssal Grand Cannon"
+            }
+          }
+        ]
+      },
+      {
+        "name": {
+          "zh": "尼朋",
+          "en": "Nippon"
+        },
+        "items": [
+          {
+            "slug": "yari-samurai",
+            "name": {
+              "zh": "长枪武士",
+              "en": "Yari Samurai"
+            }
+          },
+          {
+            "slug": "teppo-samurai",
+            "name": {
+              "zh": "铁炮武士",
+              "en": "Teppo Samurai"
+            }
+          },
+          {
+            "slug": "thunderblade-hatamoto",
+            "name": {
+              "zh": "雷刃旗本",
+              "en": "Thunderblade Hatamoto"
+            }
+          },
+          {
+            "slug": "kirin",
+            "name": {
+              "zh": "麒麟",
+              "en": "Kirin"
+            }
+          },
+          {
+            "slug": "inari-fox",
+            "name": {
+              "zh": "稻荷灵狐使者",
+              "en": "Inari Fox Emissary"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

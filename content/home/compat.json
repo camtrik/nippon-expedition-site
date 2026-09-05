@@ -1,0 +1,26 @@
+{
+  "compat": {
+    "title": {
+      "zh": "兼容性与已知问题",
+      "en": "Compatibility and Known Issues"
+    },
+    "items": [
+      {
+        "zh": "**与其他占用同一 MIXER 借位槽的 mod 冲突**：本 mod 当前借用 MIXER 预留槽位 `mixer_nip_nipponese_expedition` 作为运行宿主",
+        "en": "**Conflicts with other mods using the same MIXER reserved slot**: this mod currently runs on `mixer_nip_nipponese_expedition`"
+      },
+      {
+        "zh": "**与 [Nippon, Land of the Rising Sun](https://steamcommunity.com/sharedfiles/filedetails/?id=3770643554) 可以同时游玩**：装上可选的 [NRS 兼容包](https://steamcommunity.com/sharedfiles/filedetails/?id=3792001152)，玉海舰队会改用另一个阵营位，两个 mod 不再互相顶掉传奇领主。只订阅本体的玩家不需要装。⚠️ 装上之后，此前的玉海舰队存档读不出来。",
+        "en": "**Playable alongside [Nippon, Land of the Rising Sun](https://steamcommunity.com/sharedfiles/filedetails/?id=3770643554)**: install the optional [NRS compatibility patch](https://steamcommunity.com/sharedfiles/filedetails/?id=3792001152) and the Jade Sea Fleet moves to a different faction slot, so the two mods stop overwriting each other's legendary lord. You do not need it otherwise. ⚠️ Jade Sea Fleet saves made before installing it will no longer load."
+      },
+      {
+        "zh": "**与其他改动尼朋地权 / 派系的 mod 可能冲突**（例如同样把领主搬到尼朋的 mod）",
+        "en": "**May conflict with mods that change Nippon's region ownership or factions** (e.g. other mods that relocate lords there)"
+      },
+      {
+        "zh": "发现问题请附上：载入的 mod 列表、载入顺序、以及 Warhammer3.exe 同目录下的 `script_log_*.txt`",
+        "en": "Bug reports: please include your mod list, load order, and `script_log_*.txt` from next to Warhammer3.exe"
+      }
+    ]
+  }
+}

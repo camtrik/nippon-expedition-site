@@ -1,0 +1,60 @@
+{
+  "credits": {
+    "title": {
+      "zh": "鸣谢与第三方素材",
+      "en": "Credits and Third-Party Assets"
+    },
+    "lede": {
+      "zh": "本 mod 的部分美术资产与实现思路参考或改编自以下 mod，在此致谢：",
+      "en": "Some art assets and techniques here are adapted from the following mods. My thanks to their authors:"
+    },
+    "items": [
+      {
+        "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3668285934",
+        "label": {
+          "zh": "houqian_lin",
+          "en": "houqian_lin"
+        }
+      },
+      {
+        "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2989226363",
+        "label": {
+          "zh": "胤隐 / Yin-Yin",
+          "en": "Yin-Yin"
+        }
+      },
+      {
+        "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3586617782",
+        "label": {
+          "zh": "npfjr",
+          "en": "npfjr"
+        }
+      },
+      {
+        "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2789903784",
+        "label": {
+          "zh": "DEER24 Cathay（与龙同行）",
+          "en": "DEER24 Cathay"
+        }
+      },
+      {
+        "url": "https://steamcommunity.com/workshop/filedetails/?id=3442971928",
+        "label": {
+          "zh": "万世天朝",
+          "en": "Wanshi Tianchao"
+        }
+      },
+      {
+        "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=1903613769",
+        "label": {
+          "zh": "赵云",
+          "en": "Zhao Yun"
+        }
+      }
+    ],
+    "tail": {
+      "zh": "如果你是上述任何一份素材的作者，对本 mod 的使用方式有任何异议，请在评论区或私信联系，我会立即撤下或替换相关内容。",
+      "en": "If you are the author of any of this material and object to its use here, tell me in the comments and I will take it down or replace it."
+    }
+  }
+}

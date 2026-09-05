@@ -1,0 +1,84 @@
+{
+  "victory": {
+    "title": {
+      "zh": "胜利目标",
+      "en": "Victory Objectives"
+    },
+    "short": {
+      "kind": {
+        "zh": "短期胜利",
+        "en": "Short Victory"
+      },
+      "name": {
+        "zh": "立足尼朋",
+        "en": "Foothold in Nippon"
+      },
+      "quote": {
+        "zh": "踏上尼朋土地时，沈长风才发现昔日的尼朋海盗不过是乱局露出海面的一角：尼朋名义上仍奉圣日朝廷，实则诸藩大名兵戈不止，乡野凋敝，民不聊生。混沌的信徒已在尼朋扎下毒根，异族军阀与嗜血之徒也趁乱据土称雄。若她想在极东之海立下根基，便必须先让这座战火中的列岛重新认得秩序二字。",
+        "en": "The pirates Shen Changfeng had chased were only the part of the wreck showing above water. Nippon bows to the Holy Sun Court in name alone: the daimyo never lay down their arms, Chaos has put down poisoned roots, and foreign warlords hold land of their own. To root herself in the eastern sea, she must first teach this burning archipelago the word order again."
+      },
+      "goals": [
+        {
+          "zh": "消灭清宝天尊信徒、奥本氏、格里姆格·铁皮与『流放者』斯卡布兰德",
+          "en": "Destroy the Cult of Tsien-Tsin, the Okumoto Clan, Grimgor Ironhide and Skarbrand the Exiled"
+        },
+        {
+          "zh": "通过直接占领、仆从协议或军事同盟，控制武士国度、日升之地与关东环陆全境",
+          "en": "Control Samurai's Domain, Sun's Origin and the Eastern Circuit by occupation, vassalage or military alliance"
+        }
+      ]
+    },
+    "routes": [
+      {
+        "tag": "A",
+        "kind": {
+          "zh": "长期胜利 · 路线 A",
+          "en": "Long Victory · Route A"
+        },
+        "name": {
+          "zh": "海外帝国",
+          "en": "Overseas Empire"
+        },
+        "quote": {
+          "zh": "极东诸海久无共主。混沌异族军阀与海上掠夺者各据港湾，商路断裂，民不聊生。若想建立一个真正强大的海外帝国，便不能满足于一处锚地或几座城邦。沈长风必须让更辽阔的海疆都听从玉海舰队的号令。",
+          "en": "The eastern seas have long had no master: warlords and raiders hold the harbours, and the trade routes are cut. An empire that truly stands cannot be built on one anchorage. The wider seas must answer to the Jade Sea Fleet."
+        },
+        "goals": [
+          {
+            "zh": "消灭盘踞尼朋北境的艾辛氏族深巢，以及五名趁乱据土的域外强者",
+            "en": "Destroy the Eshin Clan Nest in northern Nippon, plus five foreign powers that seized land in the chaos"
+          },
+          {
+            "zh": "控制北星道、北陸道、屿北、艾利提斯失落群岛、百渡、南皋鲜、蛮荒迷域与无际环沼全境",
+            "en": "Control the Hokusei Arc, Hokurikudo, North Isle, the Lost Isles of Elithis, the Hundred Counties, Nam Khosun, the Primal Labyrinth and the Great Enveloping Swamp"
+          }
+        ]
+      },
+      {
+        "tag": "B",
+        "kind": {
+          "zh": "长期胜利 · 路线 B",
+          "en": "Long Victory · Route B"
+        },
+        "name": {
+          "zh": "天朝守护",
+          "en": "Bulwark of the Far East"
+        },
+        "quote": {
+          "zh": "自受命为提督以来，沈长风便以澄清玉海、靖平海疆为己任。如今海盗从东方侵袭，鼠人暗巢蛀蚀南境，混沌与异族势力亦在天朝边陲蠢动。虽朝廷诏令仍在，旧日罪名未销，但边疆之患不会自行平息。她若要重归天朝视野，便必须以战功让巍京承认，玉海舰队仍是震旦天朝不可或缺的屏障。",
+          "en": "Pirates strike from the east, ratmen gnaw at the southern border, and Chaos stirs along the frontier. The old charges against Shen Changfeng are not lifted, but the danger will not settle itself. She must make Wei-jin admit by force of arms that the Jade Sea Fleet is still a bulwark Grand Cathay cannot do without."
+        },
+        "goals": [
+          {
+            "zh": "消灭丛林精魂、折磨者、艾辛氏族、艾辛氏族深巢与神佑恶党",
+            "en": "Destroy the Spirit of the Jungle, The Tormentors, Clan Eshin, the Eshin Clan Nest and The Blessed Dread"
+          },
+          {
+            "zh": "控制北星道、申原、玉江三角洲、黎山、大运河、巨蛇河口与奸之林全境",
+            "en": "Control the Hokusei Arc, the Plains of Xen, the Jade River Delta, Mount Li, The Great Canal, the Serpent Estuary and the Jungles of Chi'an"
+          }
+        ]
+      }
+    ]
+  }
+}

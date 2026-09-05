@@ -1,0 +1,143 @@
+{
+  "companions": {
+    "title": {
+      "zh": "远征同伴系统",
+      "en": "Expedition Companions"
+    },
+    "lede": {
+      "zh": "远征途中会遇到身份各异的同伴，在专属的「远征同伴」面板上召集她们、推进各自的章节任务、提升羁绊等级。",
+      "en": "Companions of very different backgrounds join the expedition along the way. Muster them from a dedicated Expedition Companions panel, advance their chapter quests, raise their bond."
+    },
+    "tiers_label": {
+      "zh": "四档羁绊",
+      "en": "Four bond tiers"
+    },
+    "tiers": [
+      {
+        "zh": "结缘",
+        "en": "Bound"
+      },
+      {
+        "zh": "信任",
+        "en": "Trusted"
+      },
+      {
+        "zh": "托付",
+        "en": "Sworn"
+      },
+      {
+        "zh": "生死之交",
+        "en": "Devoted"
+      }
+    ],
+    "chapters_label": {
+      "zh": "章节任务",
+      "en": "Chapter quests"
+    },
+    "items": [
+      {
+        "slug": "naotora",
+        "name": {
+          "zh": "『战鬼』立花直虎",
+          "en": "Tachibana Naotora, the Ghost"
+        },
+        "chapters": [
+          {
+            "zh": "一合",
+            "en": "A Single Exchange"
+          },
+          {
+            "zh": "鬼面大人",
+            "en": "Lady Oni-Mask"
+          },
+          {
+            "zh": "引雷之峰",
+            "en": "Thunder-Drawing Peak"
+          },
+          {
+            "zh": "雷神之女",
+            "en": "Daughter of Raijin"
+          }
+        ]
+      },
+      {
+        "slug": "sayo",
+        "name": {
+          "zh": "『阴阳之巫女』纱代",
+          "en": "Sayo, the Onmyo Miko"
+        },
+        "chapters": [
+          {
+            "zh": "废社之铃",
+            "en": "The Bell in the Ruined Shrine"
+          },
+          {
+            "zh": "末代巫女",
+            "en": "The Last Miko"
+          },
+          {
+            "zh": "神兽宫",
+            "en": "The Sanctum of the Divine Beast"
+          },
+          {
+            "zh": "大社之下",
+            "en": "Beneath the Great Shrine"
+          }
+        ]
+      },
+      {
+        "slug": "serena",
+        "name": {
+          "zh": "瑟兰娜",
+          "en": "Serena"
+        },
+        "chapters": [
+          {
+            "zh": "半张面具",
+            "en": "Half a Mask"
+          },
+          {
+            "zh": "輝山阴影",
+            "en": "The Shadow of Hikariya"
+          },
+          {
+            "zh": "星象罗盘",
+            "en": "The Star Compass"
+          },
+          {
+            "zh": "望舒·瑟兰娜·顾",
+            "en": "Wangshu Selana Gu"
+          }
+        ]
+      }
+    ],
+    "numerals": {
+      "zh": [
+        "壹",
+        "贰",
+        "叁",
+        "肆"
+      ],
+      "en": [
+        "I",
+        "II",
+        "III",
+        "IV"
+      ]
+    },
+    "notes": [
+      {
+        "zh": "每档解锁对应的部队与同伴加成",
+        "en": "Each tier unlocks that companion's units and bonuses"
+      },
+      {
+        "zh": "**名望**：在面板中用名望购买已解锁的部队",
+        "en": "**Renown**: spend it in the panel to buy the units you have unlocked"
+      },
+      {
+        "zh": "**章节任务链**：三条独立任务链。完成任务以推进羁绊等级",
+        "en": "**Chapter quest lines**: three separate chains. Complete them to raise the bond tier"
+      }
+    ]
+  }
+}

@@ -3,7 +3,7 @@ from __future__ import annotations
 
 import json
 
-from .config import FAQ_FILE, HOME_FILE, I18N_FILE, LANGS, PAGES
+from .config import FAQ_FILE, HOME_DIR, I18N_FILE, LANGS, LEGACY_HOME_FILE, PAGES
 
 
 def load_i18n() -> dict:
@@ -19,7 +19,23 @@ def load_i18n() -> dict:
 
 
 def load_home() -> dict:
-    return json.loads(HOME_FILE.read_text(encoding="utf-8"))
+    """The landing page copy: one file per band, each wrapping its own key so a
+    file says what it is. Merge order does not matter — every renderer asks for
+    a band by name, and the order blocks appear in belongs to the template."""
+    if LEGACY_HOME_FILE.exists():
+        raise SystemExit(
+            f"{LEGACY_HOME_FILE} still exists, but the landing page copy now lives in "
+            f"{HOME_DIR}/ — edits to the old file would be silently ignored"
+        )
+    home: dict = {}
+    for path in sorted(HOME_DIR.glob("*.json")):
+        for key, value in json.loads(path.read_text(encoding="utf-8")).items():
+            if key in home:
+                raise SystemExit(f"{path.name}: section {key!r} is already defined elsewhere")
+            home[key] = value
+    if not home:
+        raise SystemExit(f"no landing page content found in {HOME_DIR}/")
+    return home
 
 
 def load_faq() -> dict:

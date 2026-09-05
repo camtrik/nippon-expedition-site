@@ -1,0 +1,121 @@
+{
+  "overview": {
+    "title": {
+      "zh": "简介",
+      "en": "Overview"
+    },
+    "items": [
+      {
+        "zh": "一个新的震旦可玩派系",
+        "en": "A new playable Grand Cathay faction"
+      },
+      {
+        "zh": "1 名新传奇领主，3 名新传奇英雄，1 种通用领主，1 种通用英雄，10 个新兵种，1 种新法系",
+        "en": "1 Legendary Lord, 3 Legendary Heroes, 1 generic lord, 1 generic hero, 10 new units, 1 new spell lore"
+      },
+      {
+        "zh": "自动搬家一些原版传奇领主到尼朋以及尼朋周边区域（可在 MCT 中关闭）",
+        "en": "Relocates vanilla legendary lords to Nippon and the lands around it (can be switched off in MCT)"
+      },
+      {
+        "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3792001152",
+        "name": {
+          "zh": "远征尼朋 · NRS 兼容包",
+          "en": "Nippon Expedition · Nippon Rising Sun Compatibility Patch"
+        },
+        "note": {
+          "zh": "[Nippon, Land of the Rising Sun](https://steamcommunity.com/workshop/filedetails/?id=3770643554)（NRS）兼容子 mod。可选，两者同时使用时需要。",
+          "en": "[Nippon, Land of the Rising Sun](https://steamcommunity.com/workshop/filedetails/?id=3770643554) (NRS) compatibility submod. Optional, needed only when running both mods together."
+        },
+        "points": [
+          {
+            "zh": "修复了启动 NRS 时定居点模型不显示，其他派系无法占领定居点等问题",
+            "en": "Fixes settlement models not rendering, and other factions being unable to occupy settlements, while NRS is running"
+          },
+          {
+            "zh": "增加了一系列尼朋兵种招募建筑，震旦的派系可以通过任务解锁尼朋系列建筑（玉海舰队默认解锁）",
+            "en": "Adds a series of Nippon unit-recruitment buildings, which Cathay factions can unlock through missions (unlocked by default for the Jade Sea Fleet)"
+          }
+        ]
+      },
+      {
+        "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3792252212",
+        "name": {
+          "zh": "远征尼朋 · 震旦机制兼容包",
+          "en": "Nippon Expedition · Cathay Mechanics Compatibility Patch"
+        },
+        "note": {
+          "zh": "震旦机制兼容子 mod。已支持：",
+          "en": "Cathay mechanics compatibility submod. Currently supports:"
+        },
+        "points": [
+          {
+            "zh": "[五行罗盘大修](https://steamcommunity.com/sharedfiles/filedetails/?id=3727513610)",
+            "en": "[Cathay Compass Overhaul](https://steamcommunity.com/sharedfiles/filedetails/?id=3727513610)"
+          },
+          {
+            "zh": "[南皋工坊](https://steamcommunity.com/sharedfiles/filedetails/?id=3723969862)",
+            "en": "[Cathay Mechanism Expansion: Nan-Gau Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=3723969862)"
+          },
+          {
+            "zh": "[与龙同行](https://steamcommunity.com/sharedfiles/filedetails/?id=2789903784)",
+            "en": "[Walking with Dragons (DEER24 Cathay)](https://steamcommunity.com/sharedfiles/filedetails/?id=2789903784)"
+          }
+        ]
+      },
+      {
+        "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3792695478",
+        "name": {
+          "zh": "远征尼朋 · 溟龙胤隐兵种兼容包",
+          "en": "Nippon Expedition · Yin-Yin Unit Compatibility Patch"
+        },
+        "note": {
+          "zh": "[溟龙胤隐](https://steamcommunity.com/sharedfiles/filedetails/?id=2989226363)兵种兼容子 mod。可选，两者同时使用时需要。",
+          "en": "[Roar of the Jade Sea: Yin-Yin, the Sea Dragon](https://steamcommunity.com/sharedfiles/filedetails/?id=2989226363) unit compatibility submod. Optional, needed only when running both mods together."
+        },
+        "points": [
+          {
+            "zh": "震旦的派系可以招募胤隐 mod 的兵种",
+            "en": "Cathay factions can recruit the units added by the Yin-Yin mod"
+          },
+          {
+            "zh": "玉海舰队的旗舰新增「海贼舱」建筑链",
+            "en": "A new Corsair Berth chain on the Jade Sea Fleet's flagship"
+          }
+        ]
+      },
+      {
+        "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3795596611",
+        "name": {
+          "zh": "远征尼朋 · 兵戈天下兵种兼容包",
+          "en": "Nippon Expedition · War under Heaven Unit Compatibility Patch"
+        },
+        "note": {
+          "zh": "[兵戈天下](https://steamcommunity.com/sharedfiles/filedetails/?id=3297754796)兵种兼容子 mod。可选，两者同时使用时需要。",
+          "en": "[War under Heaven](https://steamcommunity.com/sharedfiles/filedetails/?id=3297754796) unit compatibility submod. Optional, needed only when running both mods together."
+        },
+        "points": [
+          {
+            "zh": "玉海舰队可以在旗舰上招募卫东列省的特色兵种，开局即可招",
+            "en": "The Jade Sea Fleet can recruit the Eastern Provinces' special units aboard the flagship, from the start of the campaign"
+          }
+        ]
+      },
+      {
+        "url": "https://steamcommunity.com/workshop/filedetails/?id=3790907897",
+        "name": {
+          "zh": "远征尼朋 · 周边 AI 强化",
+          "en": "Nippon Expedition · Stronger Surrounding AI"
+        },
+        "note": {
+          "zh": "AI 强化子 mod，可选。对整体 AI 进行了强化，并且对尼朋以及震旦周边的 AI 进行一些特殊强化。",
+          "en": "Stronger AI submod, optional. It strengthens the AI across the whole map, with extra tuning for Nippon and the lands around Cathay."
+        }
+      },
+      {
+        "zh": "**需要 MIXER 和 IEE 扩展**：[Immortal Empires Expanded](https://steamcommunity.com/sharedfiles/filedetails/?id=3007996493) 与 [Mixu's Unlocker](https://steamcommunity.com/sharedfiles/filedetails/?id=2859968660)；可选 [Mod Configuration Tool](https://steamcommunity.com/sharedfiles/filedetails/?id=2927955021)",
+        "en": "**Requires MIXER and IEE**: [Immortal Empires Expanded](https://steamcommunity.com/sharedfiles/filedetails/?id=3007996493) and [Mixu's Unlocker](https://steamcommunity.com/sharedfiles/filedetails/?id=2859968660); optional [Mod Configuration Tool](https://steamcommunity.com/sharedfiles/filedetails/?id=2927955021)"
+      }
+    ]
+  }
+}

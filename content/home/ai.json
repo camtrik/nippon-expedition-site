@@ -1,0 +1,41 @@
+{
+  "ai": {
+    "title": {
+      "zh": "领主增强",
+      "en": "Lord Reinforcement"
+    },
+    "lede": {
+      "zh": "由于尼朋岛自身资源较少，对 AI 进行了一些增强。",
+      "en": "Nippon is a poor island chain, so the AI there has been given a hand up."
+    },
+    "items": [
+      {
+        "zh": "**搬家领主与岛上氏族的 AI 强度大幅提升**：被搬到岛上的格里姆格·铁皮、『流放者』斯卡布兰德，以及岛上的原住民氏族奥本氏、山陽氏，其军队维护费、建造与招募费用、补员速率与经验加成被抬到原版头部 AI 传奇势力的水平，中期登陆尼朋时依然盘踞一方",
+        "en": "**Relocated lords and island clans get a large AI boost**: Grimgor Ironhide and Skarbrand the Exiled, relocated to the isles, plus the native Okumoto and Sanyo Clans, have their upkeep, construction and recruitment costs, replenishment and experience raised to the level of vanilla's strongest AI legendary factions, so they still hold ground when you land mid-campaign"
+      },
+      {
+        "zh": "奥本氏与山陽氏的 AI 会优先建造侍所与稻荷神社系列建筑。首府开局即为 4 级主城并自带旗本番。",
+        "en": "The Okumoto and Sanyo Clan AI prioritise the Samurai Hall and Inari Shrine chains. Their capitals start at level 4 with a Hatamoto Guard built."
+      },
+      {
+        "zh": "奥本氏与山陽氏的首领改为武士大将，附带不朽",
+        "en": "The Okumoto and Sanyo Clan leaders are replaced with immortal Samurai Taisho"
+      }
+    ],
+    "more": {
+      "zh": "进一步强化：可以订阅子 mod",
+      "en": "Want more: subscribe to"
+    },
+    "more_link": {
+      "url": "https://steamcommunity.com/workshop/filedetails/?id=3790907897",
+      "label": {
+        "zh": "远征尼朋 · 周边 AI 强化",
+        "en": "Nippon Expedition · Stronger Surrounding AI"
+      }
+    },
+    "more_tail": {
+      "zh": "。对整体 AI 进行了强化，并且对尼朋以及震旦周边的 AI 进行一些特殊强化。",
+      "en": ". It strengthens the AI across the whole map, with extra tuning for Nippon and the lands around Cathay."
+    }
+  }
+}

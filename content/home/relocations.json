@@ -1,0 +1,94 @@
+{
+  "relocations": {
+    "title": {
+      "zh": "默认搬家传奇领主",
+      "en": "Relocated Legendary Lords"
+    },
+    "lede": {
+      "zh": "对尼朋和尼朋周边势力进行了重组，自动搬家大量传奇领主，可在 MCT 中关闭。",
+      "en": "Nippon and the powers around it have been reshuffled, relocating a number of legendary lords. Switchable off in MCT."
+    },
+    "head": {
+      "lord": {
+        "zh": "领主",
+        "en": "Lord"
+      },
+      "dest": {
+        "zh": "落点",
+        "en": "Lands at"
+      }
+    },
+    "rows": [
+      {
+        "lord": {
+          "zh": "格里姆格·铁皮",
+          "en": "Grimgor Ironhide"
+        },
+        "dest": {
+          "zh": "灵道大社（尼朋）",
+          "en": "The Grand Vim-To Shrine (Nippon)"
+        }
+      },
+      {
+        "lord": {
+          "zh": "『流放者』斯卡布兰德",
+          "en": "Skarbrand the Exiled"
+        },
+        "dest": {
+          "zh": "蝦夷村（尼朋）",
+          "en": "Emishi Village (Nippon)"
+        }
+      },
+      {
+        "lord": {
+          "zh": "埃皮德穆斯",
+          "en": "Epidemius"
+        },
+        "dest": {
+          "zh": "岱罗（蛮荒迷域）",
+          "en": "Dai Loa (Primal Labyrinth)"
+        }
+      },
+      {
+        "lord": {
+          "zh": "纳卡里",
+          "en": "N'Kari"
+        },
+        "dest": {
+          "zh": "月落之塔（艾利提斯失落群岛）",
+          "en": "Tower of the Setting Moon (Lost Isles of Elithis)"
+        }
+      },
+      {
+        "lord": {
+          "zh": "司库克领主",
+          "en": "Lord Skrolk"
+        },
+        "dest": {
+          "zh": "桑马林（无际环沼）",
+          "en": "Sanmal (Great Enveloping Swamp)"
+        }
+      },
+      {
+        "lord": {
+          "zh": "拉卡斯",
+          "en": "Rakarth"
+        },
+        "dest": {
+          "zh": "天境（百渡）",
+          "en": "Haneuri (Hundred Counties)"
+        }
+      },
+      {
+        "lord": {
+          "zh": "『屠灭者』斯卡拉格",
+          "en": "Skrag the Slaughterer"
+        },
+        "dest": {
+          "zh": "立天险峰（黄陆）",
+          "en": "Mount Haneulja (Noleu Highlands)"
+        }
+      }
+    ]
+  }
+}

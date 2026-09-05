@@ -1,0 +1,50 @@
+{
+  "buildings": {
+    "title": {
+      "zh": "建筑",
+      "en": "Buildings"
+    },
+    "items": [
+      {
+        "name": {
+          "zh": "旗舰建筑树",
+          "en": "The flagship building tree"
+        },
+        "body": {
+          "zh": "玉海舰队的旗舰本身就是一条建筑树。",
+          "en": "The Jade Sea Fleet's flagship is itself a building tree."
+        }
+      },
+      {
+        "name": {
+          "zh": "尼朋地标 5 处",
+          "en": "Five Nippon landmarks"
+        },
+        "body": {
+          "zh": "引雷之峰、輝山锻冶场、枪术道场、神兽宫、灵道社殿，各自解锁独有的加成或兵种。",
+          "en": "Thunder-Drawing Peak, Hikariya Forge, Yari Dojo, Divine Beast Sanctum and the Vim-To Shrine, each with its own bonuses or units."
+        }
+      },
+      {
+        "name": {
+          "zh": "神社链（3 级）",
+          "en": "Shrine chain (3 levels)"
+        },
+        "body": {
+          "zh": "稻荷神社 → 稻荷大社 → 灵兽神宫。依次解锁稻荷灵狐使者、巫女、麒麟。",
+          "en": "Inari Shrine → Inari Grand Shrine → Divine Beast Sanctuary. Unlocks the Inari Fox Emissary, the Miko and the Kirin in turn."
+        }
+      },
+      {
+        "name": {
+          "zh": "侍所链（3 级）",
+          "en": "Samurai Hall chain (3 levels)"
+        },
+        "body": {
+          "zh": "番所 → 侍所 → 旗本番。依次解锁长枪武士、铁炮武士、雷刃旗本。",
+          "en": "Watch Post → Samurai Hall → Hatamoto Guard. Unlocks Yari Samurai, Teppo Samurai, then Thunderblade Hatamoto."
+        }
+      }
+    ]
+  }
+}
