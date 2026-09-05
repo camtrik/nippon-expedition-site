@@ -1,0 +1,149 @@
+/* ============================================================
+   Hero — the campaign's own establishing shot, full bleed
+   ============================================================ */
+.hero {
+  position: relative;
+  isolation: isolate;
+  background: var(--deep);
+  min-height: min(100svh, 880px);
+  display: flex;
+  align-items: flex-end;
+  padding: calc(72px + var(--s-6)) 0 var(--s-6);
+  overflow: hidden;
+}
+.hero__art { position: absolute; inset: 0; z-index: -2; }
+.hero__art img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 42%; }
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(to bottom,
+      rgba(19, 30, 44, 0.62) 0%,
+      rgba(19, 30, 44, 0.12) 26%,
+      rgba(19, 30, 44, 0.70) 64%,
+      var(--deep) 99%),
+    linear-gradient(to right, rgba(19, 30, 44, 0.62) 0%, rgba(19, 30, 44, 0) 62%);
+}
+
+.hero__inner {
+  position: relative;
+  text-shadow: 0 1px 20px rgba(19, 30, 44, 0.6);
+  width: 100%;
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: 0 var(--margin-container);
+}
+.hero__crest {
+  width: 64px;
+  height: 64px;
+  border-radius: var(--r-xs);
+  margin-bottom: var(--s-3);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+.hero__eyebrow {
+  margin: 0 0 var(--s-2);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ember);
+}
+.hero__title { margin: 0; display: block; }
+.hero__wordmark {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(58px, 11.5vw, 152px);
+  line-height: 0.82;
+  letter-spacing: 0.006em;
+  text-transform: uppercase;
+  color: var(--foam);
+}
+.hero__name {
+  display: block;
+  margin-top: var(--s-2);
+  font-size: clamp(18px, 2.2vw, 27px);
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  line-height: 1.3;
+  color: var(--ember);
+}
+.hero__premise {
+  margin: var(--s-4) 0 0;
+  max-width: 44ch;
+  font-size: clamp(16px, 1.4vw, 19px);
+  line-height: 1.75;
+  color: var(--foam-dim);
+}
+.hero__note {
+  margin: var(--s-2) 0 0;
+  font-size: 13px;
+  color: rgba(166, 181, 199, 0.75);
+}
+
+.hero__actions { margin-top: var(--s-5); }
+.hero__actions-label {
+  margin: 0 0 12px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--foam-dim);
+}
+.hero__ctas { display: flex; flex-wrap: wrap; gap: 10px; }
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 22px;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--deep-line);
+  background: rgba(19, 30, 44, 0.5);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  color: var(--foam);
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1;
+  transition: background-color 0.15s ease, border-color 0.15s ease, transform 0.1s ease;
+}
+.cta:hover { text-decoration: none; background: rgba(28, 43, 62, 0.9); border-color: var(--foam-dim); }
+.cta:active { transform: translateY(1px); }
+/* One warm object on the plate: the listing for the page you are reading. */
+.cta--lead {
+  background: var(--ember);
+  border-color: var(--ember);
+  color: var(--deep);
+  font-weight: 700;
+}
+.cta--lead:hover { background: #F0D2A8; border-color: #F0D2A8; color: var(--deep); }
+
+.hero__latest {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: var(--s-5);
+  font-size: 13px;
+  color: var(--foam-dim);
+}
+.hero__latest strong { color: var(--foam); font-weight: 500; }
+.hero__latest-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  letter-spacing: 0.02em;
+}
+.hero__latest-label::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--jade-lift);
+}
+.hero__latest-go { color: var(--jade-lift); }
+.hero__latest:hover { text-decoration: none; }
+.hero__latest:hover .hero__latest-go { text-decoration: underline; }
+

@@ -1,0 +1,41 @@
+/* ============================================================
+   Band — the shared day-plate section: a heading in the left
+   rail, everything else in a nine-column measure beside it.
+   ============================================================ */
+.band { padding: 76px 0; }
+.band__inner {
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: 0 var(--margin-container);
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--gutter);
+}
+.band__inner > * { grid-column: 4 / -1; }
+.band__title {
+  grid-column: 1 / span 3;
+  grid-row: 1 / span 99;
+  align-self: start;
+  position: sticky;
+  top: 104px;
+  font-size: clamp(24px, 2.4vw, 30px);
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: var(--tracking-tight);
+}
+.band__lede {
+  margin: 0 0 var(--s-4);
+  max-width: 62ch;
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--granite);
+}
+.band__tail {
+  margin: var(--s-3) 0 0;
+  max-width: 68ch;
+  font-size: 14.5px;
+  line-height: 1.7;
+  color: var(--slate);
+}
+.band__tail a { color: var(--link); text-decoration: underline; }
+

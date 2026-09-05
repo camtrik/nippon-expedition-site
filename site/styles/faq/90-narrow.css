@@ -1,0 +1,37 @@
+/* ============================================================
+   Narrower viewports — the rail unsticks and sits over its own
+   questions, the same fallback the landing page's bands use.
+   ============================================================ */
+@media (max-width: 900px) {
+  .faq-hero { padding: var(--s-5) 0 var(--s-4); max-width: none; }
+  .faq-band {
+    display: block;
+    padding-top: var(--s-5);
+  }
+  .faq-band__rail {
+    position: static;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: var(--s-2);
+    margin-bottom: var(--s-3);
+  }
+  .faq-band__count { margin: 0; }
+  .faq-close { display: block; padding-bottom: var(--s-6); }
+  .faq-tail { padding-left: 0; }
+}
+
+/* Below this the flag column has nowhere to go, so the flag drops under its
+   question instead of holding a gutter that no longer exists. */
+@media (max-width: 600px) {
+  .faq-item__head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: var(--s-1) var(--s-2);
+  }
+  .faq-list { padding-left: var(--s-2); }
+  .faq-item { padding: var(--s-3) 0; }
+  .faq-q { font-size: 19px; }
+  .faq-item:target::before { left: calc(var(--s-2) * -1 - 1px); }
+}

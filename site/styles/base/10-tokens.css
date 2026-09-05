@@ -1,0 +1,107 @@
+:root {
+  /* ---- Surfaces (page rhythm: cream → tinted → cream) ---- */
+  --canvas: #fbf9f8;          /* page background (lighter than original putty) */
+  --canvas-lifted: #FCFBFA;
+  --surface-low: #f5f3f3;     /* alternate tinted section bg */
+  --surface-card: #ffffff;    /* card surface (on either canvas or surface-low) */
+  --bone: #efeded;
+  --white: #ffffff;
+
+  /* ---- Ink ---- */
+  --ink: #1b1c1c;             /* primary text */
+  --primary: #000000;         /* CTA bg, footer bg, icon-circle bg */
+  --charcoal: #262627;
+  --slate: #5f5e5d;           /* secondary text (eyebrow muted, captions) */
+  --granite: #454747;
+  --dust: #c7c7c0;            /* dividers, outlines */
+
+  /* ---- Accents (use sparingly) ---- */
+  --signal: #1F8A70;          /* jade — faction primary; version numbers, rail dots */
+  --signal-light: #2FA98A;    /* lighter jade — eyebrow dots, stamp dot */
+  --clay: #146A5A;            /* deep jade — hover / pressed accents */
+  --gold: #D4AF37;            /* faction secondary — release badge, rail cap */
+  --gold-soft: #F5EBCB;       /* gold at card-tint strength */
+  --gold-ink: #7A5C0B;        /* gold dark enough to set text on cream (5.9:1);
+                                 --gold itself is 2.0:1 and is fill-only */
+  --link: #1F6F8A;
+
+  /* ---- Night plates (landing page) ----
+     Every value here is sampled from the mod's own shipped art, not chosen:
+     --deep is the faction banner's navy (ui/flags/cth_npex_jade_sea_fleet),
+     --foam is the moonlit water in the campaign loading screen, and --ember is
+     that screen's harbour-lantern light — a parchment amber, not a saturated
+     gold, because the painting itself never goes that saturated. --canvas at
+     the top of this file is, to three digits, the same image's brightest
+     pixel, which is why the page can move from night to daylight without
+     changing worlds. */
+  --deep: #131E2C;            /* night plate ground */
+  --deep-lift: #1C2B3E;       /* raised block on the night plate */
+  --deep-line: rgba(206, 222, 240, 0.16);
+  --foam: #E7EDF4;            /* primary text on night */
+  --foam-dim: #A6B5C7;        /* secondary text on night */
+  --ember: #E4C08F;           /* warm accent on night */
+  --jade-lift: #4FC3A1;       /* --signal raised to carry on night */
+
+  /* ---- Status tints ---- */
+  --up: #146A3B;
+  --down: #9A2A1A;
+
+  /* ---- Spacing (base 8) ---- */
+  --s-1: 8px;
+  --s-2: 16px;
+  --s-3: 24px;
+  --s-4: 32px;
+  --s-5: 48px;
+  --s-6: 64px;
+  --s-7: 96px;
+  --s-8: 128px;
+
+  /* Section vertical padding tokens to match design */
+  --section-pad: 112px;       /* py-section-v-desktop */
+  --section-pad-mobile: 56px;
+
+  /* ---- Radii (Mastercard scale: tiny / 20 / 40 / pill) ---- */
+  --r-xs: 6px;
+  --r-md: 20px;
+  --r-lg: 24px;
+  --r-xl: 40px;
+  --r-pill: 999px;
+  --r-circle: 50%;
+
+  /* ---- Shadows (atmospheric, not directional) ---- */
+  --shadow-1: 0 4px 24px rgba(0, 0, 0, 0.04);
+  --shadow-card: 0 12px 24px rgba(0, 0, 0, 0.03);
+  --shadow-2: 0 24px 48px rgba(0, 0, 0, 0.05);
+  --shadow-3: 0 70px 110px rgba(0, 0, 0, 0.25);
+
+  /* ---- Typography ---- */
+  /* Sofia Sans is Latin-only, so Han characters fall through to the next family.
+     That next family is LXGW WenKai GB, self-hosted and subset to exactly the
+     characters this site renders (see scripts/subset_fonts.py). It carries two
+     weights: Regular at 400 and Medium mapped onto 700, which is what makes
+     <strong> visible — the previous system stack topped out at PingFang SC,
+     whose heaviest face is Semibold, so body 450 (which resolves up to Medium)
+     and strong 600 sat one notch apart and read as the same weight.
+     The system faces behind it are the offline fallback, and their order still
+     matters: a Simplified Chinese face must come before any Japanese one
+     (Hiragino Sans, Yu Gothic), or shared characters render in Japanese glyph
+     forms while simplified-only ones (铳 羁 阵 舰) fall past to the SC face —
+     two typefaces inside one sentence. Hiragino Sans GB is Hiragino's SC face. */
+  --font-sans: "Sofia Sans", "LXGW WenKai GB", -apple-system, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
+  /* The wordmark face is a width variant of the body face rather than a new
+     family, so the page gets its display personality from extreme width
+     contrast and the site stays one type system. Latin only by design — it
+     is only ever used to set "NIPPON EXPEDITION" and the route letters. */
+  --font-display: "Sofia Sans Extra Condensed", "Sofia Sans", sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  --tracking-tight: -0.02em;
+  --tracking-tightest: -0.03em;
+  --tracking-eyebrow: 0.04em;
+
+  /* ---- Layout ---- */
+  --content-max: 1280px;
+  --gutter: 48px;
+  --gutter-mobile: 24px;
+  --margin-container: 24px;   /* horizontal page padding in design */
+}
+

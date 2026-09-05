@@ -1,0 +1,85 @@
+/* ---- Lords and buildings: hairline rows, no cards ---- */
+.lords, .builds {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.lord, .build {
+  padding: var(--s-3) 0;
+  border-top: 1px solid var(--dust);
+}
+.lord:first-child, .build:first-child { border-top: 0; padding-top: 0; }
+.lord__kind {
+  margin: 0 0 6px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--signal);
+}
+/* The roster's portraits: the mod's own recruitment cards, at the same width
+   as the unit grid so the page has one card idiom used twice — full-figure
+   scenes for units, busts for the people who command them. */
+.lord__cast {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2);
+  margin: 0;
+  padding: 0;
+}
+.cast { width: 132px; }
+.cast__art {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 240 / 520;
+  border-radius: var(--r-xs);
+  background: var(--deep-lift);
+}
+.cast__name {
+  display: block;
+  margin-top: 10px;
+  font-size: 13.5px;
+  line-height: 1.35;
+  color: var(--granite);
+}
+/* The cards take one side of the band and the copy the other, alternating down
+   the section. Both start at the band's top edge: with the sides alternating
+   there is no vertical spine left, so the line the bands share is a horizontal
+   one — centring the copy instead left the companions' two lines floating in
+   the middle of an empty half. Cards come first in the markup, which is also
+   the order a narrow screen stacks them in. */
+.lord {
+  display: grid;
+  column-gap: var(--s-4);
+  align-items: start;
+}
+.lord--cards-left { grid-template-columns: auto minmax(0, 1fr); }
+.lord--cards-right { grid-template-columns: minmax(0, 1fr) auto; }
+/* Row 1 on both, explicitly: the cards come first in the markup, so on a
+   cards-right band auto-placement would refuse to move the copy back to
+   column 1 and would drop it onto a row of its own underneath. */
+.lord--cards-left .lord__cast { grid-area: 1 / 1; }
+.lord--cards-left .lord__entries { grid-area: 1 / 2; }
+.lord--cards-right .lord__cast { grid-area: 1 / 2; }
+.lord--cards-right .lord__entries { grid-area: 1 / 1; }
+/* Two entries share the third band; they read as one column of copy. */
+.lord__entries { display: grid; gap: var(--s-4); }
+/* Rank is the section's only real split — one of a kind, or as many as you can
+   pay for — so the eyebrow carries it instead of all of them reading as jade. */
+.lord--generic .lord__kind { color: var(--slate); }
+.lord__name, .build__name {
+  margin: 0 0 6px;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: var(--tracking-tight);
+}
+.lord__body, .build__body {
+  margin: 0;
+  max-width: 62ch;
+  font-size: 15.5px;
+  line-height: 1.7;
+  color: var(--granite);
+}
+

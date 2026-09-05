@@ -1,0 +1,64 @@
+/* ---- Skip link ---- */
+.skip-link {
+  position: absolute;
+  left: var(--s-2);
+  top: var(--s-2);
+  z-index: 100;
+  padding: 10px 18px;
+  background: var(--primary);
+  color: var(--canvas);
+  border-radius: var(--r-pill);
+  font-size: 14px;
+  font-weight: 500;
+  transform: translateY(-200%);
+  transition: transform 0.15s ease;
+}
+.skip-link:focus-visible { transform: translateY(0); text-decoration: none; }
+
+/* ---- Visible focus, everywhere ---- */
+:focus-visible {
+  outline: 2px solid var(--signal);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+.plate--night :focus-visible,
+.hero :focus-visible,
+.band--victory :focus-visible { outline-color: var(--ember); }
+
+/* ---- Nav over the hero photograph ----
+   Dark by default, which is the state every reader starts in; the observer in
+   header.html drops .site-nav--landed once the pill clears the photograph and
+   the light treatment below takes back over. With scripting off the pill just
+   stays dark — a legible dark pill on cream, not a broken one. */
+.site-nav__pill,
+.site-nav__pill a,
+.lang-switch,
+.lang-switch__item { transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease; }
+
+/* On the landing page the photograph runs to the very top of the window, so
+   the pill floats over it rather than sitting in a strip above it. Sticky at
+   top:0 behaves the same as fixed except that it occupies flow, and that flow
+   is exactly the gap we do not want. The changelog page keeps sticky, where
+   content does start below the nav. */
+.page--home .site-nav { position: fixed; left: 0; right: 0; }
+
+.page--home .site-nav:not(.site-nav--landed) .site-nav__pill {
+  background: rgba(19, 30, 44, 0.66);
+  border-color: rgba(231, 237, 244, 0.16);
+  box-shadow: 0 10px 34px rgba(0, 0, 0, 0.3);
+}
+.page--home .site-nav:not(.site-nav--landed) .site-nav__logo { color: var(--foam); }
+.page--home .site-nav:not(.site-nav--landed) .site-nav__links a { color: var(--foam-dim); }
+.page--home .site-nav:not(.site-nav--landed) .site-nav__links a:hover { color: var(--foam); }
+.page--home .site-nav:not(.site-nav--landed) .site-nav__steam { color: var(--foam-dim); }
+.page--home .site-nav:not(.site-nav--landed) .lang-switch { border-color: rgba(231, 237, 244, 0.3); }
+.page--home .site-nav:not(.site-nav--landed) .lang-switch__item { color: var(--foam-dim); }
+.page--home .site-nav:not(.site-nav--landed) .lang-switch__item--active {
+  background: var(--foam);
+  color: var(--deep);
+}
+
+/* Current page in the nav */
+.site-nav__link--current { color: var(--ink) !important; text-decoration: underline; text-decoration-thickness: 1px; }
+.page--home .site-nav:not(.site-nav--landed) .site-nav__link--current { color: var(--foam) !important; }
+

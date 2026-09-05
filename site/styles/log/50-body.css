@@ -1,0 +1,125 @@
+/* ============================================================
+   Release body — rendered markdown
+   ============================================================ */
+.release-body {
+  /* Up from 15.5/1.7, which was set against PingFang. LXGW WenKai GB draws a
+     smaller, lighter face inside the same em — about 40% less ink at matched
+     pixel size — so it needs the extra point to read at the same weight, and
+     the looser leading to give the calligraphic strokes room. */
+  font-size: 16.5px;
+  line-height: 1.8;
+  color: var(--ink);
+  overflow-wrap: break-word;
+}
+.release-body > :first-child { margin-top: 0; }
+.release-body > :last-child { margin-bottom: 0; }
+
+.release-body h3 {
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: var(--tracking-tight);
+  margin: var(--s-3) 0 var(--s-1);
+  color: var(--charcoal);
+}
+.release-body h4 {
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: var(--tracking-tight);
+  margin: var(--s-3) 0 6px;
+  color: var(--ink);
+}
+
+.release-body p { margin: 0 0 var(--s-2); }
+
+.release-body ul,
+.release-body ol {
+  margin: 0 0 var(--s-2);
+  padding-left: var(--s-3);
+}
+.release-body li { margin-bottom: 6px; }
+
+/* Date label on a submod's changes. A submod has no version number, so the date
+   is what identifies a line — set it like .release__date so the two read as the
+   same kind of mark, and align the column so the list scans as a ledger. */
+.entry-date {
+  /* The gap is an explicit margin, not min-width: the label is 12px while the
+     text after it is 16.5px, so an em-based width computes against the wrong
+     font and leaves the date glued to the first word. */
+  margin-right: 14px;
+  white-space: nowrap;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: var(--tracking-eyebrow);
+  color: var(--slate);
+  font-variant-numeric: tabular-nums;
+}
+.release-body li p { margin-bottom: 4px; }
+.release-body li::marker { color: var(--signal); }
+
+.release-body hr {
+  border: none;
+  border-top: 1px solid var(--dust);
+  margin: var(--s-4) 0 var(--s-3);
+}
+
+.release-body blockquote {
+  background: var(--surface-low);
+  border-left: 3px solid var(--signal-light);
+  border-radius: 0 var(--r-xs) var(--r-xs) 0;
+  margin: var(--s-3) 0;
+  padding: var(--s-2) var(--s-3);
+  color: var(--granite);
+  font-size: 14.5px;
+  line-height: 1.65;
+}
+.release-body blockquote p:last-child { margin-bottom: 0; }
+.release-body blockquote strong { color: var(--ink); font-weight: 600; }
+
+.release-body table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  margin-bottom: var(--s-3);
+  display: block;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.release-body th {
+  text-align: left;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+  color: var(--slate);
+  padding: var(--s-2) var(--s-2) var(--s-1);
+  border-bottom: 2px solid var(--dust);
+  white-space: nowrap;
+}
+.release-body td {
+  padding: 10px var(--s-2);
+  border-bottom: 1px solid var(--bone);
+  vertical-align: top;
+  line-height: 1.5;
+}
+.release-body tr:last-child td { border-bottom: none; }
+
+.release-body code {
+  font-family: var(--font-mono);
+  overflow-wrap: anywhere;
+  font-size: 0.875em;
+  background: var(--surface-low);
+  border-radius: var(--r-xs);
+  padding: 2px 6px;
+  color: var(--charcoal);
+}
+.release-body pre {
+  background: var(--surface-low);
+  border-radius: var(--r-xs);
+  padding: var(--s-2);
+  overflow-x: auto;
+  margin: 0 0 var(--s-2);
+}
+.release-body pre code { background: none; padding: 0; }
+
+.release-body strong { font-weight: 600; }
+.release-body a { color: var(--link); text-decoration: underline; }

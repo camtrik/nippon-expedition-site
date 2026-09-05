@@ -1,0 +1,9 @@
+/* ============================================================
+   Reading column — hero and entries share one measure so their
+   left edges line up and body lines stay readable.
+   ============================================================ */
+.log-column {
+  max-width: 880px;
+  margin: 0 auto;
+}
+

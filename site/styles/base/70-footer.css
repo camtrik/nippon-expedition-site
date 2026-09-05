@@ -1,0 +1,66 @@
+/* ---- Footer (ink primary with white) ---- */
+.site-footer {
+  background: var(--primary);
+  color: var(--white);
+  padding: var(--s-6) var(--margin-container) 100px;
+  margin-top: 0;
+}
+.site-footer__inner {
+  max-width: var(--content-max);
+  margin: 0 auto;
+}
+.site-footer__lede {
+  color: var(--white);
+  font-size: clamp(28px, 3vw, 40px);
+  font-weight: 500;
+  letter-spacing: var(--tracking-tight);
+  line-height: 1.15;
+  margin: 0 0 var(--s-5);
+}
+.site-footer__nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-3);
+  font-size: 15px;
+}
+.site-footer__nav a {
+  color: var(--white);
+  text-decoration: none;
+  font-weight: 500;
+}
+.site-footer__nav a:hover { text-decoration: underline; }
+.site-footer__divider {
+  border: 0;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.25);
+  margin: var(--s-4) 0 var(--s-3);
+}
+.site-footer__bottom {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-3);
+  align-items: center;
+  justify-content: space-between;
+  font-size: 13px;
+  color: var(--dust);
+}
+/* Three groups, not nine loose children: the byline pair, the workshop links,
+   and GitHub. space-between across nine items flung the byline and the deploy
+   time to opposite ends, and once the sixth listing no longer fit, English
+   dropped a lone link onto a row with GitHub stranded at the far end. */
+.site-footer__meta,
+.site-footer__ws {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-3);
+}
+.site-footer__bottom a {
+  color: var(--white);
+  text-decoration: none;
+  font-weight: 450;
+}
+.site-footer__bottom a:hover { text-decoration: underline; }
+@media (max-width: 768px) {
+  .site-footer { padding: var(--s-5) var(--gutter-mobile) 64px; }
+}
+

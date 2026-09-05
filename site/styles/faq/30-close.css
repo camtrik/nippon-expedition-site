@@ -1,0 +1,27 @@
+/* ============================================================
+   Close — the FAQ says what is true now; the changelog says when
+   it changed. Send the reader there rather than repeating it.
+   ============================================================ */
+.faq-close {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--gutter);
+  margin-top: var(--s-6);
+  padding-bottom: var(--s-7);
+}
+.faq-tail {
+  grid-column: 4 / -1;
+  max-width: calc(var(--faq-measure) + var(--faq-gutter) + var(--s-4));
+  margin: 0;
+  padding: var(--s-3) 0 0 var(--s-4);
+  border-top: 1px solid var(--dust);
+  font-size: 15px;
+  color: var(--slate);
+}
+.faq-tail a {
+  color: var(--signal);
+  text-decoration: none;
+  font-weight: 500;
+}
+.faq-tail a:hover { text-decoration: underline; }
+

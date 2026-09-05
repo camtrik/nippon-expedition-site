@@ -1,0 +1,43 @@
+/* ============================================================
+   Narrower viewports
+   ============================================================ */
+@media (max-width: 1080px) {
+  .companions { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 900px) {
+  .band { padding: 52px 0; }
+  .band__inner { display: block; }
+  .band__title { position: static; margin-bottom: var(--s-3); }
+  .fork { --fork-gap: var(--s-3); }
+  .trunk { max-width: none; }
+  /* The fork is a two-armed diagram; with one column there are no arms to
+     draw, so the routes become a plain stacked list under the label. */
+  .fork__split { display: none; }
+  .routes { grid-template-columns: 1fr; margin-top: var(--s-5); }
+}
+
+@media (max-width: 768px) {
+  .hero { min-height: min(100svh, 660px); padding-bottom: var(--s-5); }
+  .hero::after {
+    background:
+      linear-gradient(to bottom,
+        rgba(19, 30, 44, 0.72) 0%,
+        rgba(19, 30, 44, 0.34) 20%,
+        rgba(19, 30, 44, 0.80) 50%,
+        var(--deep) 98%);
+  }
+  .hero__art img { object-position: 62% 42%; }
+  .hero__crest { width: 52px; height: 52px; }
+  .hero__premise { margin-top: var(--s-3); }
+  .hero__actions { margin-top: var(--s-4); }
+  .cta { font-size: 14px; padding: 10px 18px; }
+  .companions { grid-template-columns: 1fr; gap: var(--s-5); }
+  .trunk, .route { padding: var(--s-3); }
+  .unit, .cast { width: calc((100% - var(--s-2) * 2) / 3); min-width: 96px; }
+  /* No room to set cards beside a paragraph: a 110px card leaves the copy two
+     words wide. Every band stacks cards over copy instead. */
+  .lord { display: block; }
+  .lord__cast { margin: 0 0 var(--s-2); }
+  .lord__entries { gap: var(--s-4); }
+}

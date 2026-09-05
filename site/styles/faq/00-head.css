@@ -1,0 +1,14 @@
+/* ============================================================
+   faq.css — FAQ page.
+
+   The page is built as a ledger, not a list. Each category is one
+   band: its name is held in the left rail at display size while
+   its questions scroll past on a single vertical rule, so a reader
+   always knows which category they are reading. The rule is the
+   page's one ornament — a jade dot opens it, and it lights up jade
+   again beside a question someone has been linked to.
+
+   Grid, tokens and body typography come from base.css; the band
+   proportions match home.css so the two pages sit on one skeleton.
+   ============================================================ */
+

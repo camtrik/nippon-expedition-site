@@ -1,0 +1,139 @@
+/* ============================================================
+   Band — category rail (3 of 12) + questions (9 of 12)
+   ============================================================ */
+.faq-band {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--gutter);
+  padding-top: var(--s-6);
+  scroll-margin-top: 120px;
+}
+.faq-band__rail {
+  grid-column: 1 / span 3;
+  align-self: start;
+  position: sticky;
+  top: 104px;
+}
+.faq-band__title {
+  /* Same size, weight and rail position as the landing page's .band__title,
+     so a category heading here reads exactly like 简介 does over there. */
+  font-size: clamp(24px, 2.4vw, 30px);
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: var(--tracking-tight);
+  color: var(--ink);
+}
+.faq-band__count {
+  margin: var(--s-2) 0 0;
+  font-size: 13px;
+  color: var(--slate);
+  font-variant-numeric: tabular-nums;
+}
+
+/* The rule. One per category, opened by a jade dot. */
+.faq-list {
+  grid-column: 4 / -1;
+  /* Text block and flag column share one right edge, and the hairlines
+     between questions stop there — nothing trails past the ledger. */
+  max-width: calc(var(--faq-measure) + var(--faq-gutter) + var(--s-4));
+  list-style: none;
+  margin: 0;
+  padding: 0 0 0 var(--s-4);
+  border-left: 1px solid var(--dust);
+  position: relative;
+}
+.faq-list::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -5px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--signal);
+}
+
+.faq-item {
+  position: relative;
+  padding: var(--s-4) 0;
+  border-top: 1px solid var(--bone);
+  scroll-margin-top: 120px;
+}
+.faq-item:first-child { border-top: 0; padding-top: 0; }
+.faq-item:last-child { padding-bottom: 0; }
+
+/* Question on the measure, version flag in a fixed gutter beside it, so the
+   flags line up down the page and a reader can see at a glance which answers
+   the last release touched. */
+.faq-item__head {
+  display: grid;
+  grid-template-columns: minmax(0, var(--faq-measure)) 140px;
+  column-gap: var(--s-3);
+  align-items: baseline;
+}
+.faq-q {
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: var(--tracking-tight);
+  color: var(--ink);
+  margin: 0;
+  max-width: var(--faq-measure);
+}
+
+/* Version flag — which release made this answer true. Gold for a change,
+   jade for a fix, matching the changelog's badge colours. */
+.faq-flag {
+  justify-self: start;
+  padding: 4px 10px;
+  border-radius: var(--r-pill);
+  /* No uppercasing here, unlike the changelog's type badges: the label carries
+     a version number, and `v1.0.1` shouted as `V1.0.1` is not how the rest of
+     the site writes it. */
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  line-height: 1.3;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.faq-flag--updated { background: var(--gold-soft); color: #7A5C0B; }
+.faq-flag--fixed   { background: #e4f3ec; color: #146A3B; }
+
+.faq-a {
+  /* Matches .release-body: LXGW WenKai GB needs the extra point and the
+     looser leading to read at the same weight as the Latin face. */
+  margin-top: var(--s-2);
+  max-width: var(--faq-measure);
+  font-size: 16.5px;
+  line-height: 1.8;
+  color: var(--granite);
+  overflow-wrap: break-word;
+}
+.faq-a p { margin: 0 0 var(--s-2); }
+.faq-a > :last-child { margin-bottom: 0; }
+.faq-a strong { color: var(--ink); font-weight: 600; }
+
+/* Link lines sit closer to each other than to the prose above them. */
+.faq-link {
+  font-size: 15px;
+  margin-bottom: var(--s-1);
+}
+.faq-link a {
+  color: var(--link);
+  text-decoration: none;
+}
+.faq-link a:hover { text-decoration: underline; }
+.faq-link span { margin-left: 4px; font-size: 0.85em; }
+
+/* Linked to from a comment: the rule lights up beside that question. */
+.faq-item:target::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: calc(var(--s-4) * -1 - 1px);
+  width: 3px;
+  background: var(--signal);
+}
+

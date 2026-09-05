@@ -1,0 +1,125 @@
+/* ---- Navigation pill (floating, sticky-ish) ---- */
+.site-nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  justify-content: center;
+  padding-top: 24px;
+  padding-bottom: var(--s-3);
+  pointer-events: none;
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+              opacity 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.site-nav--hidden {
+  transform: translateY(calc(-100% - 24px));
+  opacity: 0;
+}
+.site-nav__pill {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--gutter);
+  width: calc(100% - var(--gutter));
+  max-width: 800px;
+  background: rgba(252, 251, 250, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: var(--r-pill);
+  padding: 14px 28px;
+  box-shadow: var(--shadow-1);
+  pointer-events: auto;
+  border: 1px solid rgba(199, 199, 192, 0.2);
+}
+.site-nav__pill a {
+  font-weight: 500;
+  font-size: 16px;
+  letter-spacing: var(--tracking-tightest);
+  color: var(--ink);
+  white-space: nowrap;
+}
+.site-nav__logo {
+  display: flex;
+  align-items: center;
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: var(--tracking-tight);
+  flex-shrink: 0;
+}
+/* Phone-width stand-in for the wordmark — see the 430px query below. */
+.site-nav__mark {
+  display: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 7px;
+}
+.site-nav__links {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+.site-nav__links a {
+  color: var(--slate);
+  font-weight: 500;
+}
+.site-nav__links a:hover {
+  color: var(--ink);
+  text-decoration: none;
+}
+.site-nav__steam {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+@media (max-width: 640px) {
+  .site-nav__pill { gap: 16px; padding: 12px 18px; }
+  .site-nav__links { gap: 18px; }
+  .site-nav__links a { font-size: 14px; }
+}
+
+/* ---- Language switch (sits inside the nav pill) ---- */
+.lang-switch {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--dust);
+  border-radius: var(--r-pill);
+  overflow: hidden;
+  line-height: 1;
+  flex-shrink: 0;          /* never let the nav squeeze "EN" out of view */
+}
+.lang-switch__item {
+  padding: 5px 12px;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0;
+  color: var(--slate);
+  white-space: nowrap;
+}
+.lang-switch__item:hover { text-decoration: none; color: var(--ink); }
+.lang-switch__item--active {
+  background: var(--primary);
+  color: var(--canvas);
+}
+.lang-switch__item--active:hover { color: var(--canvas); }
+
+/* Under ~560px the pill runs out of room for two page links plus the
+   wordmark, so the type steps down first and, on phones, the wordmark gives
+   way to the site mark. Both page links stay reachable at every width; the
+   footer repeats them anyway. */
+@media (max-width: 560px) {
+  .site-nav__links { gap: 14px; }
+  .site-nav__links a { font-size: 13.5px; }
+  .site-nav__logo { font-size: 16px; }
+}
+@media (max-width: 430px) {
+  .site-nav__mark { display: block; }
+  .site-nav__logo-text { display: none; }
+  .site-nav__pill { padding: 12px 14px; }
+}
+/* 320px (an SE held in portrait) is the narrowest the pill has to survive. */
+@media (max-width: 360px) {
+  .site-nav__links { gap: 10px; }
+  .site-nav__links a { font-size: 13px; }
+  .lang-switch__item { padding: 5px 9px; }
+}
+

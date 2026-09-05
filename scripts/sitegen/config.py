@@ -14,6 +14,7 @@ DIST = SITE / "_dist"
 PARTIALS_DIR = SITE / "partials"
 ASSETS_DIR = SITE / "assets"
 TEMPLATES_DIR = SITE / "_templates"
+STYLES_DIR = SITE / "styles"
 I18N_FILE = ROOT / "content" / "i18n.json"
 HOME_FILE = ROOT / "content" / "home.json"
 FAQ_FILE = ROOT / "content" / "faq.json"
@@ -36,5 +37,10 @@ KNOWN_TYPES = {"release", "content", "balance", "hotfix"}
 # that number, so the two are counted and displayed apart.
 CHANNEL_ORDER = ("main", "submod")
 DEFAULT_CHANNEL = "main"
+
+# One delivered stylesheet per entry, built from site/styles/<name>/*.css.
+# fonts.css is not here: subset_fonts.py generates it into site/assets/css/
+# and it rides along with the rest of the assets.
+CSS_BUNDLES = ("base", "home", "log", "faq")
 
 FONT_COVERAGE = ASSETS_DIR / "fonts" / "coverage.txt"

@@ -1,0 +1,69 @@
+/* ---- Overview: the elevator pitch, so it is set larger ---- */
+.overview__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-width: 64ch;
+}
+.overview__list li {
+  padding: var(--s-3) 0;
+  border-bottom: 1px solid var(--dust);
+  font-size: clamp(17px, 1.5vw, 20px);
+  line-height: 1.6;
+}
+.overview__list li:first-child { padding-top: 0; }
+.overview__list li:last-child { border-bottom: 0; padding-bottom: 0; }
+.overview__list strong { font-weight: 700; }
+.overview__list a { color: var(--link); text-decoration: underline; text-underline-offset: 3px; }
+
+/* A submod row inside the overview: the workshop link is the heading, then the
+   reason to install it, then what it brings — set below the list's own size so
+   the row reads as one point rather than as a section that wandered in. */
+.overview__mod-name {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  /* No font-size: the name is a point in this list, so it takes the list's own
+     clamp(17px, 1.5vw, 20px) and stays level with every other row. */
+  font-weight: 700;
+  letter-spacing: var(--tracking-tight);
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--dust);
+  padding-bottom: 2px;
+  transition: color 0.18s ease, border-color 0.18s ease;
+}
+.overview__list .overview__mod-name { color: var(--ink); text-decoration: none; }
+.overview__list .overview__mod-name:hover { color: var(--clay); border-color: var(--clay); }
+
+.overview__mod-note {
+  margin: 12px 0 0;
+  font-size: 15.5px;
+  line-height: 1.7;
+  color: var(--granite);
+}
+
+.overview__mod-points {
+  list-style: none;
+  margin: 8px 0 0;
+  padding: 0;
+}
+.overview__list .overview__mod-points li {
+  position: relative;
+  padding: 4px 0 4px var(--s-3);
+  border-bottom: 0;
+  font-size: 15.5px;
+  line-height: 1.7;
+  color: var(--granite);
+}
+.overview__mod-points li::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 14px;
+  width: 5px;
+  height: 5px;
+  background: var(--signal);
+  transform: rotate(45deg);
+}
+

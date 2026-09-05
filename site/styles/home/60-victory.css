@@ -1,0 +1,125 @@
+/* ============================================================
+   Victory paths — the signature.
+   One short victory, then two long ones. They are NOT alternatives: both can
+   be completed, so the split reads as "leads to both", never as a choice. The
+   label under the trunk says so outright, because "Route A / Route B" is
+   exactly the shape a reader assumes is exclusive.
+   ============================================================ */
+.band--victory {
+  background: var(--deep);
+  color: var(--foam);
+}
+.band--victory .band__title { color: var(--foam); }
+
+.fork {
+  --fork-gap: var(--gutter);
+  grid-column: 1 / -1;
+  margin-top: var(--s-5);
+}
+.trunk, .route {
+  padding: var(--s-4);
+  border: 1px solid var(--deep-line);
+  border-radius: var(--r-lg);
+  background: var(--deep-lift);
+}
+.trunk { max-width: 720px; margin: 0 auto; }
+
+.trunk__kind, .route__kind {
+  margin: 0 0 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--foam-dim);
+}
+.route__tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 1px solid var(--ember);
+  color: var(--ember);
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: 0;
+}
+.trunk__name, .route__name {
+  margin: 0 0 var(--s-2);
+  font-size: clamp(22px, 2.2vw, 28px);
+  font-weight: 700;
+  color: var(--foam);
+  letter-spacing: var(--tracking-tight);
+}
+
+/* The campaign's own prose. Quieter and looser than the manifest
+   around it — this is the one place the page stops listing things. */
+.trunk__quote, .route__quote {
+  margin: 0 0 var(--s-3);
+  padding-left: var(--s-3);
+  border-left: 2px solid rgba(228, 192, 143, 0.45);
+}
+.trunk__quote p, .route__quote p {
+  margin: 0;
+  font-size: 15.5px;
+  line-height: 1.9;
+  color: var(--foam-dim);
+}
+
+.goals {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.goals li {
+  position: relative;
+  padding: 8px 0 8px var(--s-3);
+  border-top: 1px solid var(--deep-line);
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: var(--foam);
+}
+.goals li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 17px;
+  width: 6px;
+  height: 6px;
+  background: var(--jade-lift);
+  transform: rotate(45deg);
+}
+
+/* The branch itself, drawn in borders: stem, label, stem, split. */
+.fork__split {
+  position: relative;
+  width: calc(50% + var(--fork-gap) / 2);
+  height: var(--s-5);
+  margin: var(--s-6) auto 0;
+  border: 1px solid var(--deep-line);
+  border-bottom: 0;
+  border-radius: var(--r-lg) var(--r-lg) 0 0;
+}
+/* The stem down from the trunk into the split. */
+.fork__split::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 100%;
+  transform: translateX(-50%);
+  width: 1px;
+  height: var(--s-6);
+  background: var(--deep-line);
+}
+
+.routes {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--fork-gap);
+}
+

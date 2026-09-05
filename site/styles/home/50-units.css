@@ -1,0 +1,36 @@
+/* ============================================================
+   Units — the in-game recruitment cards, at their own size
+   ============================================================ */
+.unit-group + .unit-group { margin-top: var(--s-4); }
+.unit-group__name {
+  margin: 0 0 var(--s-2);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--slate);
+}
+.units {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2);
+  margin: 0;
+  padding: 0;
+}
+.unit { width: 132px; }
+.unit__art {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 240 / 520;
+  border-radius: var(--r-xs);
+  background: var(--deep-lift);
+}
+.unit__name {
+  display: block;
+  margin-top: 10px;
+  font-size: 13.5px;
+  line-height: 1.35;
+  color: var(--granite);
+}
+

@@ -1,0 +1,50 @@
+/* ============================================================
+   Hero — title, then the release the answers are written against.
+   No standfirst: what it would have said is the stamp.
+   ============================================================ */
+/* One measure governs the whole page: question, answer and the version
+   gutter they align against. */
+.page--faq {
+  --faq-measure: 600px;   /* reading measure for question and answer */
+  --faq-gutter: 164px;    /* the version-flag column beside it, gap included */
+}
+
+.faq-hero {
+  padding: var(--s-6) 0 var(--s-5);
+}
+.faq-hero__eyebrow { margin-bottom: var(--s-2); }
+.faq-hero h1 {
+  /* Same page-title scale as the changelog — the two text pages open the
+     same way. Capped in em so the break follows the display size rather
+     than the body size: two lines of English, one unbroken 常见问题. */
+  max-width: 10em;
+  font-size: clamp(40px, 5vw, 60px);
+  line-height: 1.05;
+}
+
+/* Same shape as the changelog's .log-stamp — the two text pages
+   should read as siblings. */
+.faq-stamp {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin: var(--s-4) 0 0;
+  padding: 8px 18px;
+  background: var(--canvas-lifted);
+  border-radius: var(--r-pill);
+  font-size: 13px;
+  color: var(--slate);
+  box-shadow: var(--shadow-1);
+  letter-spacing: 0;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.faq-stamp::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--signal-light);
+  flex-shrink: 0;
+}
+

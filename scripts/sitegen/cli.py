@@ -19,6 +19,7 @@ from .content import load_faq, load_home, load_i18n
 from .fonts import check_font_coverage
 from .page import build_page
 from .releases import collect_releases
+from .styles import bundle_css
 from .templates import load_partials, load_templates
 from .urls import normalize_base_path, page_href
 
@@ -45,6 +46,7 @@ def main() -> None:
             DIST / "assets",
             ignore=lambda _d, names: [n for n in names if n.startswith(".")],
         )
+    bundle_css(DIST)
 
     rendered = {}
     for lang in LANGS:

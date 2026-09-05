@@ -1,0 +1,16 @@
+/* ============================================================
+   home.css — Landing page: night plates, day plates, victory fork
+   Depends on base.css for tokens, the nav pill and the footer.
+
+   The page runs night → day → night → day → ink. That is not a
+   decorative alternation: the mod speaks in two registers, and the
+   Steam description mashes them into one column. The night plates
+   carry the poster and the campaign's own fiction; the day plates
+   carry the manifest — what is in the pack, in daylight, legible.
+   The transition is honest to the source art, whose brightest pixel
+   is the cream this site was already built on.
+   ============================================================ */
+
+.plate--day { background: var(--canvas); }
+.plate--reference { border-top: 1px solid var(--dust); }
+
