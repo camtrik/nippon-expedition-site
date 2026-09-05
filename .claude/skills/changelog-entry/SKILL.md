@@ -60,7 +60,7 @@ front matter 规则：
 - `tags`：`main` / `stronger-ai` / `nrs-compat` / `cathay-compat` / `yinyin-compat` / `wuh-compat`，逗号分隔。
 - `channel`：`main`（默认）/ `submod`，决定进哪个页签。
 
-新增 `type` 或 `tags` 取值时同时改 `content/i18n.json` 的 `TYPE`/`TAGS`（中英各一份）和 `scripts/build.py` 的 `KNOWN_TYPES`，漏了会构建报错。
+新增 `type` 或 `tags` 取值时同时改 `content/i18n.json` 的 `TYPE`/`TAGS`（中英各一份）和 `scripts/sitegen/config.py` 的 `KNOWN_TYPES`，漏了会构建报错。
 
 ### 子 mod：一个包一个文件，日期落在每条改动上
 
@@ -171,7 +171,7 @@ python3 scripts/build.py   # 记得改回来
 
 ## 第 5 步：提交
 
-只提交 `content/` 下的改动（以及必要时的 `i18n.json` / `build.py`）。**`site/_dist/` 不入库**，已在 `.gitignore`，由 Actions 现场构建。
+只提交 `content/` 下的改动（以及必要时的 `i18n.json` / `sitegen/config.py`）。**`site/_dist/` 不入库**，已在 `.gitignore`，由 Actions 现场构建。
 
 推到 `main` 后 GitHub Actions 自动构建部署到 <https://camtrik.github.io/nippon-expedition-site/>。
 

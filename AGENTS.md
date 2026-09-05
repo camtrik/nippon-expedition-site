@@ -8,7 +8,7 @@
 
 | 页面               | 内容来源                                            | 中文            | English            |
 | ------------------ | --------------------------------------------------- | --------------- | ------------------ |
-| **简介**     | `content/home.json`，与创意工坊描述同步           | `/`           | `/en/`           |
+| **简介**     | `content/home/*.json`，与创意工坊描述同步         | `/`           | `/en/`           |
 | **更新记录** | `content/releases/*.md`                           | `/changelog/` | `/en/changelog/` |
 | **常见问题** | `content/faq.json`，与 mod 仓库的 `faq.md` 同步 | `/faq/`       | `/en/faq/`       |
 
@@ -47,7 +47,7 @@ grep "神華" ../nippon_expedition/_docs/references/IEE尼朋行省与定居点�
 
 ## 简介页
 
-正文全在 `content/home.json`，**中英文写在同一个字段里**，这样漏译一眼可见：
+正文全在 `content/home/`，**一个区块一个文件**（`hero.json` / `units.json` …，文件里保留自己那层键），**中英文写在同一个字段里**，这样漏译一眼可见：
 
 ```json
 "name": { "zh": "『无冕提督』沈长风", "en": "Shen Changfeng, the Uncrowned Admiral" }
@@ -56,9 +56,9 @@ grep "神華" ../nippon_expedition/_docs/references/IEE尼朋行省与定居点�
 - 原料是 `steam_description_zh.txt` 与 `steam_description_main_en.txt`，**两边都是作者定过稿的成文**，直接沿用，别重译。
 - 工坊描述里没有、页面上有的东西（同伴的四章标题、羁绊四档）来自 mod 仓库 `text/db/*.loc.tsv` 的实装文本，英文取 `术语对照_自造专名.tsv` 里标「已定」的行。**不要自己编章节名。**
 - **两条长期胜利路线（海外帝国 / 天朝守护）不是二选一，两条都能打完。** 工坊描述的「（路线A）/（路线B）」写法容易让人误会——这里错过一次。并排版式不表示互斥，文案必须明说。
-- 区块 HTML 由 `build.py` 的 `render_*()` 生成，顺序在 `site/_templates/home.html`，样式在 `home.css`。
+- 区块 HTML 由 `scripts/sitegen/render/home/` 下的 `render_*()` 生成——四个文件对应模板里已有的 night / day / night / day 四段；**顺序只在 `site/_templates/home.html`**，样式在 `site/styles/home/`。
 - **简介区块里各个兼容包的文案来自各子 mod 仓库的 `README_{zh,en}.md`**，那几份都是作者定稿的双语成文，**直接搬，别重译**。改了那边记得回来改这边。
-- **工坊链接只有一处**：`build.py` 的 `workshop_ctas()`。hero 的 CTA 行和页脚的链接行都由它生成——以前页脚是手抄的第二份，加子 mod 时漏过一次。新增一个工坊条目只需要改这个函数；如果是兼容包，再往 `home.json` 的 `overview` 加一条（那里是唯一需要另写文案的地方）。
+- **工坊链接只有一处**：`scripts/sitegen/workshop.py` 的 `workshop_ctas()`。hero 的 CTA 行和页脚的链接行都由它生成——以前页脚是手抄的第二份，加子 mod 时漏过一次。新增一个工坊条目只需要改这个函数；如果是兼容包，再往 `content/home/overview.json` 加一条（那里是唯一需要另写文案的地方）。
 
 ## 常见问题页
 
@@ -105,7 +105,7 @@ tags: main
 - `type`：`release` / `content` / `balance` / `hotfix`，默认 `release`，决定右上角徽章。
 - `tags`：逗号分隔的 `main` / `stronger-ai` / `nrs-compat` / `cathay-compat` / `yinyin-compat` / `wuh-compat`。
 - `channel`：`main`（默认）/ `submod`，决定进哪个页签，见下。
-- 新增 `type` / `tags` 取值要同时改 `content/i18n.json` 的两张表和 `build.py` 的 `KNOWN_TYPES`，漏了构建报错。
+- 新增 `type` / `tags` 取值要同时改 `content/i18n.json` 的两张表和 `sitegen/config.py` 的 `KNOWN_TYPES`，漏了构建报错。
 - 中文块必填；英文块可缺，缺了英文页自动回落中文并显示「尚未翻译」。
 
 ### 子 mod 的条目
@@ -136,13 +136,13 @@ tags: cathay-compat
 - `url` 是这个包自己的工坊页，标题会渲染成带 ↗ 的链接。**正文里就别再自链一次**，导语直接说「这个 mod」/「this mod」。
 - front matter 支持 `key.zh` / `key.en` 两行写一个双语字段，和 JSON 里中英同字段是一个意思。
 - `version` 和 `title` **至少要有一个**，两个都没有构建报错。
-- 顶级条目以 `YYYY-MM-DD ` 开头时，`build.py` 会把它包成 `.entry-date` 标签；缩进子条目不带日期，也不会被包。
+- 顶级条目以 `YYYY-MM-DD ` 开头时，`sitegen/text.py` 会把它包成 `.entry-date` 标签；缩进子条目不带日期，也不会被包。
 - 子 mod 条目**不写 front matter 的 `date`**：排序日期由正文里最新的那个日期算出来，加一行就自动往上排，没有第二处要同步。
 - 同一天动过的两个包，再比**正文里最早的那个日期**（= 这个包上线那天），新包排前面；上线和改动都同一天才落到文件名倒序，那是唯一一处随意但确定的排法，真要固定顺序就改文件名。
 - 子 mod 条目默认**不显示 `type` 徽章**——一个条目横跨多次改动，标一个「版本发布」是假的。真要标就显式写 `type:`。
 - 正文按时间倒序排，不再按「新增 / 修复」分组——日期就是分组。
 - 页签只在两边都有条目时才出现；只有一边有的话页面就是原来那条时间线，不会挂一个空页签。
-- 页面各处的「最新版本」印章（更新记录页、主页 hero、常见问题页）取的是**本体**最新的**既有版本号又有日期**的条目。两种条目会排在它上面但都不算数：子 mod（按自己的日期排进来），以及 `date` 留空的条目（按约定 = 还没上工坊）。印章是报给玩家的当前版本号，不能报一个订阅不到的版本。这一点改 `build.py` 时别图省事写回 `releases[0]`。
+- 页面各处的「最新版本」印章（更新记录页、主页 hero、常见问题页）取的是**本体**最新的**既有版本号又有日期**的条目。两种条目会排在它上面但都不算数：子 mod（按自己的日期排进来），以及 `date` 留空的条目（按约定 = 还没上工坊）。印章是报给玩家的当前版本号，不能报一个订阅不到的版本。这一点在 `sitegen/releases.py` 的 `latest_released()`，别图省事写回 `releases[0]`。
 - 页签是**纯 CSS**（`.log-column` 下的一组 radio + `:checked ~`）。全站的 JS 只有首访语言判断那一处，别为了页签加第二处。
 
 **正文写法的坑：列表里不能有空行。** Python-Markdown 会在列表项内部的空行处结束整个列表，后面的 `- ` 变成段落里的裸横线（踩过一次，构建不报错，只有看页面才发现）。补充说明要写成**缩进 4 空格的子条目**：
@@ -169,43 +169,55 @@ SITE_BASE_PATH=/nippon-expedition-site SITE_ORIGIN=https://camtrik.github.io pyt
 grep -oE '(href|src|content)="/[^"]*"' site/_dist/en/index.html | sort -u   # 应全部带前缀
 ```
 
+改了渲染代码（`scripts/sitegen/`）或 CSS 拆分，跑一遍回归对照——它在临时 worktree 里构建基准 commit，两种环境各跑一次，归一化掉缓存戳与 `BUILD_TIME` 后逐字节比对整个 `site/_dist/`：
+
+```bash
+python3 scripts/verify_build.py --baseline <改动前的 commit>
+```
+
 - 唯一依赖是 `markdown`。front matter 是手写解析的，**不要引入 PyYAML**。
 - `site/_dist/` 不入库，推到 `main` 由 Actions 现场构建部署。
-- 加新页面：`build.py` 的 `PAGES` 加一行（`名字: (模板, url 路径)`），补 `i18n.json` 两种语言的 `PAGES` 表，写模板。链接、canonical、hreflang、语言开关会自动按页算好。
+- CSS 手写源码在 `site/styles/<页面>/`，构建时按文件名顺序拼成 `assets/css/<页面>.css`。加一块样式就是新建一个带编号前缀的文件，不用改 Python；`site/assets/css/` 里只剩生成的 `fonts.css`。
+- 加新页面：`sitegen/config.py` 的 `PAGES` 加一行（`名字: (模板, url 路径)`），补 `i18n.json` 两种语言的 `PAGES` 表，写模板。链接、canonical、hreflang、语言开关会自动按页算好。
 - 唯一的 JS 是首访语言判断（`site/partials/head.html`）：根路径上浏览器语言没有中文就跳英文页，用过一次语言开关后写 `localStorage['npex-lang']` 不再自动跳。**这个判断一辈子只做一次**，不要改成每次访问都跳，那会把别人分享的链接顶掉。
 
 ## 字体
 
-中文正文用自托管的文楷 GB 子集，**只含站点当前实际渲染的字**。引入了子集里没有的字，构建会报错并列出缺哪几个（护栏是 `build.py` 的 `check_font_coverage()`，别删——缺字不报错就会静默回退系统字体，同一句话里两套字形）。重新生成：
+中文正文用自托管的文楷 GB 子集，**只含站点当前实际渲染的字**。引入了子集里没有的字，构建会报错并列出缺哪几个（护栏是 `sitegen/fonts.py` 的 `check_font_coverage()`，别删——缺字不报错就会静默回退系统字体，同一句话里两套字形）。重新生成：
 
 ```bash
 pip install fonttools brotli      # 只有这个脚本需要，构建本身不需要
 python3 scripts/subset_fonts.py
 ```
 
-生成物（`fonts.css`、两个 woff2、`coverage.txt`）**都要提交**——CI 不装 fonttools，漏提交线上就整站回退系统字体。选型理由见 `subset_fonts.py` 顶部注释，回退栈的顺序（**简体中文字体必须排在任何日文字体之前**）见 `base.css` 里 `--font-sans` 的注释，两处都是修过的 bug，别推翻。
+生成物（`fonts.css`、两个 woff2、`coverage.txt`）**都要提交**——CI 不装 fonttools，漏提交线上就整站回退系统字体。选型理由见 `subset_fonts.py` 顶部注释，回退栈的顺序（**简体中文字体必须排在任何日文字体之前**）见 `site/styles/base/10-tokens.css` 里 `--font-sans` 的注释，两处都是修过的 bug，别推翻。
 
 ## 目录结构
 
 ```
 content/i18n.json             界面文案 + 每页 title / description（zh / en）
-content/home.json             简介页正文（中英同字段）
+content/home/*.json           简介页正文，一个区块一个文件（中英同字段）
 content/faq.json              常见问题正文（中英同字段）
 content/releases/*.md         更新记录，一条一个文件
-scripts/build.py              渲染到 site/_dist/
+scripts/build.py              入口壳，命令仍是 python3 scripts/build.py
+scripts/sitegen/              构建实现：config / urls / text / content / releases /
+                              workshop / templates / styles / fonts / page / cli
+scripts/sitegen/render/       band、log、faq，以及 home/（hero / manifest /
+                              victory / reference，对应模板的四段）
+scripts/verify_build.py       回归对照：与某个 commit 比 _dist 是否逐字节相同
 scripts/subset_fonts.py       切中文字体子集（加了新字才需要跑）
 site/_templates/*.html        页面骨架
 site/partials/*.html          <!-- include: NAME.html --> 片段
+site/styles/base/*.css        设计 token + 全局 + 导航 + 页脚，按 NN- 前缀顺序拼接
+site/styles/{home,log,faq}/*.css   各页样式，同样按前缀拼接
 site/assets/css/fonts.css     @font-face，subset_fonts.py 生成，别手改
-site/assets/css/base.css      设计 token + 全局 + 导航 + 页脚
-site/assets/css/{home,log,faq}.css
 site/assets/fonts/            文楷 GB 子集 + coverage.txt，都要提交
 site/assets/img/              从 mod 本体拷来压缩的美术资源，要换图去那边取原图重压
                               兵牌图 unit-*/char-*.webp 原图是 ../nippon_expedition/ui/units/infopics/*.png
                               （120×260），LANCZOS 放大 2 倍到 240×520 再 cwebp -q 90
 ```
 
-配色 token 是从 mod 自己的美术里取样的，改之前先看 `base.css` 的注释。
+配色 token 是从 mod 自己的美术里取样的，改之前先看 `site/styles/base/10-tokens.css` 的注释。
 
 ## 可用 skill
 

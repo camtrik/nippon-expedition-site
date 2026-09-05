@@ -1,11 +1,12 @@
 # 远征尼朋 · 站点
 
-《Total War: WARHAMMER III》mod **「远征尼朋 · 玉海舰队 / Nippon Expedition · The Jade Sea Fleet」** 的公开站点，中英双语。两个页面：
+《Total War: WARHAMMER III》mod **「远征尼朋 · 玉海舰队 / Nippon Expedition · The Jade Sea Fleet」** 的公开站点，中英双语。三个页面：
 
 | | 中文 | English |
 |---|---|---|
 | 简介（与创意工坊描述同步） | <https://camtrik.github.io/nippon-expedition-site/> | [`/en/`](https://camtrik.github.io/nippon-expedition-site/en/) |
 | 更新记录 | [`/changelog/`](https://camtrik.github.io/nippon-expedition-site/changelog/) | [`/en/changelog/`](https://camtrik.github.io/nippon-expedition-site/en/changelog/) |
+| 常见问题 | [`/faq/`](https://camtrik.github.io/nippon-expedition-site/faq/) | [`/en/faq/`](https://camtrik.github.io/nippon-expedition-site/en/faq/) |
 
 首次访问根路径时，浏览器语言里没有中文的读者会被自动送到 `/en/`。用导航栏的语言开关切过一次之后就不再自动跳——这个自动判断一辈子只做一次。
 
@@ -21,11 +22,11 @@
 
 ## 改简介页
 
-简介页的正文在 `content/home.json`，**中英文写在同一个字段里**（`{"zh": "…", "en": "…"}`），这样漏译一眼就能看出来。内容对着创意工坊描述 `../nippon_expedition/steam_description_{zh,main_en}.txt` 同步即可。
+简介页的正文在 `content/home/`，一个区块一个文件，**中英文写在同一个字段里**（`{"zh": "…", "en": "…"}`），这样漏译一眼就能看出来。内容对着创意工坊描述 `../nippon_expedition/steam_description_{zh,main_en}.txt` 同步即可。
 
 专名不要现编，先查 `../nippon_expedition/_docs/translation/术语对照_*.tsv`，详见 [`AGENTS.md`](./AGENTS.md)。
 
-版式在 `site/_templates/home.html`（各区块的顺序）和 `site/assets/css/home.css`（样式）里；每个区块的 HTML 由 `scripts/build.py` 里对应的 `render_*()` 生成。
+版式在 `site/_templates/home.html`（各区块的顺序）和 `site/styles/home/`（样式，构建时按文件名拼成 `home.css`）里；每个区块的 HTML 由 `scripts/sitegen/render/home/` 下对应的 `render_*()` 生成。
 
 ## 加一条更新记录
 
@@ -61,7 +62,7 @@ front matter 字段：
 
 正文用 `<!-- lang: zh -->` / `<!-- lang: en -->` 分段，**中文块必填**。缺英文块时英文页会回落到中文正文，并显示一条「尚未翻译」提示——所以可以先发中文、之后再补翻译。正文标题请从 `###` 起（`#`/`##` 留给页面本身）。
 
-徽章、标签、导航、页脚等界面文案在 `content/i18n.json` 里改；新增 `type` 或 `tags` 取值时，记得同时补 `i18n.json` 的 `TYPE` / `TAGS` 两张表，以及 `scripts/build.py` 顶部的 `KNOWN_TYPES`。
+徽章、标签、导航、页脚等界面文案在 `content/i18n.json` 里改；新增 `type` 或 `tags` 取值时，记得同时补 `i18n.json` 的 `TYPE` / `TAGS` 两张表，以及 `scripts/sitegen/config.py` 的 `KNOWN_TYPES`。
 
 推到 `main` 后 GitHub Actions 自动构建并部署。
 
@@ -89,22 +90,23 @@ SITE_BASE_PATH=/nippon-expedition-site SITE_ORIGIN=https://camtrik.github.io pyt
 .github/workflows/pages.yml   构建 + 部署
 content/i18n.json             页面界面文案（中英）
 content/releases/*.md         更新记录，一条一个文件
-content/home.json             简介页正文（中英同字段）
-scripts/build.py              渲染 site/_dist/
+content/home/*.json           简介页正文，一个区块一个文件（中英同字段）
+content/faq.json              常见问题正文（中英同字段）
+scripts/build.py              入口，渲染 site/_dist/
+scripts/sitegen/              构建实现（内容加载、三个页面的渲染、模板与样式合并）
+scripts/verify_build.py       回归对照：与某个 commit 比产物是否逐字节相同
 scripts/subset_fonts.py       把 LXGW WenKai GB 裁到站点用到的字
-site/_templates/home.html     简介页骨架
-site/_templates/log.html      更新记录页骨架
+site/_templates/*.html        三个页面的骨架
 site/partials/*.html          <!-- include: NAME.html --> 片段
-site/assets/css/base.css      设计 token、导航、页脚
-site/assets/css/home.css      简介页
-site/assets/css/log.css       更新记录页
+site/styles/base/*.css        设计 token、导航、页脚（按 NN- 前缀拼成 base.css）
+site/styles/{home,log,faq}/*.css   各页样式，同样按前缀拼接
 site/assets/img/              取自 mod 本体的美术资源
 site/assets/fonts/            字体子集（由 subset_fonts.py 生成）
 ```
 
 产物 `site/_dist/` 不入库，由 Actions 现场构建。
 
-视觉体系与构建做法沿用同作者的 investment 站点，强调色换成玉海舰队的碧玉绿 `#1F8A70` + 金 `#D4AF37`。简介页在此之上多了一套「夜色」token（`--deep` / `--foam` / `--ember`），取色自 mod 自己的战役读取图与阵营徽记，详见 `base.css` 里的注释。
+视觉体系与构建做法沿用同作者的 investment 站点，强调色换成玉海舰队的碧玉绿 `#1F8A70` + 金 `#D4AF37`。简介页在此之上多了一套「夜色」token（`--deep` / `--foam` / `--ember`），取色自 mod 自己的战役读取图与阵营徽记，详见 `site/styles/base/10-tokens.css` 里的注释。
 
 ### 正文写法的一个坑
 
