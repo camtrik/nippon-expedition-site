@@ -10,8 +10,6 @@
   white-space: nowrap;
   border: 0;
 }
-.num { font-variant-numeric: tabular-nums; }
-.muted { color: var(--slate); }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {

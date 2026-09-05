@@ -43,16 +43,7 @@
   color: var(--granite);
 }
 .prose-list li:first-child { border-top: 0; }
-.prose-list li::before {
-  content: "";
-  position: absolute;
-  left: 2px;
-  top: 20px;
-  width: 5px;
-  height: 5px;
-  background: var(--signal);
-  transform: rotate(45deg);
-}
+.prose-list li { --mark-x: 2px; --mark-y: 20px; --mark-size: 5px; --mark-ink: var(--signal); }
 .prose-list strong { color: var(--ink); font-weight: 700; }
 .prose-list code {
   font-family: var(--font-mono);

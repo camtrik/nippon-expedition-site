@@ -12,17 +12,9 @@
   grid-column: 1 / span 3;
   align-self: start;
   position: sticky;
-  top: 104px;
+  top: var(--rail-top);
 }
-.faq-band__title {
-  /* Same size, weight and rail position as the landing page's .band__title,
-     so a category heading here reads exactly like 简介 does over there. */
-  font-size: clamp(24px, 2.4vw, 30px);
-  font-weight: 500;
-  line-height: 1.15;
-  letter-spacing: var(--tracking-tight);
-  color: var(--ink);
-}
+.faq-band__title { color: var(--ink); }
 .faq-band__count {
   margin: var(--s-2) 0 0;
   font-size: 13px;
@@ -97,16 +89,14 @@
   white-space: nowrap;
   font-variant-numeric: tabular-nums;
 }
-.faq-flag--updated { background: var(--gold-soft); color: #7A5C0B; }
-.faq-flag--fixed   { background: #e4f3ec; color: #146A3B; }
+.faq-flag--updated { background: var(--gold-soft); color: var(--gold-ink); }
+.faq-flag--fixed   { background: var(--jade-soft); color: var(--up); }
 
 .faq-a {
-  /* Matches .release-body: LXGW WenKai GB needs the extra point and the
-     looser leading to read at the same weight as the Latin face. */
   margin-top: var(--s-2);
   max-width: var(--faq-measure);
-  font-size: 16.5px;
-  line-height: 1.8;
+  font-size: var(--prose-size);
+  line-height: var(--prose-leading);
   color: var(--granite);
   overflow-wrap: break-word;
 }

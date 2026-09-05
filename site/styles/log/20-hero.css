@@ -20,30 +20,5 @@
 }
 
 /* Latest-version stamp — same shape as investment's .home-section__stamp */
-.log-stamp {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 8px 18px;
-  background: var(--canvas-lifted);
-  border-radius: var(--r-pill);
-  font-size: 13px;
-  color: var(--slate);
-  box-shadow: var(--shadow-1);
-  letter-spacing: 0;
-}
-.log-stamp strong {
-  font-weight: 500;
-  color: var(--ink);
-  font-variant-numeric: tabular-nums;
-}
-.log-stamp::before {
-  content: "";
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--signal-light);
-  flex-shrink: 0;
-}
 
 

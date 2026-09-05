@@ -2,12 +2,8 @@
    Release body — rendered markdown
    ============================================================ */
 .release-body {
-  /* Up from 15.5/1.7, which was set against PingFang. LXGW WenKai GB draws a
-     smaller, lighter face inside the same em — about 40% less ink at matched
-     pixel size — so it needs the extra point to read at the same weight, and
-     the looser leading to give the calligraphic strokes room. */
-  font-size: 16.5px;
-  line-height: 1.8;
+  font-size: var(--prose-size);
+  line-height: var(--prose-leading);
   color: var(--ink);
   overflow-wrap: break-word;
 }

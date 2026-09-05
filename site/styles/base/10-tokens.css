@@ -21,6 +21,7 @@
   --clay: #146A5A;            /* deep jade — hover / pressed accents */
   --gold: #D4AF37;            /* faction secondary — release badge, rail cap */
   --gold-soft: #F5EBCB;       /* gold at card-tint strength */
+  --jade-soft: #E4F3EC;       /* jade at the same tint strength */
   --gold-ink: #7A5C0B;        /* gold dark enough to set text on cream (5.9:1);
                                  --gold itself is 2.0:1 and is fill-only */
   --link: #1F6F8A;
@@ -98,10 +99,19 @@
   --tracking-tightest: -0.03em;
   --tracking-eyebrow: 0.04em;
 
+  /* Body prose on the two long-read pages. Up from 15.5/1.7, which was set
+     against PingFang: LXGW WenKai GB draws a smaller, lighter face inside the
+     same em — about 40% less ink at matched pixel size — so it needs the extra
+     point to read at the same weight, and the looser leading to give the
+     calligraphic strokes room. */
+  --prose-size: 16.5px;
+  --prose-leading: 1.8;
+
   /* ---- Layout ---- */
   --content-max: 1280px;
   --gutter: 48px;
   --gutter-mobile: 24px;
   --margin-container: 24px;   /* horizontal page padding in design */
+  --rail-top: 104px;          /* sticky offset of a left-rail heading */
 }
 

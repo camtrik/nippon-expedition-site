@@ -22,7 +22,7 @@ def render_faq_stamp(strings: dict, version: str) -> str:
     if not version:
         return ""
     label = strings["FAQ_CURRENT"].format(version=version)
-    return f'<p class="faq-stamp">{html.escape(label)}</p>'
+    return f'<p class="stamp faq-stamp">{html.escape(label)}</p>'
 
 
 def render_faq_bands(faq: dict, lang: str, strings: dict) -> str:
@@ -60,7 +60,7 @@ def render_faq_bands(faq: dict, lang: str, strings: dict) -> str:
         blocks += (
             f'      <section class="faq-band" id="{html.escape(section["slug"])}">\n'
             f'        <div class="faq-band__rail">\n'
-            f'          <h2 class="faq-band__title">{esc(section["title"], lang)}</h2>\n'
+            f'          <h2 class="faq-band__title rail-title">{esc(section["title"], lang)}</h2>\n'
             f'          <p class="faq-band__count">'
             f'{html.escape(faq_count(strings, len(section["items"])))}</p>\n'
             f'        </div>\n'

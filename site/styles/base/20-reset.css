@@ -39,7 +39,6 @@ p:last-child { margin-bottom: 0; }
 
 a { color: var(--ink); text-decoration: none; text-underline-offset: 3px; }
 a:hover { text-decoration: underline; }
-a.link-blue { color: var(--link); }
 
 img, svg { max-width: 100%; display: block; }
 

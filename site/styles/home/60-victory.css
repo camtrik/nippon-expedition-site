@@ -84,16 +84,7 @@
   line-height: 1.6;
   color: var(--foam);
 }
-.goals li::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 17px;
-  width: 6px;
-  height: 6px;
-  background: var(--jade-lift);
-  transform: rotate(45deg);
-}
+.goals li { --mark-x: 0; --mark-y: 17px; --mark-size: 6px; --mark-ink: var(--jade-lift); }
 
 /* The branch itself, drawn in borders: stem, label, stem, split. */
 .fork__split {

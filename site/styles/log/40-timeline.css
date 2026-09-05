@@ -76,7 +76,7 @@ a.release__version--named:hover { border-color: currentColor; }
 }
 .type-badge--release { background: var(--gold-soft); color: var(--gold-ink); }
 .type-badge--hotfix  { background: #fde8e4; color: #b91c1c; }
-.type-badge--balance { background: #e4f3ec; color: #146A3B; }
+.type-badge--balance { background: var(--jade-soft); color: var(--up); }
 .type-badge--content { background: #e6f1f5; color: #1F6F8A; }
 
 /* Mod tag pill — main / stronger-ai */

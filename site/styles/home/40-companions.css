@@ -52,16 +52,7 @@
   color: var(--granite);
 }
 .bond__notes li + li { margin-top: 4px; }
-.bond__notes li::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 10px;
-  width: 4px;
-  height: 4px;
-  background: var(--signal);
-  transform: rotate(45deg);
-}
+.bond__notes li { --mark-x: 0; --mark-y: 10px; --mark-size: 4px; --mark-ink: var(--signal); }
 .bond__notes strong { color: var(--ink); font-weight: 700; }
 
 .companions {

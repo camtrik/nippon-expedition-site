@@ -4,6 +4,7 @@ from __future__ import annotations
 import html
 
 from ...text import esc, inline_md
+from ..band import section_close, section_open
 
 
 def goals_list(goals, lang: str) -> str:
@@ -29,10 +30,7 @@ def render_victory(home: dict, lang: str) -> str:
 {goals_list(route['goals'], lang)}        </ul>
       </article>
 """
-    return f"""<section class="band band--victory" id="victory">
-  <div class="band__inner">
-    <h2 class="band__title">{esc(v['title'], lang)}</h2>
-    <div class="fork">
+    return section_open("victory", lang, v["title"]) + f"""    <div class="fork">
       <article class="trunk">
         <p class="trunk__kind">{esc(s['kind'], lang)}</p>
         <h3 class="trunk__name">{esc(s['name'], lang)}</h3>
@@ -44,6 +42,4 @@ def render_victory(home: dict, lang: str) -> str:
       <div class="routes">
 {routes}      </div>
     </div>
-  </div>
-</section>
-"""
+""" + section_close()

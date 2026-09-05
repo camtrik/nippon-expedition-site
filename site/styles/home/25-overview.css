@@ -56,14 +56,5 @@
   line-height: 1.7;
   color: var(--granite);
 }
-.overview__mod-points li::before {
-  content: "";
-  position: absolute;
-  left: 2px;
-  top: 14px;
-  width: 5px;
-  height: 5px;
-  background: var(--signal);
-  transform: rotate(45deg);
-}
+.overview__mod-points li { --mark-x: 2px; --mark-y: 14px; --mark-size: 5px; --mark-ink: var(--signal); }
 

@@ -17,11 +17,7 @@
   grid-row: 1 / span 99;
   align-self: start;
   position: sticky;
-  top: 104px;
-  font-size: clamp(24px, 2.4vw, 30px);
-  font-weight: 500;
-  line-height: 1.15;
-  letter-spacing: var(--tracking-tight);
+  top: var(--rail-top);
 }
 .band__lede {
   margin: 0 0 var(--s-4);

@@ -21,7 +21,6 @@
   outline-offset: 3px;
   border-radius: 2px;
 }
-.plate--night :focus-visible,
 .hero :focus-visible,
 .band--victory :focus-visible { outline-color: var(--ember); }
 

@@ -25,26 +25,8 @@
 /* Same shape as the changelog's .log-stamp — the two text pages
    should read as siblings. */
 .faq-stamp {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
   margin: var(--s-4) 0 0;
-  padding: 8px 18px;
-  background: var(--canvas-lifted);
-  border-radius: var(--r-pill);
-  font-size: 13px;
-  color: var(--slate);
-  box-shadow: var(--shadow-1);
-  letter-spacing: 0;
   white-space: nowrap;
   font-variant-numeric: tabular-nums;
-}
-.faq-stamp::before {
-  content: "";
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--signal-light);
-  flex-shrink: 0;
 }
 

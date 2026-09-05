@@ -143,6 +143,10 @@ def main() -> int:
         subprocess.run(["git", "worktree", "remove", "--force", str(worktree)],
                        cwd=ROOT, check=False, capture_output=True)
         shutil.rmtree(tmp, ignore_errors=True)
+        # The last pass leaves site/_dist built for a subpath, whose in-page
+        # links all carry the /nippon-expedition-site prefix and 404 under a
+        # plain local server. Put a normal build back so a preview still works.
+        build(ROOT, {})
 
     if problems:
         print()
