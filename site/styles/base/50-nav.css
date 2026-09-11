@@ -66,7 +66,16 @@
   color: var(--ink);
   text-decoration: none;
 }
-.site-nav__steam {
+/* Steam and Discord sit closer to each other than to the page links: they are
+   one pair — where to get the mod, where to talk about it — not two more
+   destinations in the row. */
+.site-nav__social {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+.site-nav__icon {
   display: flex;
   align-items: center;
   flex-shrink: 0;
@@ -116,9 +125,17 @@
   .site-nav__logo-text { display: none; }
   .site-nav__pill { padding: 12px 14px; }
 }
+/* Below this the pill has no room for a fifth control: at 320px the Steam mark
+   was pushed off its right edge, and English's longer wordmark keeps the row
+   wide until ~455px. Discord is the one that goes — Steam is what a first-time
+   reader is here to press, and the footer carries Discord at every width. */
+@media (max-width: 480px) {
+  .site-nav__social .site-nav__icon:first-child { display: none; }
+}
 /* 320px (an SE held in portrait) is the narrowest the pill has to survive. */
 @media (max-width: 360px) {
   .site-nav__links { gap: 10px; }
+  .site-nav__social { gap: 9px; }
   .site-nav__links a { font-size: 13px; }
   .lang-switch__item { padding: 5px 9px; }
 }

@@ -9,6 +9,7 @@
     "NAV_LOG": "更新记录",
     "NAV_FAQ": "常见问题",
     "NAV_WORKSHOP": "创意工坊",
+    "NAV_DISCORD": "Discord 社区",
     "SKIP_TO_CONTENT": "跳到正文",
     "WORKSHOP_URL": "https://steamcommunity.com/workshop/filedetails/?id=3790908242",
     "PAGES": {
@@ -67,7 +68,8 @@
       "nrs-compat": "NRS 兼容包",
       "cathay-compat": "震旦兼容包",
       "yinyin-compat": "胤隐兼容包",
-      "wuh-compat": "兵戈天下兼容包"
+      "wuh-compat": "兵戈天下兼容包",
+      "techtree-compat": "科技树兼容包"
     }
   },
   "en": {
@@ -80,6 +82,7 @@
     "NAV_LOG": "Changelog",
     "NAV_FAQ": "FAQ",
     "NAV_WORKSHOP": "Workshop",
+    "NAV_DISCORD": "Discord community",
     "SKIP_TO_CONTENT": "Skip to content",
     "WORKSHOP_URL": "https://steamcommunity.com/workshop/filedetails/?id=3790908523",
     "PAGES": {
@@ -138,7 +141,8 @@
       "nrs-compat": "NRS compat",
       "cathay-compat": "Cathay compat",
       "yinyin-compat": "Yin-Yin compat",
-      "wuh-compat": "War under Heaven compat"
+      "wuh-compat": "War under Heaven compat",
+      "techtree-compat": "Tech tree compat"
     }
   }
 }

@@ -2,6 +2,28 @@
   "_comment": "常见问题正文，原料是 ../nippon_expedition/faq.md（私有仓库，来源为创意工坊评论区）。中英写在同一字段里，改一边就改另一边。`status` + `version` 会渲染成问题右侧的小徽章（updated / fixed），所以答案正文里不要再写一遍「在 v1.0.1 中已更新」。专名一律查 ../nippon_expedition/_docs/translation/术语对照_*.tsv，不要现编。",
   "sections": [
     {
+      "slug": "troubleshooting",
+      "title": {
+        "zh": "疑难",
+        "en": "Troubleshooting"
+      },
+      "items": [
+        {
+          "slug": "crash-on-occupy",
+          "question": {
+            "zh": "占领城市之后闪退，怎么办？",
+            "en": "The game crashes after I occupy a settlement. What can I do?"
+          },
+          "answer": [
+            {
+              "zh": "先在 MCT 里关掉**「显示同伴任务事件卡」**。同伴任务照常发放，目标、奖励与任务面板都不受影响，只是不再弹整屏的事件卡。",
+              "en": "Uncheck **Show companion quest event cards** in MCT. Companion quests are still issued as usual — objectives, rewards and the quest panel are unaffected; only the full-screen event cards stop appearing."
+            }
+          ]
+        }
+      ]
+    },
+    {
       "slug": "gameplay",
       "title": {
         "zh": "玩法",

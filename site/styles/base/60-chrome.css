@@ -49,7 +49,8 @@
 .page--home .site-nav:not(.site-nav--landed) .site-nav__logo { color: var(--foam); }
 .page--home .site-nav:not(.site-nav--landed) .site-nav__links a { color: var(--foam-dim); }
 .page--home .site-nav:not(.site-nav--landed) .site-nav__links a:hover { color: var(--foam); }
-.page--home .site-nav:not(.site-nav--landed) .site-nav__steam { color: var(--foam-dim); }
+.page--home .site-nav:not(.site-nav--landed) .site-nav__icon { color: var(--foam-dim); }
+.page--home .site-nav:not(.site-nav--landed) .site-nav__icon:hover { color: var(--foam); }
 .page--home .site-nav:not(.site-nav--landed) .lang-switch { border-color: rgba(231, 237, 244, 0.3); }
 .page--home .site-nav:not(.site-nav--landed) .lang-switch__item { color: var(--foam-dim); }
 .page--home .site-nav:not(.site-nav--landed) .lang-switch__item--active {

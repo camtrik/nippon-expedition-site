@@ -10,6 +10,7 @@ tags: nrs-compat
 
 这个 mod 只有同时订阅了 **[Nippon, Land of the Rising Sun](https://steamcommunity.com/sharedfiles/filedetails/?id=3770643554)** 的玩家才需要装。
 
+- 2026-09-11 **NRS 的尼朋兵种现在吃得到领主与英雄的加成了**：武士大将、沈长风、立花直虎与纱代那些按兵种类别发的技能（武士部队／铁炮部队／灵兽），现在把 NRS 那 24 支兵一并算进去。
 - 2026-08-30 **NRS 的尼朋兵种现在可以在岸上招募了**：足轻、武士、骑马武士、武僧、忍者、符咒巨人、火炮等，拥有独特的建筑树。
     - 这些兵种可以享受震旦领主技能与科技的加成。
     - 玉海舰队与岛上的尼朋派系开局即可招募；其他震旦派系开局会收到任务，攻占对应定居点后解锁。
@@ -23,6 +24,7 @@ tags: nrs-compat
 
 You only need this mod if you are also subscribed to **[Nippon, Land of the Rising Sun](https://steamcommunity.com/sharedfiles/filedetails/?id=3770643554)**.
 
+- 2026-09-11 **NRS's Nippon units now benefit from lord and hero skills**: the skills of Samurai Taisho, Shen Changfeng, Tachibana Naotora and Sayo that buff a unit class — Samurai units, Teppo units, Divine Beasts — now count all 24 of NRS's units in.
 - 2026-08-30 **NRS's Nippon units can now be recruited on shore**: Ashigaru, samurai, mounted samurai, warrior monks, ninjas, fuju giants, artillery and more, with a dedicated building tree.
     - These units benefit from Cathay lord skills and technologies.
     - The Jade Sea Fleet and the Nippon factions on the island can recruit them from the start; other Cathay factions receive a mission at campaign start and unlock them by capturing the corresponding settlement.

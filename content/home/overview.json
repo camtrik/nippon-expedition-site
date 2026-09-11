@@ -10,8 +10,8 @@
         "en": "A new playable Grand Cathay faction"
       },
       {
-        "zh": "1 名新传奇领主，3 名新传奇英雄，1 种通用领主，1 种通用英雄，10 个新兵种，1 种新法系",
-        "en": "1 Legendary Lord, 3 Legendary Heroes, 1 generic lord, 1 generic hero, 10 new units, 1 new spell lore"
+        "zh": "1 名新传奇领主，3 名新传奇英雄，2 种通用领主，1 种通用英雄，10 个新兵种，1 种新法系",
+        "en": "1 Legendary Lord, 3 Legendary Heroes, 2 generic lords, 1 generic hero, 10 new units, 1 new spell lore"
       },
       {
         "zh": "自动搬家一些原版传奇领主到尼朋以及尼朋周边区域（可在 MCT 中关闭）",
@@ -113,7 +113,7 @@
         }
       },
       {
-        "zh": "**需要 MIXER 和 IEE 扩展**：[Immortal Empires Expanded](https://steamcommunity.com/sharedfiles/filedetails/?id=3007996493) 与 [Mixu's Unlocker](https://steamcommunity.com/sharedfiles/filedetails/?id=2859968660)；可选 [Mod Configuration Tool](https://steamcommunity.com/sharedfiles/filedetails/?id=2927955021)",
+        "zh": "**需要 MIXER 和 IEE 扩展**：[Immortal Empires Expanded](https://steamcommunity.com/sharedfiles/filedetails/?id=3007996493) 与 [Mixu's Unlocker](https://steamcommunity.com/sharedfiles/filedetails/?id=2859968660)；可选 [Mod Configuration Tool](https://steamcommunity.com/sharedfiles/filedetails/?id=2927955021)。中文玩家还需订阅 [IEE 汉化](https://steamcommunity.com/sharedfiles/filedetails/?id=3008451029)",
         "en": "**Requires MIXER and IEE**: [Immortal Empires Expanded](https://steamcommunity.com/sharedfiles/filedetails/?id=3007996493) and [Mixu's Unlocker](https://steamcommunity.com/sharedfiles/filedetails/?id=2859968660); optional [Mod Configuration Tool](https://steamcommunity.com/sharedfiles/filedetails/?id=2927955021)"
       }
     ]
