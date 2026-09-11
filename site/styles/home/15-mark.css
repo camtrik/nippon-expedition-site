@@ -1,12 +1,14 @@
 /* ============================================================
    List mark — the rotated square that opens a bullet.
 
-   Four lists wear it: the overview's per-mod points, the bond
-   notes, the victory goals and the reference prose lists. They
-   differ only in size, offset and ink, so those are variables
-   set beside each list; the shape lives here once.
+   Five lists wear it: the overview's per-mod points, the
+   admiral's terms, the bond notes, the victory goals and the
+   reference prose lists. They differ only in size, offset and
+   ink, so those are variables set beside each list; the shape
+   lives here once.
    ============================================================ */
 .overview__mod-points li::before,
+.lord__points li::before,
 .bond__notes li::before,
 .goals li::before,
 .prose-list li::before {

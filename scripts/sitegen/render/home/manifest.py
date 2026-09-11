@@ -54,33 +54,46 @@ def lord_card(person: dict, lang: str, base: str, captioned: bool) -> str:
 
 
 def render_lords(home: dict, lang: str, base: str) -> str:
-    """A roster read as three bands, with the cards alternating sides so the
+    """A roster read as four bands, with the cards alternating sides so the
     section has a rhythm instead of one long left rail: the admiral, then the
-    three companions, then the two types you recruit as many of as you can pay
-    for — those two share a band because they are the same kind of entry and
-    two more full-height rows would have made the section twice as tall.
+    three companions, then the two Nippon types you recruit as many of as you
+    can pay for — those two share a band because they are the same kind of
+    entry and two more full-height rows would have made the section twice as
+    tall — and last the Fleet Admiral, whose three variants need three cards of
+    their own.
 
-    A band with one card names its character in the heading; a band with several
-    labels each card instead, because a shared heading cannot say which face is
-    which. `rank` colours the eyebrow — one-of-a-kind versus recruitable is the
-    section's only real split, and every eyebrow being jade hid it."""
+    An item names itself in the heading when it has a `name`; several cards in
+    one band are captioned, because a shared heading cannot say which face is
+    which. An item says its piece either as a paragraph (`body`) or as points
+    (`points`) — the admiral is a list of terms rather than a sentence about a
+    character. `rank` colours the eyebrow — one-of-a-kind versus recruitable is
+    the section's only real split, and every eyebrow being jade hid it."""
     d = home["lords"]
     bands = ""
     for row in d["rows"]:
         cards, entries = "", ""
         for i in row["items"]:
             people = i.get("people")
-            heading = ("" if people else
-                       f'          <h3 class="lord__name">{esc(i["name"], lang)}</h3>\n')
+            heading = (
+                f'          <h3 class="lord__name">{esc(i["name"], lang)}</h3>\n'
+                if i.get("name") else ""
+            )
             if people:
                 cards += "".join(lord_card(p, lang, base, captioned=True) for p in people)
             else:
                 cards += lord_card(i, lang, base, captioned=False)
+            if i.get("points"):
+                points = "".join(
+                    f'            <li>{inline_md(pt, lang)}</li>\n' for pt in i["points"]
+                )
+                copy = f'          <ul class="lord__points">\n{points}          </ul>\n'
+            else:
+                copy = f'          <p class="lord__body">{inline_md(i["body"], lang)}</p>\n'
             entries += (
                 f'        <div class="lord__entry lord--{i["rank"]}">\n'
                 f'          <p class="lord__kind">{esc(i["kind"], lang)}</p>\n'
                 f'{heading}'
-                f'          <p class="lord__body">{inline_md(i["body"], lang)}</p>\n'
+                f'{copy}'
                 f'        </div>\n'
             )
         bands += (

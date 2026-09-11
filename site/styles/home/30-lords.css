@@ -82,4 +82,23 @@
   line-height: 1.7;
   color: var(--granite);
 }
+/* The admiral is a set of terms — a cap that grows, a building tree, three
+   variants — not a sentence about a character, so his band reads as points. */
+.lord__points {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-width: 62ch;
+}
+.lord__points li {
+  position: relative;
+  padding: 4px 0 4px var(--s-3);
+  font-size: 15.5px;
+  line-height: 1.7;
+  color: var(--granite);
+  --mark-x: 2px;
+  --mark-y: 14px;
+  --mark-size: 5px;
+  --mark-ink: var(--slate);
+}
 

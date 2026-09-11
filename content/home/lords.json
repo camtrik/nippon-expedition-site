@@ -87,22 +87,6 @@
           },
           {
             "rank": "generic",
-            "slug": "fleet-admiral",
-            "kind": {
-              "zh": "通用领主",
-              "en": "Generic lord"
-            },
-            "name": {
-              "zh": "水师提督",
-              "en": "Fleet Admiral"
-            },
-            "body": {
-              "zh": "震旦水师武将，持长枪的近战统帅，招出即随身带一艘提督舰。每控制一座主要城市港口解锁一位，可无限招募；三种变体各有天生特性与旗舰配色。",
-              "en": "A Cathayan naval commander with a spear, arriving with his own Admiral's Ship. One unlocked per major city port you hold, with no cap; three variants with their own innate traits and ship liveries."
-            }
-          },
-          {
-            "rank": "generic",
             "slug": "miko",
             "kind": {
               "zh": "通用英雄",
@@ -116,6 +100,63 @@
               "zh": "侍奉尼朋诸神的神职之女。可使用全新的巫女系法术。",
               "en": "A shrine maiden serving Nippon's gods, with an entirely new Miko spell lore."
             }
+          }
+        ]
+      },
+      {
+        "side": "right",
+        "items": [
+          {
+            "rank": "generic",
+            "kind": {
+              "zh": "通用领主",
+              "en": "Generic lord"
+            },
+            "name": {
+              "zh": "水师提督",
+              "en": "Fleet Admiral"
+            },
+            "people": [
+              {
+                "slug": "admiral-01",
+                "name": {
+                  "zh": "先登",
+                  "en": "First Aboard"
+                }
+              },
+              {
+                "slug": "admiral-02",
+                "name": {
+                  "zh": "炮令",
+                  "en": "Order to Fire"
+                }
+              },
+              {
+                "slug": "admiral-03",
+                "name": {
+                  "zh": "驭潮",
+                  "en": "Tide-Reader"
+                }
+              }
+            ],
+            "points": [
+              {
+                "zh": "震旦水师武将，持长枪的近战统帅，招出即随身带一艘提督舰。",
+                "en": "A Cathayan naval commander with a spear, arriving with his own Admiral's Ship."
+              },
+              {
+                "zh": "每控制一座主要城市港口，招募容量 +1。",
+                "en": "Each major city port you hold raises the recruitment cap by one."
+              },
+              {
+                "zh": "自带一条旗舰建筑树。",
+                "en": "Comes with a flagship building tree of his own."
+              },
+              {
+                "zh": "三种变体，各带一条自己的天生特性与旗舰配色。",
+                "en": "Three variants, each with an innate trait and a ship livery of its own."
+              }
+            ]
           }
         ]
       }
