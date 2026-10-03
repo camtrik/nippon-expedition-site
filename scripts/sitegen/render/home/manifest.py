@@ -59,16 +59,14 @@ def render_lords(home: dict, lang: str, base: str) -> str:
     section has a rhythm instead of one long left rail: the admiral, then the
     three companions, then the types you recruit as many of as you can pay
     for — the Samurai Taisho and the Fleet Admiral, each with three cards of
-    its own, and last the Miko. The Taisho and the Miko used to share a band;
-    once the Taisho grew three looks, four cards in a row left the copy five
-    characters wide at laptop width.
+    its own, and last the Miko with her two. The Taisho and the Miko used to
+    share a band; once they grew several looks, five cards in a row left the
+    copy a few characters wide at laptop width.
 
     An item names itself in the heading when it has a `name`; several people in
     one band are captioned, because a shared heading cannot say which face is
     which — several looks of one character are not, the heading already names
-    them all. An item says its piece either as a paragraph (`body`) or as points
-    (`points`) — the admiral is a list of terms rather than a sentence about a
-    character. `rank` colours the eyebrow — one-of-a-kind versus recruitable is
+    them all. `rank` colours the eyebrow — one-of-a-kind versus recruitable is
     the section's only real split, and every eyebrow being jade hid it."""
     d = home["lords"]
     bands = ""
@@ -88,18 +86,11 @@ def render_lords(home: dict, lang: str, base: str) -> str:
                 )
             else:
                 cards += lord_card(i, lang, base, captioned=False)
-            if i.get("points"):
-                points = "".join(
-                    f'            <li>{inline_md(pt, lang)}</li>\n' for pt in i["points"]
-                )
-                copy = f'          <ul class="lord__points">\n{points}          </ul>\n'
-            else:
-                copy = f'          <p class="lord__body">{inline_md(i["body"], lang)}</p>\n'
             entries += (
                 f'        <div class="lord__entry lord--{i["rank"]}">\n'
                 f'          <p class="lord__kind">{esc(i["kind"], lang)}</p>\n'
                 f'{heading}'
-                f'{copy}'
+                f'          <p class="lord__body">{inline_md(i["body"], lang)}</p>\n'
                 f'        </div>\n'
             )
         bands += (
