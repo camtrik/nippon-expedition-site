@@ -34,6 +34,7 @@ from __future__ import annotations
 
 import hashlib
 import html
+import importlib.util
 import json
 import shutil
 import subprocess
@@ -115,8 +116,11 @@ def fetch(file_name: str, cache: Path) -> Path:
 
 
 def main() -> None:
-    if shutil.which("pyftsubset") is None:
-        raise SystemExit("pyftsubset not found — run: pip install fonttools brotli")
+    # Run the subsetter as a module of this interpreter rather than through the
+    # `pyftsubset` launcher: on a locked-down Windows machine the launcher .exe
+    # in Scripts/ can be refused while the module itself runs fine.
+    if importlib.util.find_spec("fontTools") is None:
+        raise SystemExit("fonttools not found — run: pip install fonttools brotli")
 
     chars = collect_chars()
     print(f"[fonts] {len(chars)} non-ASCII characters in content + templates")
@@ -136,7 +140,7 @@ def main() -> None:
             raw = Path(tmp) / f"{stem}.woff2"
             subprocess.run(
                 [
-                    "pyftsubset", str(src),
+                    sys.executable, "-m", "fontTools.subset", str(src),
                     f"--text-file={char_file}",
                     "--flavor=woff2",
                     "--layout-features=*",

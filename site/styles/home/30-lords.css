@@ -64,7 +64,7 @@
 .lord--cards-left .lord__entries { grid-area: 1 / 2; }
 .lord--cards-right .lord__cast { grid-area: 1 / 2; }
 .lord--cards-right .lord__entries { grid-area: 1 / 1; }
-/* Two entries share the third band; they read as one column of copy. */
+/* A band may hold more than one entry; they read as one column of copy. */
 .lord__entries { display: grid; gap: var(--s-4); }
 /* Rank is the section's only real split — one of a kind, or as many as you can
    pay for — so the eyebrow carries it instead of all of them reading as jade. */

@@ -37,12 +37,13 @@ def render_overview(home: dict, lang: str) -> str:
             f'    <ul class="overview__list">\n{"".join(rows)}    </ul>\n' + section_close())
 
 
-def lord_card(person: dict, lang: str, base: str, captioned: bool) -> str:
+def lord_card(person: dict, lang: str, base: str, captioned: bool, name: dict | None = None) -> str:
     """One recruitment card. A lone card sits directly above its own <h3>, so
     captioning it would print the name twice — it takes the name as alt text
     instead. In the trio the captions are the name line, so alt is empty and
-    the caption does the naming."""
-    name = esc(person["name"], lang)
+    the caption does the naming. `name` stands in for a card with no name of
+    its own: one of several looks of the same character."""
+    name = esc(person.get("name") or name, lang)
     caption = f'\n            <span class="cast__name">{name}</span>' if captioned else ""
     return (
         f'          <li class="cast">\n'
@@ -54,17 +55,18 @@ def lord_card(person: dict, lang: str, base: str, captioned: bool) -> str:
 
 
 def render_lords(home: dict, lang: str, base: str) -> str:
-    """A roster read as four bands, with the cards alternating sides so the
+    """A roster read as five bands, with the cards alternating sides so the
     section has a rhythm instead of one long left rail: the admiral, then the
-    three companions, then the two Nippon types you recruit as many of as you
-    can pay for — those two share a band because they are the same kind of
-    entry and two more full-height rows would have made the section twice as
-    tall — and last the Fleet Admiral, whose three variants need three cards of
-    their own.
+    three companions, then the types you recruit as many of as you can pay
+    for — the Samurai Taisho and the Fleet Admiral, each with three cards of
+    its own, and last the Miko. The Taisho and the Miko used to share a band;
+    once the Taisho grew three looks, four cards in a row left the copy five
+    characters wide at laptop width.
 
-    An item names itself in the heading when it has a `name`; several cards in
+    An item names itself in the heading when it has a `name`; several people in
     one band are captioned, because a shared heading cannot say which face is
-    which. An item says its piece either as a paragraph (`body`) or as points
+    which — several looks of one character are not, the heading already names
+    them all. An item says its piece either as a paragraph (`body`) or as points
     (`points`) — the admiral is a list of terms rather than a sentence about a
     character. `rank` colours the eyebrow — one-of-a-kind versus recruitable is
     the section's only real split, and every eyebrow being jade hid it."""
@@ -79,7 +81,11 @@ def render_lords(home: dict, lang: str, base: str) -> str:
                 if i.get("name") else ""
             )
             if people:
-                cards += "".join(lord_card(p, lang, base, captioned=True) for p in people)
+                # Looks of one character carry no names; the heading names them all.
+                cards += "".join(
+                    lord_card(p, lang, base, captioned=bool(p.get("name")), name=i.get("name"))
+                    for p in people
+                )
             else:
                 cards += lord_card(i, lang, base, captioned=False)
             if i.get("points"):

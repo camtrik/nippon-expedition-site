@@ -48,6 +48,7 @@
     "WS_CATHAY": "震旦兼容包",
     "WS_YINYIN": "胤隐兼容包",
     "WS_WUH": "兵戈天下兼容包",
+    "WS_TECHTREE": "科技树兼容包",
     "TYPE": {
       "release": "版本发布",
       "content": "内容更新",
@@ -121,6 +122,7 @@
     "WS_CATHAY": "Cathay Compatibility Patch",
     "WS_YINYIN": "Yin-Yin Compatibility Patch",
     "WS_WUH": "War under Heaven Compatibility Patch",
+    "WS_TECHTREE": "Tech Tree Compatibility",
     "TYPE": {
       "release": "Release",
       "content": "Content",

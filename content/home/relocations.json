@@ -25,7 +25,7 @@
           "en": "Grimgor Ironhide"
         },
         "dest": {
-          "zh": "灵道大社（尼朋）",
+          "zh": "大社（尼朋）",
           "en": "The Great Shrine (Nippon)"
         }
       },
@@ -55,8 +55,8 @@
           "en": "N'Kari"
         },
         "dest": {
-          "zh": "月落之塔（艾利提斯失落群岛）",
-          "en": "Tower of the Setting Moon (Lost Isles of Elithis)"
+          "zh": "星沉之塔（艾利提斯失落群岛）",
+          "en": "Tower of the Fallen Stars (Lost Isles of Elithis)"
         }
       },
       {
@@ -75,7 +75,7 @@
           "en": "Rakarth"
         },
         "dest": {
-          "zh": "天境（百渡）",
+          "zh": "天境（佰府）",
           "en": "Haneuri (Hundred Counties)"
         }
       },
@@ -86,7 +86,7 @@
         },
         "dest": {
           "zh": "立天险峰（黄陆）",
-          "en": "Mount Haneulja (Noleu Highlands)"
+          "en": "Mount Haneulbong (Noleu Highlands)"
         }
       }
     ]

@@ -102,6 +102,17 @@
         ]
       },
       {
+        "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3799752801",
+        "name": {
+          "zh": "远征尼朋 · 科技树兼容包",
+          "en": "Nippon Expedition · Tech Tree Compatibility"
+        },
+        "note": {
+          "zh": "[WH3 Tech-tree Combination](https://steamcommunity.com/sharedfiles/filedetails/?id=3117083206) 科技树兼容子 mod。可选，两者同时使用时需要。",
+          "en": "[WH3 Tech-tree Combination](https://steamcommunity.com/sharedfiles/filedetails/?id=3117083206) tech-tree compatibility submod. Optional, needed only when running both mods together."
+        }
+      },
+      {
         "url": "https://steamcommunity.com/workshop/filedetails/?id=3790907897",
         "name": {
           "zh": "远征尼朋 · 周边 AI 强化",

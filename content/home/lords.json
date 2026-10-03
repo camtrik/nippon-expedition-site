@@ -4,7 +4,7 @@
       "zh": "新的领主和英雄",
       "en": "New Lords and Heroes"
     },
-    "_comment": "一行可以放一到多个条目，`side` 决定兵牌图落在文字的哪一侧。两个通用角色合成一行，所以第三行有两个条目。",
+    "_comment": "一行可以放一到多个条目，`side` 决定兵牌图落在文字的哪一侧，上下交替。`people` 里的人有 `name` 就在兵牌下面署名；没有 `name` 的是同一个角色的几种外观（武士大将），不署名。",
     "rows": [
       {
         "side": "left",
@@ -71,7 +71,6 @@
         "items": [
           {
             "rank": "generic",
-            "slug": "samurai-taisho",
             "kind": {
               "zh": "通用领主",
               "en": "Generic lord"
@@ -80,25 +79,20 @@
               "zh": "武士大将",
               "en": "Samurai Taisho"
             },
+            "people": [
+              {
+                "slug": "samurai-taisho-01"
+              },
+              {
+                "slug": "samurai-taisho-02"
+              },
+              {
+                "slug": "samurai-taisho-03"
+              }
+            ],
             "body": {
-              "zh": "尼朋武将，可为尼朋兵种提供独特加成。可骑乘麒麟。",
-              "en": "A Nipponese commander granting unique bonuses to Nipponese units. Mountable on a Kirin."
-            }
-          },
-          {
-            "rank": "generic",
-            "slug": "miko",
-            "kind": {
-              "zh": "通用英雄",
-              "en": "Generic hero"
-            },
-            "name": {
-              "zh": "巫女",
-              "en": "Miko"
-            },
-            "body": {
-              "zh": "侍奉尼朋诸神的神职之女。可使用全新的巫女系法术。",
-              "en": "A shrine maiden serving Nippon's gods, with an entirely new Miko spell lore."
+              "zh": "尼朋武将，可为尼朋兵种提供独特加成。可骑乘麒麟。有三种外观变体，数值与技能完全相同。",
+              "en": "A Nipponese commander granting unique bonuses to Nipponese units. Mountable on a Kirin. Comes in three looks, identical in stats and skills."
             }
           }
         ]
@@ -157,6 +151,27 @@
                 "en": "Three variants, each with an innate trait and a ship livery of its own."
               }
             ]
+          }
+        ]
+      },
+      {
+        "side": "left",
+        "items": [
+          {
+            "rank": "generic",
+            "slug": "miko",
+            "kind": {
+              "zh": "通用英雄",
+              "en": "Generic hero"
+            },
+            "name": {
+              "zh": "巫女",
+              "en": "Miko"
+            },
+            "body": {
+              "zh": "侍奉尼朋诸神的神职之女。可使用全新的巫女系法术。",
+              "en": "A shrine maiden serving Nippon's gods, with an entirely new Miko spell lore."
+            }
           }
         ]
       }

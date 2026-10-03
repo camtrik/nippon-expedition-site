@@ -23,7 +23,7 @@
           "en": "Destroy the Cult of Tsien-Tsin, the Okumoto Clan, Grimgor Ironhide and Skarbrand the Exiled"
         },
         {
-          "zh": "通过直接占领、仆从协议或军事同盟，控制高野州群岛、风暴海岸、照泽沼地、皇廷州与天之岛全境",
+          "zh": "通过直接占领、仆从协议或军事同盟，控制古弥島、嵐浜、暑沢沼、故廷州与净土全境",
           "en": "Control Koyashu Isles, Stormy Coast, Shotaku Marshes, Koteishu and Isle of Heaven by occupation, vassalage or military alliance"
         }
       ]
@@ -45,11 +45,11 @@
         },
         "goals": [
           {
-            "zh": "消灭盘踞尼朋北境的斯库里氏族，以及五名趁乱据土的域外强者",
+            "zh": "消灭盘踞尼朋北境的骷髅氏族，以及五名趁乱据土的域外强者",
             "en": "Destroy Clan Skully in northern Nippon, plus five foreign powers that seized land in the chaos"
           },
           {
-            "zh": "控制青月州、太元州、暗林、御神森、鸣海、屿北、艾利提斯失落群岛、百渡、南皋鲜、蛮荒迷域与无际环沼全境",
+            "zh": "控制厚木州、大現州、幽林、御神森、鳴海、屿北、艾利提斯失落群岛、佰府、南皋鲜、蛮荒迷域与无际环沼全境",
             "en": "Control Aotsukishu, Taigenshu, The Darkwoods, Goshinmori, Narumi, North Isle, the Lost Isles of Elithis, the Hundred Counties, Nam Khosun, the Primal Labyrinth and the Great Enveloping Swamp"
           }
         ]
@@ -70,11 +70,11 @@
         },
         "goals": [
           {
-            "zh": "消灭丛林精魂、折磨者、艾辛氏族、斯库里氏族与神佑恶党",
+            "zh": "消灭丛林精魂、折磨者、艾辛氏族、骷髅氏族与神佑恶党",
             "en": "Destroy the Spirit of the Jungle, The Tormentors, Clan Eshin, Clan Skully and The Blessed Dread"
           },
           {
-            "zh": "控制青月州、申原、玉江三角洲、黎山、大运河、巨蛇河口与奸之林全境",
+            "zh": "控制厚木州、申原、玉江三角洲、黎山、大运河、巨蛇河口与奸之林全境",
             "en": "Control Aotsukishu, the Plains of Xen, the Jade River Delta, Mount Li, The Great Canal, the Serpent Estuary and the Jungles of Chi'an"
           }
         ]

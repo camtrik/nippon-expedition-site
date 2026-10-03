@@ -10,6 +10,8 @@ tags: cathay-compat
 
 给原版震旦加机制的 mod 大多按阵营发放，名单里没有玉海舰队就用不上。这个 mod 负责把玉海舰队补进名单，之后会继续接入更多这类 mod。
 
+- 2026-08-30 接入 **[与龙同行](https://steamcommunity.com/sharedfiles/filedetails/?id=2789903784)**：玉海舰队可以招募那个 mod 开局即开放的 14 支精英部队。
+    - 由与龙同行自己的任务链解锁的部队未包含。
 - 2026-08-30 接入 **[震旦机制扩展：南皋工坊](https://steamcommunity.com/sharedfiles/filedetails/?id=3723969862)**：玉海舰队可以使用南皋工坊面板。
     - 月后花园是妙影专属，未包含。
     - 没装南皋工坊那个 mod 的话，本包会自动把入口隐藏。
@@ -20,6 +22,8 @@ tags: cathay-compat
 
 Mods that add mechanics to vanilla Grand Cathay usually grant them faction by faction, and the Jade Sea Fleet is not on those lists. This mod puts it there, and more such mods will be added over time.
 
+- 2026-08-30 Now covers **[Walking with Dragons (DEER24 Cathay)](https://steamcommunity.com/sharedfiles/filedetails/?id=2789903784)**: the Jade Sea Fleet can recruit all 14 of that mod's Regiments of Renown available from the start of the campaign.
+    - Regiments that mod unlocks through its own quest chains are not included.
 - 2026-08-30 Now covers **[Cathay Mechanism Expansion: Nan-Gau Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=3723969862)**: the Jade Sea Fleet can use the Nan-Gau Workshop panel.
     - The Garden of the Moon Empress is Miao Ying only and is not included.
     - Without the Nan-Gau Workshop mod installed, the patch hides the entry point automatically.
