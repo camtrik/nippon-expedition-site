@@ -91,15 +91,15 @@
         {
           "slug": "ai-heroes",
           "status": "updated",
-          "version": "1.0.1",
+          "version": "1.1.0",
           "question": {
-            "zh": "玩其他派系时，AI 沈长风会有那三位传奇英雄吗？合邦之后能拿到吗？",
-            "en": "When I play another faction, does the AI Shen Changfeng get her three legendary heroes, and do they come with a confederation?"
+            "zh": "玩其他派系时，AI 沈长风会有那四位传奇英雄吗？合邦之后能拿到吗？",
+            "en": "When I play another faction, does the AI Shen Changfeng get her four legendary heroes, and do they come with a confederation?"
           },
           "answer": [
             {
-              "zh": "AI 的玉海舰队会在第 2、3、4 回合自动获得三位传奇英雄，合邦时会随之一起过来。",
-              "en": "The AI Jade Sea Fleet is given all three legendary heroes on turns 2, 3 and 4, and they come across with the confederation."
+              "zh": "AI 的玉海舰队会在第 2、3、4、5 回合自动获得四位传奇英雄，合邦时会随之一起过来。",
+              "en": "The AI Jade Sea Fleet is given all four legendary heroes on turns 2, 3, 4 and 5, and they come across with the confederation."
             }
           ]
         }

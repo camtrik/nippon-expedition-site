@@ -10,8 +10,8 @@
         "en": "A new playable Grand Cathay faction"
       },
       {
-        "zh": "1 名新传奇领主，3 名新传奇英雄，2 种通用领主，1 种通用英雄，10 个新兵种，1 种新法系",
-        "en": "1 Legendary Lord, 3 Legendary Heroes, 2 generic lords, 1 generic hero, 10 new units, 1 new spell lore"
+        "zh": "1 名新传奇领主，4 名新传奇英雄，2 种通用领主，1 种通用英雄，13 个新兵种，1 种新法系",
+        "en": "1 Legendary Lord, 4 Legendary Heroes, 2 generic lords, 1 generic hero, 13 new units, 1 new spell lore"
       },
       {
         "zh": "自动搬家一些原版传奇领主到尼朋以及尼朋周边区域（可在 MCT 中关闭）",
@@ -56,10 +56,31 @@
           {
             "zh": "[南皋工坊](https://steamcommunity.com/sharedfiles/filedetails/?id=3723969862)",
             "en": "[Cathay Mechanism Expansion: Nan-Gau Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=3723969862)"
+          }
+        ]
+      },
+      {
+        "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3816610137",
+        "name": {
+          "zh": "远征尼朋 · 与龙同行兼容包",
+          "en": "Nippon Expedition · Walking with Dragons Compatibility Patch"
+        },
+        "note": {
+          "zh": "[与龙同行](https://steamcommunity.com/sharedfiles/filedetails/?id=2789903784) 兼容子 mod。可选，两者同时使用时需要。",
+          "en": "[Walking with Dragons (DEER24 Cathay)](https://steamcommunity.com/sharedfiles/filedetails/?id=2789903784) compatibility submod. Optional, needed only when running both mods together."
+        },
+        "points": [
+          {
+            "zh": "玉海舰队与震旦各派系可以互相合邦",
+            "en": "The Jade Sea Fleet and the Cathay factions can confederate each other"
           },
           {
-            "zh": "[与龙同行](https://steamcommunity.com/sharedfiles/filedetails/?id=2789903784)",
-            "en": "[Walking with Dragons (DEER24 Cathay)](https://steamcommunity.com/sharedfiles/filedetails/?id=2789903784)"
+            "zh": "玉海舰队可以招募与龙同行开局开放的 14 支精英部队",
+            "en": "The Jade Sea Fleet can recruit the 14 Regiments of Renown that Walking with Dragons opens at the start of the campaign"
+          },
+          {
+            "zh": "玉海舰队不受「天朝局势」影响；顶栏显示军功，部分自制兵种可以用军功升级",
+            "en": "The Jade Sea Fleet is exempt from 天朝局势 (the State of the Celestial Empire); the top bar shows 军功 (Merits), and some of the mod's own units can be upgraded with them"
           }
         ]
       },

@@ -55,10 +55,12 @@
 .bond__notes li { --mark-x: 0; --mark-y: 10px; --mark-size: 4px; --mark-ink: var(--signal); }
 .bond__notes strong { color: var(--ink); font-weight: 700; }
 
+/* Two across: four companions read as a square, where three columns left the
+   fourth on a row of her own. */
 .companions {
   list-style: none;
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: var(--s-4);
   margin: 0;
   padding: 0;

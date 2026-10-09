@@ -10,6 +10,8 @@ tags: yinyin-compat
 
 这个 mod 只有同时订阅了 **[溟龙胤隐](https://steamcommunity.com/sharedfiles/filedetails/?id=2989226363)** 的玩家才需要装。
 
+- 2026-10-09 修复胤隐在 9.0 后启动即崩溃的问题。
+- 2026-10-09 修复合邦胤隐后她的军队无法扎营的问题。
 - 2026-10-01 适配 9.0。
 - 2026-08-30 上线。**震旦派系现在可以招募胤隐的兵种**：玉海海贼、玉海铁雹队、玉海浪人、影行者、龙舰陆战水兵、缴获火炮、捕鲸食人魔、溟龙旗本队。
     - 原版震旦港口的 1 级和 3 级各开放一批；胤隐自己的「巨龙舰队驻防序列」由东方省专属改为全震旦可建。
@@ -21,6 +23,8 @@ tags: yinyin-compat
 
 You only need this mod if you are also subscribed to **[Roar of the Jade Sea: Yin-Yin, the Sea Dragon](https://steamcommunity.com/sharedfiles/filedetails/?id=2989226363)**.
 
+- 2026-10-09 Fixed Yin-Yin crashing on launch since 9.0.
+- 2026-10-09 Fixed Yin-Yin's armies being unable to encamp after you confederate her.
 - 2026-10-01 Updated for 9.0.
 - 2026-08-30 Released. **Cathay factions can now recruit Yin-Yin's units**: Jade Sea Pirates, Jade Sea Teppogumi, Jade Sea Ronin, Ansatsusha, Dragon Fleet Marines, Looted Cannons, Ogre Whalers and the Sea Dragon's Hatamoto.
     - The vanilla Cathay port opens a batch at tier 1 and another at tier 3; Yin-Yin's own Naval Garrison chain goes from Eastern-Provinces-only to buildable by any Cathay faction.

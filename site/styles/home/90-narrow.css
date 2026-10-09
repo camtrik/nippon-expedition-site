@@ -1,10 +1,6 @@
 /* ============================================================
    Narrower viewports
    ============================================================ */
-@media (max-width: 1080px) {
-  .companions { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-}
-
 @media (max-width: 900px) {
   .band { padding: 52px 0; }
   .band__inner { display: block; }

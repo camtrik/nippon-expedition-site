@@ -88,6 +88,27 @@
               "zh": "稻荷灵狐使者",
               "en": "Inari Fox Emissary"
             }
+          },
+          {
+            "slug": "akatsuki-shu-katana",
+            "name": {
+              "zh": "晓行众（太刀）",
+              "en": "Akatsuki-shu (Katana)"
+            }
+          },
+          {
+            "slug": "akatsuki-shu-bow",
+            "name": {
+              "zh": "晓行众（弓）",
+              "en": "Akatsuki-shu (Bow)"
+            }
+          },
+          {
+            "slug": "kunikuzushi-oni",
+            "name": {
+              "zh": "国崩巨鬼",
+              "en": "Kunikuzushi Oni"
+            }
           }
         ]
       }

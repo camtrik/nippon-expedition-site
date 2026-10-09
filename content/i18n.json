@@ -15,7 +15,7 @@
     "PAGES": {
       "home": {
         "TITLE": "远征尼朋 · 玉海舰队 — 《战锤3》派系 MOD",
-        "DESCRIPTION": "《战锤3》mod「远征尼朋 · 玉海舰队」：新的震旦可玩派系、远征同伴系统、8 个新兵种，以及两条分叉的长期胜利路线。"
+        "DESCRIPTION": "《战锤3》mod「远征尼朋 · 玉海舰队」：新的震旦可玩派系、远征同伴系统、13 个新兵种，以及两条分叉的长期胜利路线。"
       },
       "changelog": {
         "TITLE": "更新记录 — 远征尼朋 · 玉海舰队",
@@ -49,6 +49,7 @@
     "WS_YINYIN": "胤隐兼容包",
     "WS_WUH": "兵戈天下兼容包",
     "WS_TECHTREE": "科技树兼容包",
+    "WS_WWD": "与龙同行兼容包",
     "TYPE": {
       "release": "版本发布",
       "content": "内容更新",
@@ -70,7 +71,8 @@
       "cathay-compat": "震旦兼容包",
       "yinyin-compat": "胤隐兼容包",
       "wuh-compat": "兵戈天下兼容包",
-      "techtree-compat": "科技树兼容包"
+      "techtree-compat": "科技树兼容包",
+      "wwd-compat": "与龙同行兼容包"
     }
   },
   "en": {
@@ -89,7 +91,7 @@
     "PAGES": {
       "home": {
         "TITLE": "Nippon Expedition · The Jade Sea Fleet — a Total War: WARHAMMER III mod",
-        "DESCRIPTION": "A new playable Grand Cathay faction for Total War: WARHAMMER III: the Expedition Companions system, 8 new units, and two long victories that fork."
+        "DESCRIPTION": "A new playable Grand Cathay faction for Total War: WARHAMMER III: the Expedition Companions system, 13 new units, and two long victories that fork."
       },
       "changelog": {
         "TITLE": "Changelog — Nippon Expedition · The Jade Sea Fleet",
@@ -123,6 +125,7 @@
     "WS_YINYIN": "Yin-Yin Compatibility Patch",
     "WS_WUH": "War under Heaven Compatibility Patch",
     "WS_TECHTREE": "Tech Tree Compatibility",
+    "WS_WWD": "Walking with Dragons Compatibility Patch",
     "TYPE": {
       "release": "Release",
       "content": "Content",
@@ -144,7 +147,8 @@
       "cathay-compat": "Cathay compat",
       "yinyin-compat": "Yin-Yin compat",
       "wuh-compat": "War under Heaven compat",
-      "techtree-compat": "Tech tree compat"
+      "techtree-compat": "Tech tree compat",
+      "wwd-compat": "Walking with Dragons compat"
     }
   }
 }

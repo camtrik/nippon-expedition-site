@@ -18,4 +18,5 @@ def workshop_ctas() -> list[tuple[str, str]]:
         ("WS_YINYIN", "https://steamcommunity.com/sharedfiles/filedetails/?id=3792695478"),
         ("WS_WUH", "https://steamcommunity.com/sharedfiles/filedetails/?id=3795596611"),
         ("WS_TECHTREE", "https://steamcommunity.com/sharedfiles/filedetails/?id=3799752801"),
+        ("WS_WWD", "https://steamcommunity.com/sharedfiles/filedetails/?id=3816610137"),
     ]

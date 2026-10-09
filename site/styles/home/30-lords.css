@@ -49,21 +49,20 @@
    there is no vertical spine left, so the line the bands share is a horizontal
    one — centring the copy instead left the companions' two lines floating in
    the middle of an empty half. Cards come first in the markup, which is also
-   the order a narrow screen stacks them in. */
+   the order a narrow screen stacks them in.
+   Flex rather than a two-column grid so the copy can give way: a grid squeezed
+   the four companions' line down to three characters wide just above the
+   900px breakpoint. Below 10em the copy takes a line of its own instead — over
+   the cards on a cards-right band, under them on a cards-left one. */
 .lord {
-  display: grid;
-  column-gap: var(--s-4);
-  align-items: start;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: var(--s-2) var(--s-4);
 }
-.lord--cards-left { grid-template-columns: auto minmax(0, 1fr); }
-.lord--cards-right { grid-template-columns: minmax(0, 1fr) auto; }
-/* Row 1 on both, explicitly: the cards come first in the markup, so on a
-   cards-right band auto-placement would refuse to move the copy back to
-   column 1 and would drop it onto a row of its own underneath. */
-.lord--cards-left .lord__cast { grid-area: 1 / 1; }
-.lord--cards-left .lord__entries { grid-area: 1 / 2; }
-.lord--cards-right .lord__cast { grid-area: 1 / 2; }
-.lord--cards-right .lord__entries { grid-area: 1 / 1; }
+.lord__cast { flex: none; }
+.lord__entries { flex: 1 1 10em; min-width: 0; }
+.lord--cards-right .lord__entries { order: -1; }
 /* A band may hold more than one entry; they read as one column of copy. */
 .lord__entries { display: grid; gap: var(--s-4); }
 /* Rank is the section's only real split — one of a kind, or as many as you can

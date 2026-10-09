@@ -109,6 +109,31 @@
             "en": "Wangshu Selana Gu"
           }
         ]
+      },
+      {
+        "slug": "ibuki",
+        "name": {
+          "zh": "『半妖行者』伊吹",
+          "en": "Ibuki, the Hanyo Wanderer"
+        },
+        "chapters": [
+          {
+            "zh": "破晓之誓",
+            "en": "Oath of the Dawn"
+          },
+          {
+            "zh": "行客之志",
+            "en": "A Wanderer's Resolve"
+          },
+          {
+            "zh": "野太刀『无名』",
+            "en": "The Nameless Odachi"
+          },
+          {
+            "zh": "破晓之刃",
+            "en": "Blade of the Dawn"
+          }
+        ]
       }
     ],
     "numerals": {
@@ -135,8 +160,8 @@
         "en": "**Renown**: spend it in the panel to buy the units you have unlocked"
       },
       {
-        "zh": "**章节任务链**：三条独立任务链。完成任务以推进羁绊等级",
-        "en": "**Chapter quest lines**: three separate chains. Complete them to raise the bond tier"
+        "zh": "**章节任务链**：四条独立任务链。完成任务以推进羁绊等级",
+        "en": "**Chapter quest lines**: four separate chains. Complete them to raise the bond tier"
       }
     ]
   }

@@ -10,6 +10,7 @@ tags: nrs-compat
 
 这个 mod 只有同时订阅了 **[Nippon, Land of the Rising Sun](https://steamcommunity.com/sharedfiles/filedetails/?id=3770643554)** 的玩家才需要装。
 
+- 2026-10-09 支持伊吹的同伴线；选将界面换成沈长风的动态短片；修复 IEE 联机时开局脚本报错的问题。
 - 2026-10-01 适配 9.0 与 IEE 新尼朋地图：炮术所改为攻占鉄守解锁，鬼隐道改为攻占故隠里解锁；换槽后也能使用极东航道。
 - 2026-09-11 **NRS 的尼朋兵种现在吃得到领主与英雄的加成了**：武士大将、沈长风、立花直虎与纱代那些按兵种类别发的技能（武士部队／铁炮部队／灵兽），现在把 NRS 那 24 支兵一并算进去。
 - 2026-08-30 **NRS 的尼朋兵种现在可以在岸上招募了**：足轻、武士、骑马武士、武僧、忍者、符咒巨人、火炮等，拥有独特的建筑树。
@@ -25,6 +26,7 @@ tags: nrs-compat
 
 You only need this mod if you are also subscribed to **[Nippon, Land of the Rising Sun](https://steamcommunity.com/sharedfiles/filedetails/?id=3770643554)**.
 
+- 2026-10-09 Supports Ibuki's companion line; the lord-selection screen now plays Shen Changfeng's animated clip; fixed a start-of-campaign script error in IEE multiplayer.
 - 2026-10-01 Updated for 9.0 and IEE's new Nippon map: the Gunnery School now unlocks by capturing Tetsu Fortress, and the Hidden Path by capturing Kokakurezato. The Far East Seaways also work after the faction-slot swap.
 - 2026-09-11 **NRS's Nippon units now benefit from lord and hero skills**: the skills of Samurai Taisho, Shen Changfeng, Tachibana Naotora and Sayo that buff a unit class — Samurai units, Teppo units, Divine Beasts — now count all 24 of NRS's units in.
 - 2026-08-30 **NRS's Nippon units can now be recruited on shore**: Ashigaru, samurai, mounted samurai, warrior monks, ninjas, fuju giants, artillery and more, with a dedicated building tree.
