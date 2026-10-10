@@ -88,7 +88,15 @@
               "zh": "稻荷灵狐使者",
               "en": "Inari Fox Emissary"
             }
-          },
+          }
+        ]
+      },
+      {
+        "name": {
+          "zh": "妖怪",
+          "en": "Yokai"
+        },
+        "items": [
           {
             "slug": "akatsuki-shu-katana",
             "name": {
